@@ -1,51 +1,93 @@
-.. py:currentmodule:: lsst.ts.IntegrationTests
+.. _IntegrationTests:
 
-.. _lsst.ts.IntegrationTests:
+#########################
+IntegrationTests
+#########################
 
-########################
-lsst.ts.IntegrationTests
-########################
+.. update the following links to point to your package
+.. image:: https://img.shields.io/badge/SAL-API-gray.svg
+    :target: https://ts-xml.lsst.io/sal_interfaces/IntegrationTests.html
+.. image:: https://img.shields.io/badge/GitHub-gray.svg
+    :target: https://github.com/lsst-ts/ts_IntegrationTests
+.. image:: https://img.shields.io/badge/Jira-gray.svg
+    :target: https://jira.lsstcorp.org/issues/?jql=labels+%3D+ts_IntegrationTests
+.. image:: https://img.shields.io/badge/Jenkins-gray.svg
+    :target: https://tssw-ci.lsst.org/job/LSST_Telescope-and-Site/job/ts_IntegrationTests/
 
-.. Paragraph that describes what this Python module does and links to related modules and frameworks.
+.. Warning::
 
-.. .. _lsst.ts.IntegrationTests-using:
+   **This integration testing documentation is under development and not ready for active use.**
 
-.. Using lsst.ts.IntegrationTests
-.. ==============================
+.. _Overview:
 
-.. toctree linking to topics related to using the module's APIs.
+Overview
+========
 
-.. .. toctree::
-..    :maxdepth: 1
+[This section is to present an overview of the integration testing.
+This should include a top-level description of the primary use-case(s) as well as any pertinent information.
+Example information may be link(s) to the higher-level classes which may be used to operate it, or mention of other packages (with links) that it operates in concert with.]
 
-.. _lsst.ts.IntegrationTests-contributing:
+.. note:: If you are interested in viewing other branches of this repository append a `/v` to the end of the url link. For example `https://ts_IntegrationTests.lsst.io/v/`
 
-Contributing
-============
 
-``lsst.ts.IntegrationTests`` is developed at https://github.com/lsst-ts/ts_IntegrationTests.
-You can find Jira issues for this module under the `ts_IntegrationTests <https://jira.lsstcorp.org/issues/?jql=project%20%3D%20DM%20AND%20component%20%3D%20ts_IntegrationTests>`_ component.
+.. _User_Documentation:
 
-.. If there are topics related to developing this module (rather than using it), link to this from a toctree placed here.
+User Documentation
+==================
 
-.. .. toctree::
-..    :maxdepth: 1
+.. This template has the user documentation in a subfolder.
+.. However, in cases where the user documentation is extremely short (<50 lines), one may move that content here and remove the subfolder.
+.. This will require modification of the heading styles and possibly renaming of the labels.
+.. If the content becomes too large, then it must be moved back to a subfolder and reformatted appropriately.
 
-.. .. _lsst.ts.IntegrationTests-scripts:
+User-level documentation, found at the link below, is aimed at personnel looking to perform the standard use-cases/operations with the IntegrationTests.
 
-.. Script reference
-.. ================
+.. toctree::
+    user-guide/user-guide
+    :maxdepth: 2
 
-.. .. TODO: Add an item to this toctree for each script reference topic in the scripts subdirectory.
+.. _Configuration:
 
-.. .. toctree::
-..    :maxdepth: 1
+Configuring the IntegrationTests
+================================
+.. For packages where configuration is not required, this section can contain a single sentence stating so.
+   More introductory information can also be added here (e.g. package XYZ requires both a configuration file containing parameters as well as several look-up tables to be operational).
 
-.. .. _lsst.ts.IntegrationTests-pyapi:
+The configuration for the IntegrationTests is described at the following link.
 
-Python API reference
-====================
+.. toctree::
+    configuration/configuration
+    :maxdepth: 1
 
-.. automodapi:: lsst.ts.IntegrationTests
-   :no-main-docstr:
-   :no-inheritance-diagram:
+
+.. _Testing_Documentation:
+
+Testing Documentation
+=====================
+
+.. This template has the user documentation in a subfolder.
+.. However, in cases where the user documentation is extremely short (<50 lines), one may move that content here and remove the subfolder.
+.. This will require modification of the heading styles and possibly renaming of the labels.
+.. If the content becomes too large, then it must be moved back to a subfolder and reformatted appropriately.
+
+This area of documentation focuses on the classes used, API's, and how to participate to the development of the IntegrationTests software packages.
+
+.. toctree::
+    tester-guide/tester-guide
+    :maxdepth: 1
+
+.. _VersionHistory:
+
+Version History
+===============
+
+.. At the time of writing the Version history/release notes are not yet standardized.
+.. Until then, it is not expected that both a version history and a release_notes be maintained.
+.. It is expected that each package will link to whatever method of tracking is being used for that package until standardization occurs.
+.. No new work should be required in order to complete this section.
+
+The version history of the IntegrationTests is found at the following link.
+
+.. toctree::
+    version-history
+    :maxdepth: 1
