@@ -1,6 +1,6 @@
 # This file is part of ts_IntegrationTests.
 #
-# Developed for the LSST Data Management System.
+# Developed for the Rubin Observatory Telescope and Site System.
 # This product includes software developed by the LSST Project
 # (https://www.lsst.org).
 # See the COPYRIGHT file at the top-level directory of this distribution
@@ -19,10 +19,39 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-try:
-    from .version import *
-except ImportError:
-    __version__ = "?"
+import yaml
 
-from .testutils import *
-from .yaml_test_strings import *
+
+def yaml_test_string1():
+    """Return a properly formatted YAML test string.
+
+    To call this from a unit test (see ``tests/test_yaml.py``)::
+
+        IntegrationTests.yaml_test_string1()
+
+    """
+    yaml_string = yaml.safe_load(
+        """
+        data:
+        - - CCCamera
+        - DISABLED
+        - Normal
+        - - CCHeaderService
+        - DISABLED
+        - - CCArchiver
+        - DISABLED
+        """
+    )
+    return yaml.safe_dump(yaml_string, explicit_start=True, canonical=True)
+
+
+def bad_yaml():
+    """Return an improperly formatted YAML string.
+
+    To call this from a unit test (see ``tests/test_yaml.py``)::
+
+        IntegrationTests.bad_yaml()
+
+    """
+    bad_yaml_string = "\tHello\nWorld"
+    return bad_yaml_string
