@@ -22,3 +22,6 @@ pytest_session.txt
 *.egg-info
 *.pyc
 *Lib.py
+
+# OSPL
+ospl*log

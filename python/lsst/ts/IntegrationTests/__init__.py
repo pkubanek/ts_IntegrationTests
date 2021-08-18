@@ -26,3 +26,4 @@ except ImportError:
 
 from .testutils import *
 from .yaml_test_strings import *
+from .configs import *
