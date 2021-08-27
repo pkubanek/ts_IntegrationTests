@@ -19,6 +19,7 @@ setuptools.setup(
     packages=setuptools.find_namespace_packages(where="python"),
     scripts=[
         "bin/simple_script.py",
+        "bin/auxtel_visit.py",
     ],
     license="GPL",
     project_urls={

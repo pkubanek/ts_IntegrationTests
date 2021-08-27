@@ -46,6 +46,10 @@ class YamlTestCase(unittest.TestCase):
         else:
             assert False
 
+    def test_auxtel_visit_config(self):
+        yaml_string = IntegrationTests.auxtel_visit_config()
+        IntegrationTests.assert_yaml_formatted(yaml_string)
+
 
 if __name__ == "__main__":
     unittest.main()
