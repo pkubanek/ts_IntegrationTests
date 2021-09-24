@@ -22,53 +22,32 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import unittest
-import asyncio
 
 from lsst.ts import salobj
+from lsst.ts.IntegrationTests import ScriptQueueController
+from lsst.ts.IntegrationTests import AuxTelVisit
 
 
 class AuxTelVisitTestCase(unittest.IsolatedAsyncioTestCase):
     # Instantiate the ScriptQueue Controller.
-    def default_callback(self, data):
-        print(data)
-
     async def asyncSetUp(self):
         # Set the LSST_DDS_PARTITION_PREFIX ENV_VAR.
         salobj.set_random_lsst_dds_partition_prefix()
 
-        # Create the ScriptQueue Controller and Remote (Commander).
-        self.controller = salobj.Controller("ScriptQueue", index=2)
+        # Create the ScriptQueue Controller.
+        self.controller = ScriptQueueController()
 
         # Start the controller and wait for it be ready.
         await self.controller.start_task
-        self.hb_task = asyncio.create_task(self.pub_hb())
-
-        # Create the Callback mocks for the desired ScriptQueue commands.
-        self.controller.cmd_pause.callback = self.default_callback
-        self.controller.cmd_add.callback = self.default_callback
-        self.controller.cmd_resume.callback = self.default_callback
-        # self.controller = IntegrationTests.ScriptQueueController()
-
-    async def pub_hb(self):
-        while True:
-            self.controller.evt_heartbeat.put()
-            await asyncio.sleep(1.0)
 
     async def test_auxtel_visit(self):
-        # Execute the bin/auxtel_visit.py
-        script = "auxtel_visit.py"
-        child_proccess = await asyncio.create_subprocess_shell(
-            script, stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE
-        )
-        stdout, stderr = await child_proccess.communicate()
+        # Execute the AuxTelVisit script class.
+        script_class = AuxTelVisit()
+        await script_class.run()
 
-        if stdout:
-            print(f"[stdout]\n{stdout.decode()}")
-        if stderr:
-            print(f"[stderr]\n{stderr.decode()}")
-
-        self.assertEqual(child_proccess.returncode, 0)
+        # Assert script was added to ScriptQueue.
+        self.assertEqual(len(self.controller.queue_list), 1)
 
     async def asyncTearDown(self):
-        self.hb_task.cancel()
         await self.controller.close()
+        await self.controller.done_task
