@@ -23,7 +23,11 @@
 import asyncio
 
 from lsst.ts.IntegrationTests import AuxTelVisit
+from lsst.ts.IntegrationTests import configs
 
-script_class = AuxTelVisit()
+script_class = AuxTelVisit(
+    config=configs.auxtel_visit_config,
+    script="auxtel/take_image_latiss.py",
+)
 
 asyncio.run(script_class.run())

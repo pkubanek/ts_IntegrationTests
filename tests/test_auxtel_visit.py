@@ -26,6 +26,7 @@ import unittest
 from lsst.ts import salobj
 from lsst.ts.IntegrationTests import ScriptQueueController
 from lsst.ts.IntegrationTests import AuxTelVisit
+from lsst.ts.IntegrationTests import configs
 
 
 class AuxTelVisitTestCase(unittest.IsolatedAsyncioTestCase):
@@ -42,7 +43,10 @@ class AuxTelVisitTestCase(unittest.IsolatedAsyncioTestCase):
 
     async def test_auxtel_visit(self):
         # Execute the AuxTelVisit script class.
-        script_class = AuxTelVisit()
+        script_class = AuxTelVisit(
+            config=configs.auxtel_visit_config(),
+            script="auxtel/take_image_latiss.py",
+        )
         await script_class.run()
 
         # Assert script was added to ScriptQueue.

@@ -20,36 +20,18 @@
 
 __all__ = ["AuxTelVisit"]
 
-from lsst.ts import IntegrationTests
-from lsst.ts import salobj
-from lsst.ts.idl.enums import ScriptQueue
+from lsst.ts.IntegrationTests import BaseScript
 
 
-class AuxTelVisit:
+class AuxTelVisit(BaseScript):
     """Execute the auxtel/take_image_latiss.py"""
 
-    def __init__(self):
-        pass
+    index = 2
 
-    async def run(self):
-        """Run the auxtel/take_image_latiss.py script."""
-        async with salobj.Domain() as domain, salobj.Remote(
-            domain=domain, name="ScriptQueue", index=2
-        ) as remote:
-            # note: use index=1 for MT, 2 for AuxTel;
-            # also since `async with` is used,
-            # you do NOT have to wait for the remote to start
-            configuration = IntegrationTests.auxtel_visit_config()
-            print("Test configuration:\n" + configuration)
-            await remote.evt_heartbeat.next(flush=True, timeout=30)
-            await remote.cmd_pause.start(timeout=10)
-            await remote.cmd_add.set_start(
-                timeout=10,
-                isStandard=True,
-                path="auxtel/take_image_latiss.py",
-                config=configuration,
-                logLevel=10,
-                location=ScriptQueue.Location.FIRST,
-            )
-            await remote.cmd_resume.set_start(timeout=10)
-            print("You have executed the auxtel/take_image_latiss.py script.")
+    def __init__(self, config, script, isStandard=True, queue_placement="first"):
+        super().__init__(
+            config=config,
+            script=script,
+            isStandard=isStandard,
+            queue_placement=queue_placement,
+        )
