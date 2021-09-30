@@ -20,7 +20,6 @@
 
 __all__ = ["BaseScript"]
 
-from lsst.ts import IntegrationTests
 from lsst.ts import salobj
 from lsst.ts.idl.enums import ScriptQueue
 
@@ -30,8 +29,7 @@ class BaseScript:
 
     index = 1
 
-    def __init__(self, config, script, isStandard=True,
-                 queue_placement="FIRST"):
+    def __init__(self, config, script, isStandard=True, queue_placement="FIRST"):
         self.config = config
         self.script = script
         self.isStandard = isStandard

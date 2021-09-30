@@ -27,8 +27,9 @@ from lsst.ts import salobj
 
 
 class ScriptQueueController(salobj.Controller):
-    def __init__(self):
-        super().__init__("ScriptQueue", index=2)
+    def __init__(self, index):
+        super().__init__("ScriptQueue", index=index)
+        self.index = index
         self.queue_list = []
         self.cmd_pause.callback = self.do_pause
         self.cmd_add.callback = self.do_add
