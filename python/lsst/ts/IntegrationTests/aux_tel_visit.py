@@ -24,7 +24,11 @@ from lsst.ts.IntegrationTests import BaseScript
 
 
 class AuxTelVisit(BaseScript):
-    """Execute the auxtel/take_image_latiss.py"""
+    """Execute the given Auxilliary Telescope Standard or External
+    script, with the given Yaml configuration, placed in the
+    given ScriptQueue location.
+
+    """
 
     index = 2
 

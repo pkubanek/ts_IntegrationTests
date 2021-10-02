@@ -27,7 +27,21 @@ from lsst.ts import salobj
 
 
 class ScriptQueueController(salobj.Controller):
+    """Define a ScriptQueue controller. This is used by the unit tests to
+    mimic the functions of the real ScriptQueue. The integration test
+    scripts are designed to run in a fully stood-up environment.
+
+    """
+
     def __init__(self, index):
+        """Initialize the ScriptQueue Controller.
+
+        Parameters
+        ----------
+        index : `int`
+            Defines whether this is a MainTel (index=1)
+        or an AuxTel (index=2) controller.
+        """
         super().__init__("ScriptQueue", index=index)
         self.index = index
         self.queue_list = []
@@ -36,9 +50,10 @@ class ScriptQueueController(salobj.Controller):
         self.cmd_resume.callback = self.do_resume
 
     async def pub_hb(self):
-        # Publish the heartbeat. Ensures controller
-        # is running. Test scripts check for
-        # the heartbeat before proceeding.
+        """Publish the heartbeat. This ensures the controller is running.
+        The test scripts check for the heartbeat before proceeding.
+
+        """
         try:
             while True:
                 self.evt_heartbeat.put()
@@ -49,31 +64,48 @@ class ScriptQueueController(salobj.Controller):
             self.log.exception("Heartbeat failed!")
 
     async def start(self):
-        # Start the Controller and the hertbeat.
+        """Start the Controller and the hertbeat."""
         await super().start()
         self.hb_task = asyncio.create_task(self.pub_hb())
 
     async def do_pause(self, data):
-        # Pause the ScriptQueue to add scripts to the queue.
-        # self.log.info("ScriptQueue paused\n")
+        """Pause the ScriptQueue to add scripts to the queue.
+        self.log.info("ScriptQueue paused\n")
+
+        """
         pass
 
     async def do_add(self, data):
-        # Add scripts to the ScriptQueue queue.
+        """Add scripts to the ScriptQueue queue.
+        This mock function uses a simple array to mimic the queue.
+        It simply appends the script path to the array.
+
+        Parameters
+        ----------
+        data : ``cmd_add.DataType``
+            Data is an object that contains the configuration for the script.
+            This includes the path to the script and the Location in
+            queue.
+
+        """
         # self.log.info("Script: " + data.path)
         # self.log.info("Location: " + data.location)
         self.queue_list.append(data.path)
 
     async def do_resume(self, data):
-        # Resume the ScriptQueue after adding the scripts
-        # to the queue. The ScriptQueue will then execute
-        # the scripts.
+        """Resume the ScriptQueue after adding the scripts
+        to the queue. The ScriptQueue will then execute
+        the scripts.
+
+        """
         # self.log.info("ScriptQueue resumed\n")
         pass
 
     async def close_tasks(self):
-        # This closes the resources for the controller,
-        # and terminates the heartbeat loop.
+        """This closes the resources for the controller,
+        and terminates the heartbeat loop.
+
+        """
         self.hb_task.cancel()
         await super().close_tasks()
 
@@ -87,7 +119,7 @@ class ScriptQueueController(salobj.Controller):
         pass
 
     async def do_showQueue(self):
-        # Show the queue via the output from the queue event.
+        """Show the queue via the output from the queue event."""
         pass
 
     async def do_showSchema(self):

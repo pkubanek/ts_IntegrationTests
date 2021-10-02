@@ -25,8 +25,42 @@ from lsst.ts.idl.enums import ScriptQueue
 
 
 class BaseScript:
-    """Integration tests script base class."""
+    """Execute the given Standard or External
+       script, with the given Yaml configuration, placed in the
+       given ScriptQueue location.
 
+    Notes
+    -----
+    Use index=1 for MainTel, 2 for AuxTel. The index is defined as a class
+    attribute for simplicity.  The sub-Classes define which index,
+    if necessary.
+    The BaseScript class defaults to index=1, as the most common option.
+
+    Parameters
+    ----------
+    config : `str`
+        Yaml formatted string of script configuration.
+    script : `str`
+        Relative path to the Standard or External script to execute.
+    isStandard : `bool`
+        If True, the script is in ts_standardscripts (True is the
+        default, as it is the most common option).
+        if False, the script is in ts_externalscripts.
+    queue_placement : `str`
+        Options are "FIRST" "LAST" "BEFORE" or "AFTER" and are
+        case insensistive ("FIRST" is the default, for convenience).
+        The BaseScript Class will convert to the appropriate
+        ScriptQueue.Location enum object.
+
+    Attributes
+    ----------
+    index : `int`
+        The index represents the Main Telescope, index=1, or the
+        Auxilliary Telescope, index=2.
+
+    """
+
+    # See Attributes for the definition.
     index = 1
 
     def __init__(self, config, script, isStandard=True, queue_placement="FIRST"):
@@ -40,15 +74,23 @@ class BaseScript:
         async with salobj.Domain() as domain, salobj.Remote(
             domain=domain, name="ScriptQueue", index=self.index
         ) as remote:
-            # note: use index=1 for MT, 2 for AuxTel;
-            # also since `async with` is used,
+            # Since `async with` is used,
             # you do NOT have to wait for the remote to start
+
+            # Print the script configuration, for troubleshooting.
             print("Test configuration:\n" + self.config)
+
+            # Convert the queue_placement parameter to the approprirate
+            # ScriptQueue.Location Enum object.
             queue_placement = getattr(
                 ScriptQueue.Location, self.queue_placement.upper()
             )
+
+            # Wait for the next ScriptQueue heartbeat to ensure it is running.
             await remote.evt_heartbeat.next(flush=True, timeout=30)
+            # Pause the ScriptQueue to load the scripts into the queue.
             await remote.cmd_pause.start(timeout=10)
+            # Add scripts to the queue.
             await remote.cmd_add.set_start(
                 timeout=10,
                 isStandard=self.isStandard,
@@ -57,5 +99,8 @@ class BaseScript:
                 logLevel=10,
                 location=queue_placement,
             )
+            # Resume the ScriptQueue to being script execution.
             await remote.cmd_resume.set_start(timeout=10)
+
+            # Print confirmation message.
             print("You have executed the " + self.script + "script.")

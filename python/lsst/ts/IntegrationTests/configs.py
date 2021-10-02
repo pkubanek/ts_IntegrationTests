@@ -23,6 +23,10 @@ import yaml
 
 
 def auxtel_visit_config():
+    """Defines the configuration used in the AuxTel Visit
+    integration test script.
+
+    """
     config = yaml.safe_dump(
         {
             "nimages": 1.0,
