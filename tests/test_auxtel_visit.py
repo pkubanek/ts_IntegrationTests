@@ -30,7 +30,8 @@ from lsst.ts.IntegrationTests import configs
 
 
 class AuxTelVisitTestCase(unittest.IsolatedAsyncioTestCase):
-    # Instantiate the ScriptQueue Controller.
+    """Test the AuxTel Visit integration test script."""
+
     async def asyncSetUp(self):
         # Set the LSST_DDS_PARTITION_PREFIX ENV_VAR.
         salobj.set_random_lsst_dds_partition_prefix()
@@ -42,7 +43,11 @@ class AuxTelVisitTestCase(unittest.IsolatedAsyncioTestCase):
         await self.controller.start_task
 
     async def test_auxtel_visit(self):
-        # Execute the AuxTelVisit script class.
+        """Execute the AuxTelVisit integration test script, which runs the
+        ts_standardscripts/auxtel/take_image_latiss.py script.
+        Use the configuration stored in the configs module.
+
+        """
         script_class = AuxTelVisit(
             config=configs.auxtel_visit_config(),
             script="auxtel/take_image_latiss.py",

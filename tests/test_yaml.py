@@ -26,11 +26,24 @@ from lsst.ts import IntegrationTests
 
 
 class YamlTestCase(unittest.TestCase):
+    """Test that the configurations are stored as properly formatted
+    Yaml strings.
+
+    """
+
     def test_yaml_formatted(self):
+        """Use the IntegrationTests.yaml_test_string1() configuration to test
+        a well-formatted Yaml string.
+
+        """
         yaml_string = IntegrationTests.yaml_test_string1()
         IntegrationTests.assert_yaml_formatted(yaml_string)
 
     def test_bad_yaml(self):
+        """Use the IntegrationTests.bad_yaml() configuration to test
+        a non-Yaml-formatted string.
+
+        """
         bad_yaml = IntegrationTests.bad_yaml()
         args = ["yamllint", "-"]
         byte_string = bytes(bad_yaml, "utf-8")
@@ -47,9 +60,9 @@ class YamlTestCase(unittest.TestCase):
             assert False
 
     def test_auxtel_visit_config(self):
+        """Test the IntegrationTests.auxtel_visit_config() is
+        well-formatted Yaml.
+
+        """
         yaml_string = IntegrationTests.auxtel_visit_config()
         IntegrationTests.assert_yaml_formatted(yaml_string)
-
-
-if __name__ == "__main__":
-    unittest.main()
