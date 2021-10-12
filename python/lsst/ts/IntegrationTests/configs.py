@@ -20,14 +20,12 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import yaml
+from .config_registry import add_config
 
 
-def auxtel_visit_config1():
-    """Defines the configuration used in the AuxTel Visit
-    integration test script.
-
-    """
-    config = yaml.safe_dump(
+add_config(
+    name="auxtel_visit_config1",
+    config_yaml=yaml.safe_dump(
         {
             "nimages": 1.0,
             "exp_times": 5.0,
@@ -38,16 +36,12 @@ def auxtel_visit_config1():
         },
         explicit_start=True,
         canonical=True,
-    )
-    return config
+    ),
+)
 
-
-def auxtel_visit_config2():
-    """Defines the configuration used in the AuxTel Visit
-    integration test script.
-
-    """
-    config = yaml.safe_dump(
+add_config(
+    name="auxtel_visit_config2",
+    config_yaml=yaml.safe_dump(
         {
             "nimages": 1.0,
             "image_type": "OBJECT",
@@ -57,16 +51,12 @@ def auxtel_visit_config2():
         },
         explicit_start=True,
         canonical=True,
-    )
-    return config
+    ),
+)
 
-
-def auxtel_visit_config3():
-    """Defines the configuration used in the AuxTel Visit
-    integration test script.
-
-    """
-    config = yaml.safe_dump(
+add_config(
+    name="auxtel_visit_config3",
+    config_yaml=yaml.safe_dump(
         {
             "nimages": 1.0,
             "image_type": "OBJECT",
@@ -76,16 +66,12 @@ def auxtel_visit_config3():
         },
         explicit_start=True,
         canonical=True,
-    )
-    return config
+    ),
+)
 
-
-def auxtel_visit_config4():
-    """Defines the configuration used in the AuxTel Visit
-    integration test script.
-
-    """
-    config = yaml.safe_dump(
+add_config(
+    name="auxtel_visit_config4",
+    config_yaml=yaml.safe_dump(
         {
             "nimages": 1.0,
             "image_type": "OBJECT",
@@ -95,16 +81,12 @@ def auxtel_visit_config4():
         },
         explicit_start=True,
         canonical=True,
-    )
-    return config
+    ),
+)
 
-
-def auxtel_visit_config5():
-    """Defines the configuration used in the AuxTel Visit
-    integration test script.
-
-    """
-    config = yaml.safe_dump(
+add_config(
+    name="auxtel_visit_config5",
+    config_yaml=yaml.safe_dump(
         {
             "nimages": 1.0,
             "image_type": "OBJECT",
@@ -114,16 +96,12 @@ def auxtel_visit_config5():
         },
         explicit_start=True,
         canonical=True,
-    )
-    return config
+    ),
+)
 
-
-def auxtel_visit_config6():
-    """Defines the configuration used in the AuxTel Visit
-    integration test script.
-
-    """
-    config = yaml.safe_dump(
+add_config(
+    name="auxtel_visit_config6",
+    config_yaml=yaml.safe_dump(
         {
             "nimages": 1.0,
             "image_type": "OBJECT",
@@ -133,5 +111,5 @@ def auxtel_visit_config6():
         },
         explicit_start=True,
         canonical=True,
-    )
-    return config
+    ),
+)

@@ -21,7 +21,7 @@
 __all__ = ["AuxTelVisit"]
 
 from lsst.ts.IntegrationTests import BaseScript
-from lsst.ts.IntegrationTests import configs
+from .config_registry import registry
 
 
 class AuxTelVisit(BaseScript):
@@ -33,12 +33,12 @@ class AuxTelVisit(BaseScript):
 
     index = 2
     configs = (
-        configs.auxtel_visit_config1(),
-        configs.auxtel_visit_config2(),
-        configs.auxtel_visit_config3(),
-        configs.auxtel_visit_config4(),
-        configs.auxtel_visit_config5(),
-        configs.auxtel_visit_config6(),
+        registry["auxtel_visit_config1"],
+        registry["auxtel_visit_config2"],
+        registry["auxtel_visit_config3"],
+        registry["auxtel_visit_config4"],
+        registry["auxtel_visit_config5"],
+        registry["auxtel_visit_config6"],
     )
     scripts = (
         "auxtel/take_image_latiss.py",
@@ -49,7 +49,7 @@ class AuxTelVisit(BaseScript):
         "auxtel/take_image_latiss.py",
     )
 
-    def __init__(self, isStandard=True, queue_placement="first"):
+    def __init__(self, isStandard=True, queue_placement="after"):
         super().__init__(
             isStandard=isStandard,
             queue_placement=queue_placement,

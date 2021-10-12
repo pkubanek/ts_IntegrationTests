@@ -65,7 +65,7 @@ class BaseScript:
     configs = None
     scripts = None
 
-    def __init__(self, isStandard=True, queue_placement="FIRST"):
+    def __init__(self, isStandard=True, queue_placement="AFTER"):
         self.isStandard = isStandard
         self.queue_placement = queue_placement
 
@@ -88,17 +88,12 @@ class BaseScript:
             # Pause the ScriptQueue to load the scripts into the queue.
             await remote.cmd_pause.start(timeout=10)
             # Add scripts to the queue.
-            for script in self.scripts:
-                # The first script will set the initial queue location.
-                # Subsequent scripts will run AFTER the first.
-                print(script)
-                if self.scripts.index(script) > 0:
-                    queue_placement = "AFTER"
+            for script, config in zip(self.scripts, self.configs):
                 await remote.cmd_add.set_start(
                     timeout=10,
                     isStandard=self.isStandard,
                     path=script,
-                    config=self.configs[self.scripts.index(script)],
+                    config=config,
                     logLevel=10,
                     location=queue_placement,
                 )
