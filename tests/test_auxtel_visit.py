@@ -26,7 +26,6 @@ import unittest
 from lsst.ts import salobj
 from lsst.ts.IntegrationTests import ScriptQueueController
 from lsst.ts.IntegrationTests import AuxTelVisit
-from lsst.ts.IntegrationTests import configs
 
 
 class AuxTelVisitTestCase(unittest.IsolatedAsyncioTestCase):
@@ -48,14 +47,14 @@ class AuxTelVisitTestCase(unittest.IsolatedAsyncioTestCase):
         Use the configuration stored in the configs module.
 
         """
-        script_class = AuxTelVisit(
-            config=configs.auxtel_visit_config(),
-            script="auxtel/take_image_latiss.py",
-        )
+        # Instantiate the AuxTelVisit integration tests object and
+        # execute the scripts.
+        script_class = AuxTelVisit()
         await script_class.run()
-
+        # Get number of scripts
+        num_scripts = len(script_class.scripts)
         # Assert script was added to ScriptQueue.
-        self.assertEqual(len(self.controller.queue_list), 1)
+        self.assertEqual(len(self.controller.queue_list), num_scripts)
 
     async def asyncTearDown(self):
         await self.controller.close()

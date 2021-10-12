@@ -38,10 +38,6 @@ class BaseScript:
 
     Parameters
     ----------
-    config : `str`
-        Yaml formatted string of script configuration.
-    script : `str`
-        Relative path to the Standard or External script to execute.
     isStandard : `bool`
         If True, the script is in ts_standardscripts (True is the
         default, as it is the most common option).
@@ -57,15 +53,19 @@ class BaseScript:
     index : `int`
         The index represents the Main Telescope, index=1, or the
         Auxilliary Telescope, index=2.
-
+    configs : `tuple`
+        The list of Yaml-formatted script configurations.
+        They are stored in the configs.py module.
+    scripts : `tuple`
+        The list of Standard or External scripts to execute.
     """
 
     # See Attributes for the definition.
     index = 1
+    configs = None
+    scripts = None
 
-    def __init__(self, config, script, isStandard=True, queue_placement="FIRST"):
-        self.config = config
-        self.script = script
+    def __init__(self, isStandard=True, queue_placement="FIRST"):
         self.isStandard = isStandard
         self.queue_placement = queue_placement
 
@@ -76,9 +76,6 @@ class BaseScript:
         ) as remote:
             # Since `async with` is used,
             # you do NOT have to wait for the remote to start
-
-            # Print the script configuration, for troubleshooting.
-            print("Test configuration:\n" + self.config)
 
             # Convert the queue_placement parameter to the approprirate
             # ScriptQueue.Location Enum object.
@@ -91,16 +88,19 @@ class BaseScript:
             # Pause the ScriptQueue to load the scripts into the queue.
             await remote.cmd_pause.start(timeout=10)
             # Add scripts to the queue.
-            await remote.cmd_add.set_start(
-                timeout=10,
-                isStandard=self.isStandard,
-                path=self.script,
-                config=self.config,
-                logLevel=10,
-                location=queue_placement,
-            )
-            # Resume the ScriptQueue to being script execution.
+            for script in self.scripts:
+                # The first script will set the initial queue location.
+                # Subsequent scripts will run AFTER the first.
+                print(script)
+                if self.scripts.index(script) > 0:
+                    queue_placement = "AFTER"
+                await remote.cmd_add.set_start(
+                    timeout=10,
+                    isStandard=self.isStandard,
+                    path=script,
+                    config=self.configs[self.scripts.index(script)],
+                    logLevel=10,
+                    location=queue_placement,
+                )
+            # Resume the ScriptQueue to begin script execution.
             await remote.cmd_resume.set_start(timeout=10)
-
-            # Print confirmation message.
-            print("You have executed the " + self.script + "script.")

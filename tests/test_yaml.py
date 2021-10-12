@@ -22,6 +22,7 @@
 import unittest
 import subprocess
 
+from inspect import getmembers, isfunction
 from lsst.ts import IntegrationTests
 
 
@@ -64,5 +65,10 @@ class YamlTestCase(unittest.TestCase):
         well-formatted Yaml.
 
         """
-        yaml_string = IntegrationTests.auxtel_visit_config()
-        IntegrationTests.assert_yaml_formatted(yaml_string)
+        length = len(getmembers(IntegrationTests.configs, isfunction))
+        for i in range(length):
+            config = getattr(
+                IntegrationTests, getmembers(IntegrationTests.configs, isfunction)[i][0]
+            )
+            yaml_string = config()
+            IntegrationTests.assert_yaml_formatted(yaml_string)

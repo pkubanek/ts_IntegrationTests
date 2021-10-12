@@ -22,7 +22,7 @@
 import yaml
 
 
-def auxtel_visit_config():
+def auxtel_visit_config1():
     """Defines the configuration used in the AuxTel Visit
     integration test script.
 
@@ -32,9 +32,104 @@ def auxtel_visit_config():
             "nimages": 1.0,
             "exp_times": 5.0,
             "image_type": "OBJECT",
-            "filter": "RG610",
+            "filter": "FELH0600",
             "grating": "ronchi90lpmm",
             "linear_stage": None,
+        },
+        explicit_start=True,
+        canonical=True,
+    )
+    return config
+
+
+def auxtel_visit_config2():
+    """Defines the configuration used in the AuxTel Visit
+    integration test script.
+
+    """
+    config = yaml.safe_dump(
+        {
+            "nimages": 1.0,
+            "image_type": "OBJECT",
+            "exp_times": 5.0,
+            "filter": "BG40",
+            "grating": "ronchi90lpmm",
+        },
+        explicit_start=True,
+        canonical=True,
+    )
+    return config
+
+
+def auxtel_visit_config3():
+    """Defines the configuration used in the AuxTel Visit
+    integration test script.
+
+    """
+    config = yaml.safe_dump(
+        {
+            "nimages": 1.0,
+            "image_type": "OBJECT",
+            "exp_times": 5.0,
+            "filter": "BG40",
+            "grating": "holo4_003",
+        },
+        explicit_start=True,
+        canonical=True,
+    )
+    return config
+
+
+def auxtel_visit_config4():
+    """Defines the configuration used in the AuxTel Visit
+    integration test script.
+
+    """
+    config = yaml.safe_dump(
+        {
+            "nimages": 1.0,
+            "image_type": "OBJECT",
+            "exp_times": 5.0,
+            "filter": "FELH0600",
+            "grating": "holo4_003",
+        },
+        explicit_start=True,
+        canonical=True,
+    )
+    return config
+
+
+def auxtel_visit_config5():
+    """Defines the configuration used in the AuxTel Visit
+    integration test script.
+
+    """
+    config = yaml.safe_dump(
+        {
+            "nimages": 1.0,
+            "image_type": "OBJECT",
+            "exp_times": 5.0,
+            "filter": "FELH0600",
+            "grating": "empty_1",
+        },
+        explicit_start=True,
+        canonical=True,
+    )
+    return config
+
+
+def auxtel_visit_config6():
+    """Defines the configuration used in the AuxTel Visit
+    integration test script.
+
+    """
+    config = yaml.safe_dump(
+        {
+            "nimages": 1.0,
+            "image_type": "OBJECT",
+            "exp_times": 5.0,
+            "filter": "BG40",
+            "grating": "empty_1",
         },
         explicit_start=True,
         canonical=True,
