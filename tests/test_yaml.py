@@ -65,7 +65,7 @@ class YamlTestCase(unittest.TestCase):
         well-formatted Yaml.
 
         """
-        length = len(getmembers(IntegrationTests.configs, isfunction))
+        length = len(getmembers(IntegrationTests.take_image_latiss_configs, isfunction))
         for i in range(length):
             config = getattr(
                 IntegrationTests, getmembers(IntegrationTests.configs, isfunction)[i][0]

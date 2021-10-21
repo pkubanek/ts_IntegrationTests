@@ -26,7 +26,7 @@ except ImportError:
 
 from .testutils import *
 from .yaml_test_strings import *
-from .configs import *
+from .take_image_latiss_configs import *
 from .base_script import *
 from .aux_tel_visit import *
 from .script_queue_controller import *

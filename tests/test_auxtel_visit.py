@@ -44,7 +44,7 @@ class AuxTelVisitTestCase(unittest.IsolatedAsyncioTestCase):
     async def test_auxtel_visit(self):
         """Execute the AuxTelVisit integration test script, which runs the
         ts_standardscripts/auxtel/take_image_latiss.py script.
-        Use the configuration stored in the configs module.
+        Use the configuration stored in the take_image_latiss_configs module.
 
         """
         # Instantiate the AuxTelVisit integration tests object and
