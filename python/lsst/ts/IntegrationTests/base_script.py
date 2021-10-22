@@ -25,9 +25,8 @@ from lsst.ts.idl.enums import ScriptQueue
 
 
 class BaseScript:
-    """Execute the given Standard or External
-       script, with the given Yaml configuration, placed in the
-       given ScriptQueue location.
+    """Defines the common attributes and functions for an
+       AuxTel or MainTel script.
 
     Notes
     -----
@@ -35,18 +34,6 @@ class BaseScript:
     attribute for simplicity.  The sub-Classes define which index,
     if necessary.
     The BaseScript class defaults to index=1, as the most common option.
-
-    Parameters
-    ----------
-    isStandard : `bool`
-        If True, the script is in ts_standardscripts (True is the
-        default, as it is the most common option).
-        if False, the script is in ts_externalscripts.
-    queue_placement : `str`
-        Options are "FIRST" "LAST" "BEFORE" or "AFTER" and are
-        case insensistive ("FIRST" is the default, for convenience).
-        The BaseScript Class will convert to the appropriate
-        ScriptQueue.Location enum object.
 
     Attributes
     ----------
@@ -66,6 +53,23 @@ class BaseScript:
     scripts = None
 
     def __init__(self, isStandard=True, queue_placement="AFTER"):
+        """Initialize the given Standard or External
+           script, with the given Yaml configuration, placed in the
+           given ScriptQueue location.
+
+        Parameters
+        ----------
+        isStandard : `bool`
+            If True, the script is in ts_standardscripts (True is the
+            default, as it is the most common option).
+            if False, the script is in ts_externalscripts.
+        queue_placement : `str`
+            Options are "FIRST" "LAST" "BEFORE" or "AFTER" and are
+            case insensistive ("FIRST" is the default, for convenience).
+            The BaseScript Class will convert to the appropriate
+            ScriptQueue.Location enum object.
+
+        """
         self.isStandard = isStandard
         self.queue_placement = queue_placement
 
