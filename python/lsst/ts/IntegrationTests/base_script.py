@@ -25,9 +25,8 @@ from lsst.ts.idl.enums import ScriptQueue
 
 
 class BaseScript:
-    """Execute the given Standard or External
-       script, with the given Yaml configuration, placed in the
-       given ScriptQueue location.
+    """Defines the common attributes and functions for an
+       AuxTel or MainTel script.
 
     Notes
     -----
@@ -36,36 +35,41 @@ class BaseScript:
     if necessary.
     The BaseScript class defaults to index=1, as the most common option.
 
-    Parameters
-    ----------
-    config : `str`
-        Yaml formatted string of script configuration.
-    script : `str`
-        Relative path to the Standard or External script to execute.
-    isStandard : `bool`
-        If True, the script is in ts_standardscripts (True is the
-        default, as it is the most common option).
-        if False, the script is in ts_externalscripts.
-    queue_placement : `str`
-        Options are "FIRST" "LAST" "BEFORE" or "AFTER" and are
-        case insensistive ("FIRST" is the default, for convenience).
-        The BaseScript Class will convert to the appropriate
-        ScriptQueue.Location enum object.
-
     Attributes
     ----------
     index : `int`
         The index represents the Main Telescope, index=1, or the
         Auxilliary Telescope, index=2.
-
+    configs : `tuple`
+        The list of Yaml-formatted script configurations.
+        They are stored in the configs.py module.
+    scripts : `tuple`
+        The list of Standard or External scripts to execute.
     """
 
     # See Attributes for the definition.
     index = 1
+    configs = None
+    scripts = None
 
-    def __init__(self, config, script, isStandard=True, queue_placement="FIRST"):
-        self.config = config
-        self.script = script
+    def __init__(self, isStandard=True, queue_placement="AFTER"):
+        """Initialize the given Standard or External
+           script, with the given Yaml configuration, placed in the
+           given ScriptQueue location.
+
+        Parameters
+        ----------
+        isStandard : `bool`
+            If True, the script is in ts_standardscripts (True is the
+            default, as it is the most common option).
+            if False, the script is in ts_externalscripts.
+        queue_placement : `str`
+            Options are "FIRST" "LAST" "BEFORE" or "AFTER" and are
+            case insensistive ("FIRST" is the default, for convenience).
+            The BaseScript Class will convert to the appropriate
+            ScriptQueue.Location enum object.
+
+        """
         self.isStandard = isStandard
         self.queue_placement = queue_placement
 
@@ -76,9 +80,6 @@ class BaseScript:
         ) as remote:
             # Since `async with` is used,
             # you do NOT have to wait for the remote to start
-
-            # Print the script configuration, for troubleshooting.
-            print("Test configuration:\n" + self.config)
 
             # Convert the queue_placement parameter to the approprirate
             # ScriptQueue.Location Enum object.
@@ -91,16 +92,14 @@ class BaseScript:
             # Pause the ScriptQueue to load the scripts into the queue.
             await remote.cmd_pause.start(timeout=10)
             # Add scripts to the queue.
-            await remote.cmd_add.set_start(
-                timeout=10,
-                isStandard=self.isStandard,
-                path=self.script,
-                config=self.config,
-                logLevel=10,
-                location=queue_placement,
-            )
-            # Resume the ScriptQueue to being script execution.
+            for script, config in zip(self.scripts, self.configs):
+                await remote.cmd_add.set_start(
+                    timeout=10,
+                    isStandard=self.isStandard,
+                    path=script,
+                    config=config,
+                    logLevel=10,
+                    location=queue_placement,
+                )
+            # Resume the ScriptQueue to begin script execution.
             await remote.cmd_resume.set_start(timeout=10)
-
-            # Print confirmation message.
-            print("You have executed the " + self.script + "script.")
