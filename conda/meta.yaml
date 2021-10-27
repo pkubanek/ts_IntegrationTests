@@ -30,6 +30,7 @@ requirements:
     - setuptools
   run:
     - python
+    - yamllint
 
 about:
   home: "https://github.com/lsst-ts/ts_IntegrationTests"
