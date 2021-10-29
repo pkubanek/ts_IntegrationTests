@@ -52,7 +52,7 @@ class BaseScript:
     configs = None
     scripts = None
 
-    def __init__(self, isStandard=True, queue_placement="AFTER"):
+    def __init__(self, isStandard=True, queue_placement="LAST"):
         """Initialize the given Standard or External
            script, with the given Yaml configuration, placed in the
            given ScriptQueue location.
