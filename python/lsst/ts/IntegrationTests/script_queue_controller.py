@@ -69,10 +69,8 @@ class ScriptQueueController(salobj.Controller):
         self.hb_task = asyncio.create_task(self.pub_hb())
 
     async def do_pause(self, data):
-        """Pause the ScriptQueue to add scripts to the queue.
-        self.log.info("ScriptQueue paused\n")
-
-        """
+        """Pause the ScriptQueue to add scripts to the queue."""
+        # self.log.info("ScriptQueue paused\n")
         pass
 
     async def do_add(self, data):
