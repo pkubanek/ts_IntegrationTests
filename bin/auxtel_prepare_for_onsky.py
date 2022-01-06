@@ -22,8 +22,14 @@
 
 import asyncio
 
+<<<<<<< HEAD
 from lsst.ts.IntegrationTests import AuxTelPrepare
 
 script_class = AuxTelPrepare()
+=======
+from lsst.ts.IntegrationTests import AuxTelPrepareOnSky
+
+script_class = AuxTelPrepareOnSky()
+>>>>>>> 70e3901... Added the AT Prepare for on Sky integration tests.
 
 asyncio.run(script_class.run())

@@ -18,12 +18,20 @@
 #
 # You should have received a copy of the GNU General Public License
 
+<<<<<<< HEAD
 __all__ = ["AuxTelPrepare"]
+=======
+__all__ = ["AuxTelPrepareOnSky"]
+>>>>>>> 70e3901... Added the AT Prepare for on Sky integration tests.
 
 from lsst.ts.IntegrationTests import BaseScript
 
 
+<<<<<<< HEAD
 class AuxTelPrepare(BaseScript):
+=======
+class AuxTelPrepareOnSky(BaseScript):
+>>>>>>> 70e3901... Added the AT Prepare for on Sky integration tests.
     """Execute the given Auxilliary Telescope Standard or External
     script, with the given Yaml configuration, placed in the
     given ScriptQueue location.
@@ -31,8 +39,13 @@ class AuxTelPrepare(BaseScript):
     """
 
     index = 2
+<<<<<<< HEAD
     configs = []
     scripts = "auxtel/prepare_for_onsky.py"
+=======
+    configs = ([],)
+    scripts = ("auxtel/prepare_for_onsky.py",)
+>>>>>>> 70e3901... Added the AT Prepare for on Sky integration tests.
 
     def __init__(self, isStandard=True, queue_placement="after"):
         super().__init__(
