@@ -25,19 +25,11 @@ import unittest
 
 from lsst.ts import salobj
 from lsst.ts.IntegrationTests import ScriptQueueController
-<<<<<<< HEAD
-from lsst.ts.IntegrationTests import AuxTelVisit
-
-
-class AuxTelVisitTestCase(unittest.IsolatedAsyncioTestCase):
-    """Test the AuxTel Visit integration test script."""
-=======
 from lsst.ts.IntegrationTests import AuxTelPrepareOnSky
 
 
 class AuxTelPrepareOnSkyTestCase(unittest.IsolatedAsyncioTestCase):
     """Test the AuxTel PrepareOnSky integration test script."""
->>>>>>> 70e3901... Added the AT Prepare for on Sky integration tests.
 
     async def asyncSetUp(self):
         # Set the LSST_DDS_PARTITION_PREFIX ENV_VAR.
@@ -49,17 +41,6 @@ class AuxTelPrepareOnSkyTestCase(unittest.IsolatedAsyncioTestCase):
         # Start the controller and wait for it be ready.
         await self.controller.start_task
 
-<<<<<<< HEAD
-    async def test_auxtel_visit(self):
-        """Execute the AuxTelVisit integration test script, which runs the
-        ts_standardscripts/auxtel/take_image_latiss.py script.
-        Use the configuration stored in the take_image_latiss_configs module.
-
-        """
-        # Instantiate the AuxTelVisit integration tests object and
-        # execute the scripts.
-        script_class = AuxTelVisit()
-=======
     async def test_auxtel_prepare_onsky(self):
         """Execute the AuxTelPrepareOnSky integration test script,
         which runs the ts_standardscripts/auxtel/prepare_for_onsky.py script.
@@ -69,7 +50,6 @@ class AuxTelPrepareOnSkyTestCase(unittest.IsolatedAsyncioTestCase):
         # Instantiate the AuxTelPrepareOnSky integration tests object and
         # execute the scripts.
         script_class = AuxTelPrepareOnSky()
->>>>>>> 70e3901... Added the AT Prepare for on Sky integration tests.
         await script_class.run()
         # Get number of scripts
         num_scripts = len(script_class.scripts)

@@ -24,12 +24,12 @@ try:
 except ImportError:
     __version__ = "?"
 
+from .base_script import *
 from .testutils import *
 from .yaml_test_strings import *
 from .shutdown_configs import *
 from .take_image_latiss_configs import *
 from .track_target_configs import *
-from .base_script import *
 from .aux_tel_prepare_for_onsky import *
 from .aux_tel_visit import *
 from .aux_tel_shutdown import *

@@ -25,19 +25,8 @@ from .config_registry import registry
 
 # Add the script configurations to the configuration registry.
 
-registry["track_target1"] = yaml.safe_dump(
+registry["track_target"] = yaml.safe_dump(
     {
-        "target": "HD164461",
-        "rot_value": 80.0,
-        "rot_type": "PhysicalSky",
-    },
-    explicit_start=True,
-    canonical=True,
-)
-
-registry["track_target2"] = yaml.safe_dump(
-    {
-        "target": "HD126923",
         "rot_value": 80.0,
         "rot_type": "PhysicalSky",
     },

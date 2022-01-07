@@ -20,6 +20,8 @@
 
 __all__ = ["AuxTelTrackTarget"]
 
+import argparse
+
 from lsst.ts.IntegrationTests import BaseScript
 from .config_registry import registry
 
@@ -32,17 +34,26 @@ class AuxTelTrackTarget(BaseScript):
     """
 
     index = 2
-    configs = (
-        registry["track_target1"],
-        registry["track_target2"],
-    )
-    scripts = (
-        "auxtel/track_target.py",
-        "auxtel/track_target.py",
+    configs = (registry["track_target"],)
+    scripts = ("auxtel/track_target.py",)
+
+    # Add the target argument
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "-t",
+        "--target",
+        type=str,
+        required=True,
+        help="""Specify the target to track.""",
     )
 
-    def __init__(self, isStandard=True, queue_placement="after"):
+    def __init__(self, isStandard=True, queue_placement="after", target=None):
+        self.parsed = type(self).parser.parse_args()
+        self.target = self.parsed.target
         super().__init__(
             isStandard=isStandard,
             queue_placement=queue_placement,
         )
+
+    def __getattr__(self, name):
+        return getattr(self.parsed, name)
