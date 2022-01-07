@@ -1,6 +1,6 @@
 # This file is part of ts_IntegrationTests.
 #
-# Developed for the LSST Data Management System.
+# Developed for the Rubin Observatory Telescope and Site System.
 # This product includes software developed by the LSST Project
 # (https://www.lsst.org).
 # See the COPYRIGHT file at the top-level directory of this distribution
@@ -19,19 +19,18 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-try:
-    from .version import *
-except ImportError:
-    __version__ = "?"
+import yaml
+from .config_registry import registry
 
-from .testutils import *
-from .yaml_test_strings import *
-from .shutdown_configs import *
-from .take_image_latiss_configs import *
-from .track_target_configs import *
-from .base_script import *
-from .aux_tel_prepare_for_onsky import *
-from .aux_tel_visit import *
-from .aux_tel_shutdown import *
-from .aux_tel_track_target import *
-from .script_queue_controller import *
+
+# Add the script configurations to the configuration registry.
+
+registry["enable1"] = yaml.safe_dump(
+    {
+        "athexapod": "ncsa",
+        "atdome": "current",
+        "ataos": "current",
+    },
+    explicit_start=True,
+    canonical=True,
+)
