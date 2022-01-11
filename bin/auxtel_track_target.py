@@ -26,4 +26,6 @@ from lsst.ts.IntegrationTests import AuxTelTrackTarget
 
 script_class = AuxTelTrackTarget()
 
+print("Tracking target: " + script_class.target)
+
 asyncio.run(script_class.run())
