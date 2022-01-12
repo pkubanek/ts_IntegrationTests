@@ -25,6 +25,8 @@ from .config_registry import registry
 
 
 # Add the State Transition script configurations to the registry.
+
+# auxtel_standby_disabled
 yaml_string = yaml.safe_load(
     """
     data:
@@ -52,6 +54,7 @@ registry["auxtel_standby_disabled"] = yaml.safe_dump(
     yaml_string, explicit_start=True, canonical=True
 )
 
+# auxtel_camera_standby_disabled
 yaml_string = yaml.safe_load(
     """
     data:
@@ -72,6 +75,7 @@ registry["auxtel_camera_standby_disabled"] = yaml.safe_dump(
     yaml_string, explicit_start=True, canonical=True
 )
 
+# auxtel_disabled_enabled
 yaml_string = yaml.safe_load(
     """
     data:
@@ -96,6 +100,26 @@ registry["auxtel_disabled_enabled"] = yaml.safe_dump(
     yaml_string, explicit_start=True, canonical=True
 )
 
+# auxtel_camera_disabled_enabled
+yaml_string = yaml.safe_load(
+    """
+    data:
+    - - ATArchiver
+    - ENABLED
+    - - ATCamera
+    - ENABLED
+    - - ATHeaderService
+    - ENABLED
+    - - ATSpectrograph
+    - ENABLED
+    """
+)
+
+registry["auxtel_camera_disabled_enabled"] = yaml.safe_dump(
+    yaml_string, explicit_start=True, canonical=True
+)
+
+# auxtel_offline_standby
 yaml_string = yaml.safe_load(
     """
     data:

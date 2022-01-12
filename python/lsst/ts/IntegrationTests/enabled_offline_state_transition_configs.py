@@ -25,6 +25,8 @@ from .config_registry import registry
 
 
 # Add the State Transition script configurations to the registry.
+
+# sched_ocps_enabled_offline
 yaml_string = yaml.safe_load(
     """
     data:
@@ -43,6 +45,7 @@ registry["sched_ocps_enabled_offline"] = yaml.safe_dump(
     yaml_string, explicit_start=True, canonical=True
 )
 
+# dsm_enabled_offline
 yaml_string = yaml.safe_load(
     """
     data:
@@ -57,6 +60,7 @@ registry["dsm_enabled_offline"] = yaml.safe_dump(
     yaml_string, explicit_start=True, canonical=True
 )
 
+# watcher_sq_enabled_offline
 yaml_string = yaml.safe_load(
     """
     data:

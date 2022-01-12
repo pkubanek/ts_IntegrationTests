@@ -25,6 +25,8 @@ from .config_registry import registry
 
 
 # Add the State Transition script configurations to the registry.
+
+# maintel_offline_standby
 yaml_string = yaml.safe_load(
     """
     data:
@@ -37,6 +39,7 @@ registry["maintel_offline_standby"] = yaml.safe_dump(
     yaml_string, explicit_start=True, canonical=True
 )
 
+# maintel_standby_disabled
 yaml_string = yaml.safe_load(
     """
     data:
@@ -70,6 +73,7 @@ registry["maintel_standby_disabled"] = yaml.safe_dump(
     yaml_string, explicit_start=True, canonical=True
 )
 
+# maintel_camera_standby_disabled
 yaml_string = yaml.safe_load(
     """
     data:
@@ -87,6 +91,7 @@ registry["maintel_camera_standby_disabled"] = yaml.safe_dump(
     yaml_string, explicit_start=True, canonical=True
 )
 
+# maintel_disabled_enabled
 yaml_string = yaml.safe_load(
     """
     data:
@@ -117,6 +122,7 @@ registry["maintel_disabled_enabled"] = yaml.safe_dump(
     yaml_string, explicit_start=True, canonical=True
 )
 
+# maintel_camera_disabled_enabled
 yaml_string = yaml.safe_load(
     """
     data:
