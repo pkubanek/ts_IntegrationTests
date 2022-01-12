@@ -26,4 +26,7 @@ from lsst.ts.IntegrationTests import AuxTelVisit
 
 script_class = AuxTelVisit()
 
+num_scripts = len(script_class.scripts)
+print(f"\nAuxTel Visit; running {num_scripts} scripts")
+
 asyncio.run(script_class.run())

@@ -26,4 +26,7 @@ from lsst.ts.IntegrationTests import MainTelOfflineStandby
 
 script_class = MainTelOfflineStandby()
 
+num_scripts = len(script_class.scripts)
+print(f"\nMainTel Offline to Standby; running {num_scripts} scripts")
+
 asyncio.run(script_class.run())

@@ -26,4 +26,7 @@ from lsst.ts.IntegrationTests import EnabledOffline
 
 script_class = EnabledOffline()
 
+num_scripts = len(script_class.scripts)
+print(f"\nEnabled to Offline; running {num_scripts} scripts")
+
 asyncio.run(script_class.run())

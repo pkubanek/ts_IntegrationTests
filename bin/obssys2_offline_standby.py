@@ -26,4 +26,7 @@ from lsst.ts.IntegrationTests import ObsSys2OfflineStandby
 
 script_class = ObsSys2OfflineStandby()
 
+num_scripts = len(script_class.scripts)
+print(f"\nObsSys2 Offline to Standby; running {num_scripts} scripts")
+
 asyncio.run(script_class.run())

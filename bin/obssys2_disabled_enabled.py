@@ -26,4 +26,7 @@ from lsst.ts.IntegrationTests import ObsSys2DisabledEnabled
 
 script_class = ObsSys2DisabledEnabled()
 
+num_scripts = len(script_class.scripts)
+print(f"\nObsSys2 Disabled to Enabled; running {num_scripts} scripts")
+
 asyncio.run(script_class.run())

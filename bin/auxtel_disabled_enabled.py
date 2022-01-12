@@ -26,4 +26,7 @@ from lsst.ts.IntegrationTests import AuxTelDisabledEnabled
 
 script_class = AuxTelDisabledEnabled()
 
+num_scripts = len(script_class.scripts)
+print(f"\nAuxTel Disabled to Enabled; running {num_scripts} scripts")
+
 asyncio.run(script_class.run())
