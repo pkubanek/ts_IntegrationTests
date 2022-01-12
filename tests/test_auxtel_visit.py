@@ -53,6 +53,7 @@ class AuxTelVisitTestCase(unittest.IsolatedAsyncioTestCase):
         await script_class.run()
         # Get number of scripts
         num_scripts = len(script_class.scripts)
+        print(f"AuxTel Visit; running {num_scripts} scripts")
         # Assert script was added to ScriptQueue.
         self.assertEqual(len(self.controller.queue_list), num_scripts)
 
