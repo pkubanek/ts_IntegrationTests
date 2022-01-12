@@ -44,7 +44,8 @@ class EnabledOffline(BaseScript):
     scripts = (
         "set_summary_state.py",
         "auxtel/offline_atcs.py",
-        "auxtel/offline_latiss.py" "maintel/offline_mtcs.py",
+        "auxtel/offline_latiss.py",
+        "maintel/offline_mtcs.py",
         "maintel/offline_comcam.py",
         "set_summary_state.py",
         "set_summary_state.py",

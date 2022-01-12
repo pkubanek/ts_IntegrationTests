@@ -32,8 +32,14 @@ class AuxTelDisabledEnabled(BaseScript):
     """
 
     index = 2
-    configs = (registry["auxtel_disabled_enabled"],)
-    scripts = ("set_summary_state.py",)
+    configs = (
+        registry["auxtel_disabled_enabled"],
+        registry["auxtel_camera_disabled_enabled"],
+    )
+    scripts = (
+        "set_summary_state.py",
+        "set_summary_state.py",
+    )
 
     def __init__(self, isStandard=True, queue_placement="after"):
         super().__init__(

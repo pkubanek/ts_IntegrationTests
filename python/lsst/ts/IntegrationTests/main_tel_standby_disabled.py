@@ -32,8 +32,14 @@ class MainTelStandbyDisabled(BaseScript):
     """
 
     index = 1
-    configs = (registry["maintel_standby_disabled"],)
-    scripts = ("set_summary_state.py",)
+    configs = (
+        registry["maintel_standby_disabled"],
+        registry["maintel_camera_standby_disabled"],
+    )
+    scripts = (
+        "set_summary_state.py",
+        "set_summary_state.py",
+    )
 
     def __init__(self, isStandard=True, queue_placement="after"):
         super().__init__(
