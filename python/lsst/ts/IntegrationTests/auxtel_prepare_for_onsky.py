@@ -1,6 +1,6 @@
-# This file is part of ts_IntegrationTests.
+# This file is part of ts_IntegrationTests
 #
-# Developed for the LSST Data Management System.
+# Developed for the LSST Telescope and Site Systems.
 # This product includes software developed by the LSST Project
 # (https://www.lsst.org).
 # See the COPYRIGHT file at the top-level directory of this distribution
@@ -17,21 +17,25 @@
 # GNU General Public License for more details.
 #
 # You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-try:
-    from .version import *
-except ImportError:
-    __version__ = "?"
+__all__ = ["AuxTelPrepareOnSky"]
 
-from .base_script import *
-from .testutils import *
-from .yaml_test_strings import *
-from .shutdown_configs import *
-from .take_image_latiss_configs import *
-from .track_target_configs import *
-from .auxtel_prepare_for_onsky import *
-from .auxtel_visit import *
-from .auxtel_shutdown import *
-from .auxtel_track_target import *
-from .script_queue_controller import *
+from lsst.ts.IntegrationTests import BaseScript
+
+
+class AuxTelPrepareOnSky(BaseScript):
+    """Execute the given Auxilliary Telescope Standard or External
+    script, with the given Yaml configuration, placed in the
+    given ScriptQueue location.
+
+    """
+
+    index = 2
+    configs = ([],)
+    scripts = ("auxtel/prepare_for_onsky.py",)
+
+    def __init__(self, isStandard=True, queue_placement="after"):
+        super().__init__(
+            isStandard=isStandard,
+            queue_placement=queue_placement,
+        )

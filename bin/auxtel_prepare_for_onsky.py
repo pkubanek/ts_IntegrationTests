@@ -1,6 +1,7 @@
+#!/usr/bin/env python
 # This file is part of ts_IntegrationTests.
 #
-# Developed for the LSST Data Management System.
+# Developed for the Rubin Observatory Telescope and Site System.
 # This product includes software developed by the LSST Project
 # (https://www.lsst.org).
 # See the COPYRIGHT file at the top-level directory of this distribution
@@ -19,19 +20,13 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-try:
-    from .version import *
-except ImportError:
-    __version__ = "?"
+import asyncio
 
-from .base_script import *
-from .testutils import *
-from .yaml_test_strings import *
-from .shutdown_configs import *
-from .take_image_latiss_configs import *
-from .track_target_configs import *
-from .auxtel_prepare_for_onsky import *
-from .auxtel_visit import *
-from .auxtel_shutdown import *
-from .auxtel_track_target import *
-from .script_queue_controller import *
+from lsst.ts.IntegrationTests import AuxTelPrepareOnSky
+
+script_class = AuxTelPrepareOnSky()
+
+num_scripts = len(script_class.scripts)
+print(f"\nAuxTel Prepare for OnSky; running {num_scripts} scripts")
+
+asyncio.run(script_class.run())
