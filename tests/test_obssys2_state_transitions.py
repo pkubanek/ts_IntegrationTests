@@ -29,8 +29,8 @@ from lsst.ts.IntegrationTests import ObsSys2StandbyDisabled
 from lsst.ts.IntegrationTests import ObsSys2DisabledEnabled
 
 
-class MainTelStateTransitionTestCase(unittest.IsolatedAsyncioTestCase):
-    """Test the MainTel Standby to Disabled integration test script."""
+class ObsSys2StateTransitionTestCase(unittest.IsolatedAsyncioTestCase):
+    """Test the ObsSys2 Standby to Disabled integration test script."""
 
     async def asyncSetUp(self):
         # Set the LSST_DDS_PARTITION_PREFIX ENV_VAR.
@@ -45,11 +45,11 @@ class MainTelStateTransitionTestCase(unittest.IsolatedAsyncioTestCase):
     async def test_obssys2_standby_disabled(self):
         """Execute the ObsSys2StandbyDisabled integration test script,
         which runs the ts_standardscripts/set_summary_state.py script.
-        Use the configuration stored in the at_state_transition_configs.py
+        Use the configuration stored in the obssys2_state_transition_configs.py
         module.
 
         """
-        # Instantiate the MainTelStandbyDisabled integration tests object and
+        # Instantiate the ObsSys2StandbyDisabled integration tests object and
         # execute the scripts.
         script_class = ObsSys2StandbyDisabled()
         await script_class.run()
@@ -62,7 +62,7 @@ class MainTelStateTransitionTestCase(unittest.IsolatedAsyncioTestCase):
     async def test_obssys2_disabled_enabled(self):
         """Execute the ObsSys2DisabledEnabled integration test script,
         which runs the ts_standardscripts/set_summary_state.py script.
-        Use the configuration stored in the at_state_transition_configs.py
+        Use the configuration stored in the obssys2_state_transition_configs.py
         module.
 
         """

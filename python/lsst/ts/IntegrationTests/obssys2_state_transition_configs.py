@@ -32,8 +32,10 @@ yaml_string = yaml.safe_load(
     data:
     - - Scheduler:1
     - DISABLED
+    - standstill
     - - Scheduler:2
     - DISABLED
+    - standstill
     - - OCPS:1
     - DISABLED
     - LATISS

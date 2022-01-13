@@ -25,7 +25,7 @@ from .config_registry import registry
 
 
 class ObsSys2StandbyDisabled(BaseScript):
-    """Execute the given Main Telescope Standard or External
+    """Execute the given Telescope Standard or External
     script, with the given Yaml configuration, placed in the
     given ScriptQueue location.
 
