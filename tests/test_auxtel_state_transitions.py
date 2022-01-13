@@ -28,7 +28,6 @@ from lsst.ts.IntegrationTests import ScriptQueueController
 from lsst.ts.IntegrationTests import AuxTelStandbyDisabled
 from lsst.ts.IntegrationTests import AuxTelOfflineStandby
 from lsst.ts.IntegrationTests import AuxTelDisabledEnabled
-from lsst.ts.IntegrationTests import EnabledOffline
 
 
 class AuxTelStateTransitionTestCase(unittest.IsolatedAsyncioTestCase):
@@ -92,25 +91,6 @@ class AuxTelStateTransitionTestCase(unittest.IsolatedAsyncioTestCase):
         # Get number of scripts
         num_scripts = len(script_class.scripts)
         print(f"AuxTel Disabled to Enabled; running {num_scripts} scripts")
-        # Assert script was added to ScriptQueue.
-        self.assertEqual(len(self.controller.queue_list), num_scripts)
-
-    async def test_enabled_offline(self):
-        """Execute the EnabledOffline integration test script,
-        which runs the ts_standardscripts/set_summary_state.py,
-        auxtel/offline_atcs.py, auxtel/offline_latiss.py,
-        maintel/offline_mtcs.py, maintel/offline_comcam.py scripts.
-        Use the configuration stored in the
-        enabled_offline_state_transition_configs.py module.
-
-        """
-        # Instantiate the EnabledOffline integration tests object and
-        # execute the scripts.
-        script_class = EnabledOffline()
-        await script_class.run()
-        # Get number of scripts
-        num_scripts = len(script_class.scripts)
-        print(f"AuxTel Enabled to Offline; running {num_scripts} scripts")
         # Assert script was added to ScriptQueue.
         self.assertEqual(len(self.controller.queue_list), num_scripts)
 
