@@ -18,38 +18,22 @@
 #
 # You should have received a copy of the GNU General Public License
 
-__all__ = ["EnabledOffline"]
+__all__ = ["EasDisabledEnabled"]
 
 from lsst.ts.IntegrationTests import BaseScript
 from .config_registry import registry
 
 
-class EnabledOffline(BaseScript):
-    """Execute the given Telescope Standard or External
+class EasDisabledEnabled(BaseScript):
+    """Execute the given Main Telescope Standard or External
     script, with the given Yaml configuration, placed in the
     given ScriptQueue location.
 
     """
 
-    index = 2
-    configs = (
-        registry["sched_ocps_enabled_offline"],
-        [],
-        [],
-        [],
-        [],
-        registry["eas_enabled_offline"],
-        registry["watcher_sq_enabled_offline"],
-    )
-    scripts = (
-        "set_summary_state.py",
-        "auxtel/offline_atcs.py",
-        "auxtel/offline_latiss.py",
-        "maintel/offline_mtcs.py",
-        "maintel/offline_comcam.py",
-        "set_summary_state.py",
-        "set_summary_state.py",
-    )
+    index = 1
+    configs = (registry["eas_disabled_enabled"],)
+    scripts = ("set_summary_state.py",)
 
     def __init__(self, isStandard=True, queue_placement="after"):
         super().__init__(

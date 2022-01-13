@@ -26,59 +26,39 @@ from .config_registry import registry
 
 # Add the State Transition script configurations to the registry.
 
-# sched_ocps_enabled_offline
+# eas_standby_disabled
 yaml_string = yaml.safe_load(
     """
     data:
-    - - Scheduler:1
-    - OFFLINE
-    - - Scheduler:2
-    - OFFLINE
-    - - OCPS:1
-    - OFFLINE
-    - - OCPS:2
-    - OFFLINE
-    """
-)
-
-registry["sched_ocps_enabled_offline"] = yaml.safe_dump(
-    yaml_string, explicit_start=True, canonical=True
-)
-
-# eas_enabled_offline
-yaml_string = yaml.safe_load(
-    """
-    data:
-    - - DSM:2
-    - OFFLINE
-    - - DSM:1
-    - OFFLINE
     - - DIMM:1
-    - OFFLINE
+    - DISABLED
+    - current
     - - DIMM:2
-    - OFFLINE
+    - DISABLED
+    - current
     - - WeatherStation:1
-    - OFFLINE
+    - DISABLED
+    - default
     """
 )
 
-registry["eas_enabled_offline"] = yaml.safe_dump(
+registry["eas_standby_disabled"] = yaml.safe_dump(
     yaml_string, explicit_start=True, canonical=True
 )
 
-# watcher_sq_enabled_offline
+# eas_disabled_enabled
 yaml_string = yaml.safe_load(
     """
     data:
-    - - Watcher
-    - OFFLINE
-    - - ScriptQueue:1
-    - OFFLINE
-    - - ScriptQueue:2
-    - OFFLINE
+    - - DIMM:1
+    - ENABLED
+    - - DIMM:2
+    - ENABLED
+    - - WeatherStation:1
+    - ENABLED
     """
 )
 
-registry["watcher_sq_enabled_offline"] = yaml.safe_dump(
+registry["eas_disabled_enabled"] = yaml.safe_dump(
     yaml_string, explicit_start=True, canonical=True
 )
