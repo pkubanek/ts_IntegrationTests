@@ -30,8 +30,8 @@ from .yaml_test_strings import *
 from .shutdown_configs import *
 from .take_image_latiss_configs import *
 from .track_target_configs import *
-from .aux_tel_prepare_for_onsky import *
-from .aux_tel_visit import *
-from .aux_tel_shutdown import *
-from .aux_tel_track_target import *
+from .auxtel_prepare_for_onsky import *
+from .auxtel_visit import *
+from .auxtel_shutdown import *
+from .auxtel_track_target import *
 from .script_queue_controller import *

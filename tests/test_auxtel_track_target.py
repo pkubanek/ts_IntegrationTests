@@ -30,7 +30,7 @@ from lsst.ts.IntegrationTests import AuxTelTrackTarget
 
 
 class AuxTelTrackTargetTestCase(unittest.IsolatedAsyncioTestCase):
-    """Test the AuxTel Visit integration test script."""
+    """Test the AuxTel Track Target integration test script."""
 
     async def asyncSetUp(self):
         # Set the LSST_DDS_PARTITION_PREFIX ENV_VAR.
@@ -57,6 +57,7 @@ class AuxTelTrackTargetTestCase(unittest.IsolatedAsyncioTestCase):
         await script_class.run()
         # Get number of scripts
         num_scripts = len(script_class.scripts)
+        print(f"AuxTel Track Target; running {num_scripts} scripts for target 'test'")
         # Assert script was added to ScriptQueue.
         self.assertEqual(len(self.controller.queue_list), num_scripts)
 

@@ -26,4 +26,7 @@ from lsst.ts.IntegrationTests import AuxTelPrepareOnSky
 
 script_class = AuxTelPrepareOnSky()
 
+num_scripts = len(script_class.scripts)
+print(f"\nAuxTel Prepare for OnSky; running {num_scripts} scripts")
+
 asyncio.run(script_class.run())

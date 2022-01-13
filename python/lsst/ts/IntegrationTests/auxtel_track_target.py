@@ -48,7 +48,7 @@ class AuxTelTrackTarget(BaseScript):
     )
 
     def __init__(self, isStandard=True, queue_placement="after", target=None):
-        self.parsed = type(self).parser.parse_args()
+        self.parsed = self.parser.parse_args()
         self.target = self.parsed.target
         super().__init__(
             isStandard=isStandard,

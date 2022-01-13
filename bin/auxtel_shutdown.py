@@ -26,4 +26,7 @@ from lsst.ts.IntegrationTests import AuxTelShutdown
 
 script_class = AuxTelShutdown()
 
+num_scripts = len(script_class.scripts)
+print(f"\nAuxTel Shutdown; running {num_scripts} scripts")
+
 asyncio.run(script_class.run())
