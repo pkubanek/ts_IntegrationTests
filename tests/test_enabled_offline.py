@@ -28,8 +28,8 @@ from lsst.ts.IntegrationTests import ScriptQueueController
 from lsst.ts.IntegrationTests import EnabledOffline
 
 
-class AuxTelStateTransitionTestCase(unittest.IsolatedAsyncioTestCase):
-    """Test the AuxTel Standby to Disabled integration test script."""
+class EnabledOfflineTestCase(unittest.IsolatedAsyncioTestCase):
+    """Test the Enabled to Offline integration test script."""
 
     async def asyncSetUp(self):
         # Set the LSST_DDS_PARTITION_PREFIX ENV_VAR.
@@ -56,7 +56,7 @@ class AuxTelStateTransitionTestCase(unittest.IsolatedAsyncioTestCase):
         await script_class.run()
         # Get number of scripts
         num_scripts = len(script_class.scripts)
-        print(f"AuxTel Enabled to Offline; running {num_scripts} scripts")
+        print(f"Enabled to Offline; running {num_scripts} scripts")
         # Assert script was added to ScriptQueue.
         self.assertEqual(len(self.controller.queue_list), num_scripts)
 
