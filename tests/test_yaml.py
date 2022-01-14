@@ -22,8 +22,8 @@
 import unittest
 import subprocess
 
-from inspect import getmembers, isfunction
 from lsst.ts import IntegrationTests
+from lsst.ts.IntegrationTests.configs.config_registry import registry
 
 
 class YamlTestCase(unittest.TestCase):
@@ -38,7 +38,7 @@ class YamlTestCase(unittest.TestCase):
 
         """
         yaml_string = IntegrationTests.yaml_test_string1()
-        IntegrationTests.assert_yaml_formatted(yaml_string)
+        IntegrationTests.assert_yaml_formatted("test", yaml_string)
 
     def test_bad_yaml(self):
         """Use the IntegrationTests.bad_yaml() configuration to test
@@ -60,15 +60,17 @@ class YamlTestCase(unittest.TestCase):
         else:
             assert False
 
-    def test_auxtel_visit_config(self):
-        """Test the IntegrationTests.auxtel_visit_config() is
+    def test_script_configs(self):
+        """Test the IntegrationTests.configs are
         well-formatted Yaml.
 
         """
-        length = len(getmembers(IntegrationTests.take_image_latiss_configs, isfunction))
-        for i in range(length):
-            config = getattr(
-                IntegrationTests, getmembers(IntegrationTests.configs, isfunction)[i][0]
-            )
-            yaml_string = config()
-            IntegrationTests.assert_yaml_formatted(yaml_string)
+        # Get the keys from the configuration registry (dict).
+        registry_keys = list(registry.keys())
+        # Ensure the registry contains the configurations.
+        length = len(registry_keys)
+        assert length > 0
+        # Verify the configurations are properly YAML-formatted.
+        for key in registry_keys:
+            yaml_string = registry[key]
+            IntegrationTests.assert_yaml_formatted(key, yaml_string)
