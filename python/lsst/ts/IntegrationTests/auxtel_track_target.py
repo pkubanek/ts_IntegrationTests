@@ -23,7 +23,7 @@ __all__ = ["AuxTelTrackTarget"]
 import argparse
 
 from lsst.ts.IntegrationTests import BaseScript
-from .config_registry import registry
+from .configs.config_registry import registry
 
 
 class AuxTelTrackTarget(BaseScript):

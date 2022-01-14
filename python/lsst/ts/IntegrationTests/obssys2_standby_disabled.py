@@ -21,7 +21,7 @@
 __all__ = ["ObsSys2StandbyDisabled"]
 
 from lsst.ts.IntegrationTests import BaseScript
-from .config_registry import registry
+from .configs.config_registry import registry
 
 
 class ObsSys2StandbyDisabled(BaseScript):

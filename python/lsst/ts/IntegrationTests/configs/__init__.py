@@ -1,6 +1,6 @@
-# This file is part of ts_IntegrationTests
+# This file is part of ts_IntegrationTests.
 #
-# Developed for the LSST Telescope and Site Systems.
+# Developed for the LSST Data Management System.
 # This product includes software developed by the LSST Project
 # (https://www.lsst.org).
 # See the COPYRIGHT file at the top-level directory of this distribution
@@ -17,26 +17,13 @@
 # GNU General Public License for more details.
 #
 # You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-__all__ = ["AuxTelOfflineStandby"]
-
-from lsst.ts.IntegrationTests import BaseScript
-from .configs.config_registry import registry
-
-
-class AuxTelOfflineStandby(BaseScript):
-    """Execute the given Auxilliary Telescope Standard or External
-    script, with the given Yaml configuration, placed in the
-    given ScriptQueue location.
-
-    """
-
-    index = 2
-    configs = (registry["auxtel_offline_standby"],)
-    scripts = ("set_summary_state.py",)
-
-    def __init__(self, isStandard=True, queue_placement="after"):
-        super().__init__(
-            isStandard=isStandard,
-            queue_placement=queue_placement,
-        )
+from .shutdown_configs import *
+from .take_image_latiss_configs import *
+from .track_target_configs import *
+from .auxtel_state_transition_configs import *
+from .maintel_state_transition_configs import *
+from .obssys2_state_transition_configs import *
+from .eas_state_transition_configs import *
+from .enabled_offline_state_transition_configs import *

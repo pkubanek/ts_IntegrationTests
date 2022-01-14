@@ -21,7 +21,7 @@
 __all__ = ["EasDisabledEnabled"]
 
 from lsst.ts.IntegrationTests import BaseScript
-from .config_registry import registry
+from .configs.config_registry import registry
 
 
 class EasDisabledEnabled(BaseScript):
