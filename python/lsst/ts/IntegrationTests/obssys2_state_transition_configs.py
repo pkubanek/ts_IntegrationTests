@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 # This file is part of ts_IntegrationTests.
 #
 # Developed for the Rubin Observatory Telescope and Site System.
@@ -20,13 +19,51 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-import asyncio
+import yaml
 
-from lsst.ts.IntegrationTests import AuxTelVisit
+from .config_registry import registry
 
-script_class = AuxTelVisit()
 
-num_scripts = len(script_class.scripts)
-print(f"\nAuxTel Visit; running {num_scripts} scripts")
+# Add the State Transition script configurations to the registry.
 
-asyncio.run(script_class.run())
+# obssys2_standby_disabled
+yaml_string = yaml.safe_load(
+    """
+    data:
+    - - Scheduler:1
+    - DISABLED
+    - standstill
+    - - Scheduler:2
+    - DISABLED
+    - standstill
+    - - OCPS:1
+    - DISABLED
+    - LATISS
+    - - OCPS:2
+    - DISABLED
+    - LSSTComCam
+    """
+)
+
+registry["obssys2_standby_disabled"] = yaml.safe_dump(
+    yaml_string, explicit_start=True, canonical=True
+)
+
+# obssys2_disabled_enabled
+yaml_string = yaml.safe_load(
+    """
+    data:
+    - - Scheduler:1
+    - ENABLED
+    - - Scheduler:2
+    - ENABLED
+    - - OCPS:1
+    - ENABLED
+    - - OCPS:2
+    - ENABLED
+    """
+)
+
+registry["obssys2_disabled_enabled"] = yaml.safe_dump(
+    yaml_string, explicit_start=True, canonical=True
+)

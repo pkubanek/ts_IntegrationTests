@@ -22,11 +22,11 @@
 
 import asyncio
 
-from lsst.ts.IntegrationTests import AuxTelVisit
+from lsst.ts.IntegrationTests import MainTelStandbyDisabled
 
-script_class = AuxTelVisit()
+script_class = MainTelStandbyDisabled()
 
 num_scripts = len(script_class.scripts)
-print(f"\nAuxTel Visit; running {num_scripts} scripts")
+print(f"\nMainTel Standby to Disabled; running {num_scripts} scripts")
 
 asyncio.run(script_class.run())

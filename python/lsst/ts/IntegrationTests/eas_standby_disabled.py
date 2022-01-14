@@ -1,7 +1,6 @@
-#!/usr/bin/env python
-# This file is part of ts_IntegrationTests.
+# This file is part of ts_IntegrationTests
 #
-# Developed for the Rubin Observatory Telescope and Site System.
+# Developed for the LSST Telescope and Site Systems.
 # This product includes software developed by the LSST Project
 # (https://www.lsst.org).
 # See the COPYRIGHT file at the top-level directory of this distribution
@@ -18,15 +17,26 @@
 # GNU General Public License for more details.
 #
 # You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-import asyncio
+__all__ = ["EasStandbyDisabled"]
 
-from lsst.ts.IntegrationTests import AuxTelVisit
+from lsst.ts.IntegrationTests import BaseScript
+from .config_registry import registry
 
-script_class = AuxTelVisit()
 
-num_scripts = len(script_class.scripts)
-print(f"\nAuxTel Visit; running {num_scripts} scripts")
+class EasStandbyDisabled(BaseScript):
+    """Execute the given Main Telescope Standard or External
+    script, with the given Yaml configuration, placed in the
+    given ScriptQueue location.
 
-asyncio.run(script_class.run())
+    """
+
+    index = 1
+    configs = (registry["eas_standby_disabled"],)
+    scripts = ("set_summary_state.py",)
+
+    def __init__(self, isStandard=True, queue_placement="after"):
+        super().__init__(
+            isStandard=isStandard,
+            queue_placement=queue_placement,
+        )
