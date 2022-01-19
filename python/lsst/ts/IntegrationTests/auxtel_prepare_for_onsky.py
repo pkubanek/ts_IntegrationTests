@@ -24,9 +24,9 @@ from lsst.ts.IntegrationTests import BaseScript
 
 
 class AuxTelPrepareOnSky(BaseScript):
-    """Execute the given Auxilliary Telescope Standard or External
-    script, with the given Yaml configuration, placed in the
-    given ScriptQueue location.
+    """Execute the given Standard or External script,
+    with the given Yaml configuration,
+    placed in the given ScriptQueue location.
 
     """
 

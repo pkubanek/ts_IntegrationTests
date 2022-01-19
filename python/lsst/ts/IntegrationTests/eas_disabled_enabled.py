@@ -25,9 +25,9 @@ from .configs.config_registry import registry
 
 
 class EasDisabledEnabled(BaseScript):
-    """Execute the given Main Telescope Standard or External
-    script, with the given Yaml configuration, placed in the
-    given ScriptQueue location.
+    """Execute the given Standard or External script,
+    with the given Yaml configuration,
+    placed in the given ScriptQueue location.
 
     """
 
