@@ -47,12 +47,11 @@ class AuxTelTrackTarget(BaseScript):
         help="""Specify the target to track.""",
     )
 
-    def __init__(self, isStandard=True, queue_placement="after", target=None):
+    def __init__(self, isStandard=True, target=None):
         self.parsed = self.parser.parse_args()
         self.target = self.parsed.target
         super().__init__(
             isStandard=isStandard,
-            queue_placement=queue_placement,
         )
 
     def __getattr__(self, name):

@@ -35,8 +35,7 @@ class AuxTelOfflineStandby(BaseScript):
     configs = (registry["auxtel_offline_standby"],)
     scripts = ("set_summary_state.py",)
 
-    def __init__(self, isStandard=True, queue_placement="after"):
+    def __init__(self, isStandard=True):
         super().__init__(
             isStandard=isStandard,
-            queue_placement=queue_placement,
         )

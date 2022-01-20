@@ -34,8 +34,7 @@ class AuxTelPrepareOnSky(BaseScript):
     configs = ([],)
     scripts = ("auxtel/prepare_for_onsky.py",)
 
-    def __init__(self, isStandard=True, queue_placement="after"):
+    def __init__(self, isStandard=True):
         super().__init__(
             isStandard=isStandard,
-            queue_placement=queue_placement,
         )

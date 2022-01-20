@@ -49,8 +49,7 @@ class AuxTelVisit(BaseScript):
         "auxtel/take_image_latiss.py",
     )
 
-    def __init__(self, isStandard=True, queue_placement="after"):
+    def __init__(self, isStandard=True):
         super().__init__(
             isStandard=isStandard,
-            queue_placement=queue_placement,
         )
