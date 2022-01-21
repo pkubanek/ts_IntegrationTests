@@ -24,9 +24,9 @@ from lsst.ts.IntegrationTests import BaseScript
 
 
 class AuxTelPrepareOnSky(BaseScript):
-    """Execute the given Auxilliary Telescope Standard or External
-    script, with the given Yaml configuration, placed in the
-    given ScriptQueue location.
+    """Execute the given Standard or External script,
+    with the given Yaml configuration,
+    placed in the given ScriptQueue location.
 
     """
 
@@ -34,8 +34,7 @@ class AuxTelPrepareOnSky(BaseScript):
     configs = ([],)
     scripts = ("auxtel/prepare_for_onsky.py",)
 
-    def __init__(self, isStandard=True, queue_placement="after"):
+    def __init__(self, isStandard=True):
         super().__init__(
             isStandard=isStandard,
-            queue_placement=queue_placement,
         )

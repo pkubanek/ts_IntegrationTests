@@ -21,13 +21,13 @@
 __all__ = ["AuxTelShutdown"]
 
 from lsst.ts.IntegrationTests import BaseScript
-from .config_registry import registry
+from .configs.config_registry import registry
 
 
 class AuxTelShutdown(BaseScript):
-    """Execute the given Auxilliary Telescope Standard or External
-    script, with the given Yaml configuration, placed in the
-    given ScriptQueue location.
+    """Execute the given Standard or External script,
+    with the given Yaml configuration,
+    placed in the given ScriptQueue location.
 
     """
 
@@ -39,8 +39,7 @@ class AuxTelShutdown(BaseScript):
         "auxtel/enable_atcs.py",
     )
 
-    def __init__(self, isStandard=True, queue_placement="after"):
+    def __init__(self, isStandard=True):
         super().__init__(
             isStandard=isStandard,
-            queue_placement=queue_placement,
         )

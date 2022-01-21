@@ -22,7 +22,7 @@
 import subprocess
 
 
-def assert_yaml_formatted(yaml_string):
+def assert_yaml_formatted(reference, yaml_string):
     """Assert that the given string is properly yaml formatted.
 
     To call this from a unit test (see ``tests/test_yaml.py``)::
@@ -31,6 +31,8 @@ def assert_yaml_formatted(yaml_string):
 
     Parameters
     ----------
+    referernce : `str`
+        String used to reference or identify the yaml_string.
     yaml_string : `str`
         String, either stdin or printed content from a file.
 
@@ -55,7 +57,7 @@ def assert_yaml_formatted(yaml_string):
     result = result.decode("utf-8")
     child_proccess.stdin.close()
     if any(exception in result for exception in ("warning", "error")):
-        raise AssertionError(result)
+        raise AssertionError(f"Bad YAML\n\n{reference}:\n'{yaml_string}'\n\n{result}")
 
 
 def logging_statement(statement):
