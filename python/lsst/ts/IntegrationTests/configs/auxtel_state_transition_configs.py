@@ -58,16 +58,10 @@ registry["auxtel_standby_disabled"] = yaml.safe_dump(
 yaml_string = yaml.safe_load(
     """
     data:
-    - - ATArchiver
-    - DISABLED
-    - - ATCamera
-    - DISABLED
-    - Normal
-    - - ATHeaderService
-    - DISABLED
-    - - ATSpectrograph
-    - DISABLED
-    - current
+    - [ATArchiver, DISABLED]
+    - [ATCamera, DISABLED, Normal]
+    - [ATHeaderService, DISABLED]
+    - [ATSpectrograph, DISABLED, current]
     """
 )
 
@@ -79,20 +73,13 @@ registry["auxtel_camera_standby_disabled"] = yaml.safe_dump(
 yaml_string = yaml.safe_load(
     """
     data:
-    - - ATDome
-    - ENABLED
-    - - ATDomeTrajectory
-    - ENABLED
-    - - ATMCS
-    - ENABLED
-    - - ATPneumatics
-    - ENABLED
-    - - ATAOS
-    - ENABLED
-    - - ATHexapod
-    - ENABLED
-    - - ATPtg
-    - ENABLED
+    - [ATDome, ENABLED]
+    - [ATDomeTrajectory, ENABLED]
+    - [ATMCS, ENABLED]
+    - [ATPneumatics, ENABLED]
+    - [ATAOS, ENABLED]
+    - [ATHexapod, ENABLED]
+    - [ATPtg, ENABLED]
     """
 )
 
@@ -104,14 +91,10 @@ registry["auxtel_disabled_enabled"] = yaml.safe_dump(
 yaml_string = yaml.safe_load(
     """
     data:
-    - - ATArchiver
-    - ENABLED
-    - - ATCamera
-    - ENABLED
-    - - ATHeaderService
-    - ENABLED
-    - - ATSpectrograph
-    - ENABLED
+    - [ATArchiver, ENABLED]
+    - [ATCamera, ENABLED]
+    - [ATHeaderService, ENABLED]
+    - [ATSpectrograph, ENABLED]
     """
 )
 
@@ -123,8 +106,7 @@ registry["auxtel_camera_disabled_enabled"] = yaml.safe_dump(
 yaml_string = yaml.safe_load(
     """
     data:
-    - - ATCamera
-    - STANDBY
+    - [ATCamera, STANDBY]
     """
 )
 
