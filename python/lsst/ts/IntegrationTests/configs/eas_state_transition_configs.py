@@ -30,15 +30,9 @@ from .config_registry import registry
 yaml_string = yaml.safe_load(
     """
     data:
-    - - DIMM:1
-    - DISABLED
-    - current
-    - - DIMM:2
-    - DISABLED
-    - current
-    - - WeatherStation:1
-    - DISABLED
-    - default
+    - [DIMM:1, DISABLED, current]
+    - [DIMM:2, DISABLED, current]
+    - [WeatherStation:1, DISABLED, default]
     """
 )
 
@@ -50,12 +44,9 @@ registry["eas_standby_disabled"] = yaml.safe_dump(
 yaml_string = yaml.safe_load(
     """
     data:
-    - - DIMM:1
-    - ENABLED
-    - - DIMM:2
-    - ENABLED
-    - - WeatherStation:1
-    - ENABLED
+    - [DIMM:1, ENABLED]
+    - [DIMM:2, ENABLED]
+    - [WeatherStation:1, ENABLED]
     """
 )
 

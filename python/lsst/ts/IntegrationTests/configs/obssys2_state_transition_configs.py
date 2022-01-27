@@ -30,18 +30,10 @@ from .config_registry import registry
 yaml_string = yaml.safe_load(
     """
     data:
-    - - Scheduler:1
-    - DISABLED
-    - standstill
-    - - Scheduler:2
-    - DISABLED
-    - standstill
-    - - OCPS:1
-    - DISABLED
-    - LATISS
-    - - OCPS:2
-    - DISABLED
-    - LSSTComCam
+    - [Scheduler:1, DISABLED, standstill]
+    - [Scheduler:2, DISABLED, standstill]
+    - [OCPS:1, DISABLED, LATISS]
+    - [OCPS:2, DISABLED, LSSTComCam]
     """
 )
 
@@ -53,14 +45,10 @@ registry["obssys2_standby_disabled"] = yaml.safe_dump(
 yaml_string = yaml.safe_load(
     """
     data:
-    - - Scheduler:1
-    - ENABLED
-    - - Scheduler:2
-    - ENABLED
-    - - OCPS:1
-    - ENABLED
-    - - OCPS:2
-    - ENABLED
+    - [Scheduler:1, ENABLED]
+    - [Scheduler:2, ENABLED]
+    - [OCPS:1, ENABLED]
+    - [OCPS:2, ENABLED]
     """
 )
 

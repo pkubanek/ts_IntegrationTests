@@ -30,14 +30,10 @@ from .config_registry import registry
 yaml_string = yaml.safe_load(
     """
     data:
-    - - Scheduler:1
-    - OFFLINE
-    - - Scheduler:2
-    - OFFLINE
-    - - OCPS:1
-    - OFFLINE
-    - - OCPS:2
-    - OFFLINE
+    - [Scheduler:1, OFFLINE]
+    - [Scheduler:2, OFFLINE]
+    - [OCPS:1, OFFLINE]
+    - [OCPS:2, OFFLINE]
     """
 )
 
@@ -49,16 +45,11 @@ registry["sched_ocps_enabled_offline"] = yaml.safe_dump(
 yaml_string = yaml.safe_load(
     """
     data:
-    - - DSM:2
-    - OFFLINE
-    - - DSM:1
-    - OFFLINE
-    - - DIMM:1
-    - OFFLINE
-    - - DIMM:2
-    - OFFLINE
-    - - WeatherStation:1
-    - OFFLINE
+    - [DSM:2, OFFLINE]
+    - [DSM:1, OFFLINE]
+    - [DIMM:1, OFFLINE]
+    - [DIMM:2, OFFLINE]
+    - [WeatherStation:1, OFFLINE]
     """
 )
 
@@ -70,12 +61,9 @@ registry["eas_enabled_offline"] = yaml.safe_dump(
 yaml_string = yaml.safe_load(
     """
     data:
-    - - Watcher
-    - OFFLINE
-    - - ScriptQueue:1
-    - OFFLINE
-    - - ScriptQueue:2
-    - OFFLINE
+    - [Watcher, OFFLINE]
+    - [ScriptQueue:1, OFFLINE]
+    - [ScriptQueue:2, OFFLINE]
     """
 )
 

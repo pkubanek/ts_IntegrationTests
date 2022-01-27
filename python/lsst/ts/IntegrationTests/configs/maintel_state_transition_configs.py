@@ -30,8 +30,7 @@ from .config_registry import registry
 yaml_string = yaml.safe_load(
     """
     data:
-    - - CCCamera
-    - STANDBY
+    - [CCCamera, STANDBY]
     """
 )
 
@@ -43,29 +42,16 @@ registry["maintel_offline_standby"] = yaml.safe_dump(
 yaml_string = yaml.safe_load(
     """
     data:
-    - - MTMount
-    - DISABLED
-    - - MTRotator
-    - DISABLED
-    - - MTHexapod:1
-    - DISABLED
-    - default
-    - - MTHexapod:2
-    - DISABLED
-    - default
-    - - MTDome
-    - DISABLED
-    - - MTDomeTrajectory
-    - DISABLED
-    - - MTM1M3
-    - DISABLED
-    - Default
-    - - MTM2
-    - DISABLED
-    - - MTPtg
-    - DISABLED
-    - - MTAOS
-    - DISABLED
+    - [MTMount, DISABLED]
+    - [MTRotator, DISABLED]
+    - [MTHexapod:1, DISABLED, default]
+    - [MTHexapod:2, DISABLED, default]
+    - [MTDome, DISABLED]
+    - [MTDomeTrajectory, DISABLED]
+    - [MTM1M3, DISABLED, Default]
+    - [MTM2, DISABLED]
+    - [MTPtg, DISABLED]
+    - [MTAOSi, DISABLED]
     """
 )
 
@@ -77,13 +63,9 @@ registry["maintel_standby_disabled"] = yaml.safe_dump(
 yaml_string = yaml.safe_load(
     """
     data:
-    - - CCCamera
-    - DISABLED
-    - Normal
-    - - CCHeaderService
-    - DISABLED
-    - - CCArchiver
-    - DISABLED
+    - [CCCamera, DISABLED, Normal]
+    - [CCHeaderService, DISABLED]
+    - [CCArchiver, DISABLED]
     """
 )
 
@@ -95,26 +77,16 @@ registry["maintel_camera_standby_disabled"] = yaml.safe_dump(
 yaml_string = yaml.safe_load(
     """
     data:
-    - - MTMount
-    - ENABLED
-    - - MTRotator
-    - ENABLED
-    - - MTHexapod:1
-    - ENABLED
-    - - MTHexapod:2
-    - ENABLED
-    - - MTDome
-    - ENABLED
-    - - MTDomeTrajectory
-    - ENABLED
-    - - MTM1M3
-    - ENABLED
-    - - MTM2
-    - ENABLED
-    - - MTPtg
-    - ENABLED
-    - - MTAOS
-    - ENABLED
+    - [MTMount, ENABLED]
+    - [MTRotator, ENABLED]
+    - [MTHexapod:1, ENABLED]
+    - [MTHexapod:2, ENABLED]
+    - [MTDome, ENABLED]
+    - [MTDomeTrajectory, ENABLED]
+    - [MTM1M3, ENABLED]
+    - [MTM2, ENABLED]
+    - [MTPtg, ENABLED]
+    - [MTAOS, ENABLED]
     """
 )
 
@@ -126,12 +98,9 @@ registry["maintel_disabled_enabled"] = yaml.safe_dump(
 yaml_string = yaml.safe_load(
     """
     data:
-    - - CCCamera
-    - ENABLED
-    - - CCHeaderService
-    - ENABLED
-    - - CCArchiver
-    - ENABLED
+    - [CCCamera, ENABLED]
+    - [CCHeaderService, ENABLED]
+    - [CCArchiver, ENABLED]
     """
 )
 
