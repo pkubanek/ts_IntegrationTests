@@ -50,14 +50,18 @@ class AuxTelTrackTargetTestCase(unittest.IsolatedAsyncioTestCase):
         """
         # Mock the command-line argument that the aux_tel_track_target.py
         # script expects.
-        sys.argv[1:] = ["--target", "test"]
+        test_target = "test"
+        sys.argv[1:] = ["--target", test_target]
         # Instantiate the AuxTelTrackTarget integration tests object and
         # execute the scripts.
         script_class = AuxTelTrackTarget()
         await script_class.run()
         # Get number of scripts
         num_scripts = len(script_class.scripts)
-        print(f"AuxTel Track Target; running {num_scripts} scripts for target 'test'")
+        self.assertEqual(script_class.configs[0]["target"], test_target)
+        print(
+            f"AuxTel Track Target; running {num_scripts} scripts for target {test_target}"
+        )
         # Assert script was added to ScriptQueue.
         self.assertEqual(len(self.controller.queue_list), num_scripts)
 
