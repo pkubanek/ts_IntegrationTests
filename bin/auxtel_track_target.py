@@ -28,7 +28,8 @@ script_class = AuxTelTrackTarget()
 
 num_scripts = len(script_class.scripts)
 print(
-    f"\nAuxTel Disabled to Enabled; running {num_scripts} scripts for target '{script_class.target}'"
+    f"\nAuxTel Track Target; running {num_scripts} scripts "
+    "for target '{script_class.configs[0]['target']}'"
 )
 
 asyncio.run(script_class.run())
