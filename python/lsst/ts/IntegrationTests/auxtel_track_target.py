@@ -21,6 +21,7 @@
 __all__ = ["AuxTelTrackTarget"]
 
 import argparse
+import yaml
 
 from lsst.ts.IntegrationTests import BaseScript
 from .configs.config_registry import registry
@@ -34,7 +35,7 @@ class AuxTelTrackTarget(BaseScript):
     """
 
     index = 2
-    configs = (registry["track_target"],)
+    configs = ()
     scripts = ("auxtel/track_target.py",)
 
     # Add the target argument
@@ -53,6 +54,9 @@ class AuxTelTrackTarget(BaseScript):
         super().__init__(
             isStandard=isStandard,
         )
+        self.target_config = yaml.safe_load(registry["track_target"])
+        self.target_config["target"] = self.target
+        self.configs = (self.target_config,)
 
     def __getattr__(self, name):
         return getattr(self.parsed, name)
