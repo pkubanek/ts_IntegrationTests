@@ -36,7 +36,7 @@ class AuxTelTrackTarget(BaseScript):
 
     index = 2
     configs = ()
-    scripts = ("auxtel/track_target.py",)
+    scripts = [("auxtel/track_target.py", BaseScript.is_standard),]
 
     # Add the target argument
     parser = argparse.ArgumentParser()
@@ -48,12 +48,10 @@ class AuxTelTrackTarget(BaseScript):
         help="""Specify the target to track.""",
     )
 
-    def __init__(self, isStandard=True, target=None):
+    def __init__(self):
+        super().__init__()
         self.parsed = self.parser.parse_args()
         self.target = self.parsed.target
-        super().__init__(
-            isStandard=isStandard,
-        )
         self.target_config = yaml.safe_load(registry["track_target"])
         self.target_config["target"] = self.target
         self.configs = (self.target_config,)

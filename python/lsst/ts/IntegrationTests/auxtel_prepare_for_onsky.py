@@ -32,9 +32,7 @@ class AuxTelPrepareOnSky(BaseScript):
 
     index = 2
     configs = ([],)
-    scripts = ("auxtel/prepare_for_onsky.py",)
+    scripts = [("auxtel/prepare_for_onsky.py", BaseScript.is_standard),]
 
-    def __init__(self, isStandard=True):
-        super().__init__(
-            isStandard=isStandard,
-        )
+    def __init__(self):
+        super().__init__()

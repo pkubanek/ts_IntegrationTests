@@ -36,12 +36,10 @@ class AuxTelDisabledEnabled(BaseScript):
         registry["auxtel_disabled_enabled"],
         registry["auxtel_camera_disabled_enabled"],
     )
-    scripts = (
-        "set_summary_state.py",
-        "set_summary_state.py",
-    )
+    scripts = [
+        ("set_summary_state.py", BaseScript.is_standard),
+        ("set_summary_state.py", BaseScript.is_standard),
+    ]
 
-    def __init__(self, isStandard=True):
-        super().__init__(
-            isStandard=isStandard,
-        )
+    def __init__(self):
+        super().__init__()

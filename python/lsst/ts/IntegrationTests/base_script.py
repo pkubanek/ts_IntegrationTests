@@ -40,29 +40,34 @@ class BaseScript:
     index : `int`
         The index represents the Main Telescope, index=1, or the
         Auxilliary Telescope, index=2.
+    is_standard : boolean
+        Variable used to specify the script as Standard; value is True.
+        Used for readability.
+    is_external : boolean
+        Variable used to specify the script as External; value is False.
+        Used for readability.
     configs : `tuple`
         The list of Yaml-formatted script configurations.
         They are stored in the configs.py module.
-    scripts : `tuple`
-        The list of Standard or External scripts to execute.
+    scripts : `list`
+        A list of tuples. The tuple is the script name and a boolean.
+        The boolean specifies the script as Standard (True) or External (False).
     """
 
     # See Attributes for the definition.
     index = 1
+    is_standard = True
+    is_external = False
     configs = None
-    scripts = None
+    scripts = []
 
-    def __init__(self, isStandard=True, queue_placement="LAST"):
+    def __init__(self, queue_placement="LAST"):
         """Initialize the given Standard or External
            script, with the given Yaml configuration, placed in the
            given ScriptQueue location.
 
         Parameters
         ----------
-        isStandard : `bool`
-            If True, the script is in ts_standardscripts (True is the
-            default, as it is the most common option).
-            if False, the script is in ts_externalscripts.
         queue_placement : `str`
             Options are "FIRST" "LAST" "BEFORE" or "AFTER" and are
             case insensistive ("FIRST" is the default, for convenience).
@@ -70,7 +75,6 @@ class BaseScript:
             ScriptQueue.Location enum object.
 
         """
-        self.isStandard = isStandard
         self.queue_placement = queue_placement
 
     async def run(self):
@@ -95,8 +99,8 @@ class BaseScript:
             for script, config in zip(self.scripts, self.configs):
                 await remote.cmd_add.set_start(
                     timeout=10,
-                    isStandard=self.isStandard,
-                    path=script,
+                    isStandard=self.script[1],
+                    path=script[0],
                     config=config,
                     logLevel=10,
                     location=queue_placement,

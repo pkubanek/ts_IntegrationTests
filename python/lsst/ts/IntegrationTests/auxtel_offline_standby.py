@@ -33,9 +33,7 @@ class AuxTelOfflineStandby(BaseScript):
 
     index = 2
     configs = (registry["auxtel_offline_standby"],)
-    scripts = ("set_summary_state.py",)
+    scripts = [("set_summary_state.py", BaseScript.is_standard),]
 
-    def __init__(self, isStandard=True):
-        super().__init__(
-            isStandard=isStandard,
-        )
+    def __init__(self):
+        super().__init__()

@@ -34,12 +34,10 @@ class AuxTelShutdown(BaseScript):
     index = 2
     configs = ([], registry["enable1"])
 
-    scripts = (
-        "auxtel/shutdown.py",
-        "auxtel/enable_atcs.py",
-    )
+    scripts = [
+        ("auxtel/shutdown.py", BaseScript.is_standard),
+        ("auxtel/enable_atcs.py", BaseScript.is_standard),
+    ]
 
-    def __init__(self, isStandard=True):
-        super().__init__(
-            isStandard=isStandard,
-        )
+    def __init__(self):
+        super().__init__()
