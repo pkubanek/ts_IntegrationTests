@@ -56,7 +56,7 @@ class ScriptQueueController(salobj.Controller):
         """
         try:
             while True:
-                self.evt_heartbeat.put()
+                self.evt_heartbeat.write()
                 await asyncio.sleep(1.0)
         except asyncio.CancelledError:
             self.log.debug("Heartbeat ended normally")
