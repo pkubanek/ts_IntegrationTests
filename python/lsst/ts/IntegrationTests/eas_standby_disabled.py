@@ -33,7 +33,9 @@ class EasStandbyDisabled(BaseScript):
 
     index = 1
     configs = (registry["eas_standby_disabled"],)
-    scripts = [("set_summary_state.py", BaseScript.is_standard),]
+    scripts = [
+        ("set_summary_state.py", BaseScript.is_standard),
+    ]
 
     def __init__(self):
         super().__init__()

@@ -36,7 +36,9 @@ class AuxTelTrackTarget(BaseScript):
 
     index = 2
     configs = ()
-    scripts = [("auxtel/track_target.py", BaseScript.is_standard),]
+    scripts = [
+        ("auxtel/track_target.py", BaseScript.is_standard),
+    ]
 
     # Add the target argument
     parser = argparse.ArgumentParser()

@@ -51,7 +51,8 @@ class BaseScript:
         They are stored in the configs.py module.
     scripts : `list`
         A list of tuples. The tuple is the script name and a boolean.
-        The boolean specifies the script as Standard (True) or External (False).
+        The boolean specifies the script as Standard (True)
+        or External (False).
     """
 
     # See Attributes for the definition.
@@ -99,7 +100,7 @@ class BaseScript:
             for script, config in zip(self.scripts, self.configs):
                 await remote.cmd_add.set_start(
                     timeout=10,
-                    isStandard=self.script[1],
+                    isStandard=script[1],
                     path=script[0],
                     config=config,
                     logLevel=10,

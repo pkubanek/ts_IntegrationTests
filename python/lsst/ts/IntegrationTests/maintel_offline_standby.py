@@ -33,7 +33,9 @@ class MainTelOfflineStandby(BaseScript):
 
     index = 1
     configs = (registry["maintel_offline_standby"],)
-    scripts = [("set_summary_state.py", BaseScript.is_standard),]
+    scripts = [
+        ("set_summary_state.py", BaseScript.is_standard),
+    ]
 
     def __init__(self):
         super().__init__()
