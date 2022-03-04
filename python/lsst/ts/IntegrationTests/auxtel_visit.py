@@ -40,16 +40,14 @@ class AuxTelVisit(BaseScript):
         registry["auxtel_visit_config5"],
         registry["auxtel_visit_config6"],
     )
-    scripts = (
-        "auxtel/take_image_latiss.py",
-        "auxtel/take_image_latiss.py",
-        "auxtel/take_image_latiss.py",
-        "auxtel/take_image_latiss.py",
-        "auxtel/take_image_latiss.py",
-        "auxtel/take_image_latiss.py",
-    )
+    scripts = [
+        ("auxtel/take_image_latiss.py", BaseScript.is_standard),
+        ("auxtel/take_image_latiss.py", BaseScript.is_standard),
+        ("auxtel/take_image_latiss.py", BaseScript.is_standard),
+        ("auxtel/take_image_latiss.py", BaseScript.is_standard),
+        ("auxtel/take_image_latiss.py", BaseScript.is_standard),
+        ("auxtel/take_image_latiss.py", BaseScript.is_standard),
+    ]
 
-    def __init__(self, isStandard=True):
-        super().__init__(
-            isStandard=isStandard,
-        )
+    def __init__(self):
+        super().__init__()

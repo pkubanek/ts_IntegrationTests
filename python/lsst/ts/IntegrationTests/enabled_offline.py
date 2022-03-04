@@ -41,17 +41,15 @@ class EnabledOffline(BaseScript):
         registry["eas_enabled_offline"],
         registry["watcher_sq_enabled_offline"],
     )
-    scripts = (
-        "set_summary_state.py",
-        "auxtel/offline_atcs.py",
-        "auxtel/offline_latiss.py",
-        "maintel/offline_mtcs.py",
-        "maintel/offline_comcam.py",
-        "set_summary_state.py",
-        "set_summary_state.py",
-    )
+    scripts = [
+        ("set_summary_state.py", BaseScript.is_standard),
+        ("auxtel/offline_atcs.py", BaseScript.is_standard),
+        ("auxtel/offline_latiss.py", BaseScript.is_standard),
+        ("maintel/offline_mtcs.py", BaseScript.is_standard),
+        ("maintel/offline_comcam.py", BaseScript.is_standard),
+        ("set_summary_state.py", BaseScript.is_standard),
+        ("set_summary_state.py", BaseScript.is_standard),
+    ]
 
-    def __init__(self, isStandard=True):
-        super().__init__(
-            isStandard=isStandard,
-        )
+    def __init__(self):
+        super().__init__()
