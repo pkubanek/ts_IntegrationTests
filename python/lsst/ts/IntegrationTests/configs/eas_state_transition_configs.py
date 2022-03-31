@@ -31,7 +31,6 @@ yaml_string = yaml.safe_load(
     """
     data:
     - [DIMM:1, DISABLED]
-    - [DIMM:2, DISABLED]
     - [WeatherStation:1, DISABLED]
     """
 )
@@ -45,7 +44,6 @@ yaml_string = yaml.safe_load(
     """
     data:
     - [DIMM:1, ENABLED]
-    - [DIMM:2, ENABLED]
     - [WeatherStation:1, ENABLED]
     """
 )
