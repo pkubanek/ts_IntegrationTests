@@ -30,20 +30,13 @@ from .config_registry import registry
 yaml_string = yaml.safe_load(
     """
     data:
-    - - ATDome
-    - DISABLED
-    - - ATDomeTrajectory
-    - DISABLED
-    - - ATMCS
-    - DISABLED
-    - - ATPneumatics
-    - DISABLED
-    - - ATAOS
-    - DISABLED
-    - - ATHexapod
-    - DISABLED
-    - - ATPtg
-    - DISABLED
+    - [ATDome, DISABLED]
+    - [ATDomeTrajectory, DISABLED]
+    - [ATMCS, DISABLED]
+    - [ATPneumatics, DISABLED]
+    - [ATAOS, DISABLED]
+    - [ATHexapod, DISABLED]
+    - [ATPtg, DISABLED]
     """
 )
 
