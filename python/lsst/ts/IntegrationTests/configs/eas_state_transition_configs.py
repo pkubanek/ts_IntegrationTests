@@ -30,9 +30,9 @@ from .config_registry import registry
 yaml_string = yaml.safe_load(
     """
     data:
-    - [DIMM:1, DISABLED, current]
-    - [DIMM:2, DISABLED, current]
-    - [WeatherStation:1, DISABLED, default]
+    - [DIMM:1, DISABLED]
+    - [DIMM:2, DISABLED]
+    - [WeatherStation:1, DISABLED]
     """
 )
 

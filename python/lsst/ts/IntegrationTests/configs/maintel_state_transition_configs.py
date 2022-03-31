@@ -44,14 +44,14 @@ yaml_string = yaml.safe_load(
     data:
     - [MTMount, DISABLED]
     - [MTRotator, DISABLED]
-    - [MTHexapod:1, DISABLED, default]
-    - [MTHexapod:2, DISABLED, default]
+    - [MTHexapod:1, DISABLED]
+    - [MTHexapod:2, DISABLED]
     - [MTDome, DISABLED]
     - [MTDomeTrajectory, DISABLED]
     - [MTM1M3, DISABLED, Default]
     - [MTM2, DISABLED]
     - [MTPtg, DISABLED]
-    - [MTAOSi, DISABLED]
+    - [MTAOS, DISABLED]
     """
 )
 
@@ -65,7 +65,7 @@ yaml_string = yaml.safe_load(
     data:
     - [CCCamera, DISABLED, Normal]
     - [CCHeaderService, DISABLED]
-    - [CCArchiver, DISABLED]
+    - [CCOODS, DISABLED]
     """
 )
 
@@ -100,7 +100,7 @@ yaml_string = yaml.safe_load(
     data:
     - [CCCamera, ENABLED]
     - [CCHeaderService, ENABLED]
-    - [CCArchiver, ENABLED]
+    - [CCOODS, ENABLED]
     """
 )
 

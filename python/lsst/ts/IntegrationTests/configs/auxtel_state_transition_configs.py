@@ -32,7 +32,6 @@ yaml_string = yaml.safe_load(
     data:
     - - ATDome
     - DISABLED
-    - current
     - - ATDomeTrajectory
     - DISABLED
     - - ATMCS
@@ -41,10 +40,8 @@ yaml_string = yaml.safe_load(
     - DISABLED
     - - ATAOS
     - DISABLED
-    - current
     - - ATHexapod
     - DISABLED
-    - ncsa
     - - ATPtg
     - DISABLED
     """
@@ -58,10 +55,10 @@ registry["auxtel_standby_disabled"] = yaml.safe_dump(
 yaml_string = yaml.safe_load(
     """
     data:
-    - [ATArchiver, DISABLED]
+    - [ATOODS, DISABLED]
     - [ATCamera, DISABLED, Normal]
     - [ATHeaderService, DISABLED]
-    - [ATSpectrograph, DISABLED, current]
+    - [ATSpectrograph, DISABLED]
     """
 )
 
@@ -91,7 +88,7 @@ registry["auxtel_disabled_enabled"] = yaml.safe_dump(
 yaml_string = yaml.safe_load(
     """
     data:
-    - [ATArchiver, ENABLED]
+    - [ATOODS, ENABLED]
     - [ATCamera, ENABLED]
     - [ATHeaderService, ENABLED]
     - [ATSpectrograph, ENABLED]
