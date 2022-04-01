@@ -21,7 +21,6 @@
 __all__ = ["AuxTelShutdown"]
 
 from lsst.ts.IntegrationTests import BaseScript
-from .configs.config_registry import registry
 
 
 class AuxTelShutdown(BaseScript):
@@ -32,7 +31,7 @@ class AuxTelShutdown(BaseScript):
     """
 
     index = 2
-    configs = ([], registry["enable1"])
+    configs = ([], [])
 
     scripts = [
         ("auxtel/shutdown.py", BaseScript.is_standard),
