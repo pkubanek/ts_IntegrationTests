@@ -30,23 +30,13 @@ from .config_registry import registry
 yaml_string = yaml.safe_load(
     """
     data:
-    - - ATDome
-    - DISABLED
-    - current
-    - - ATDomeTrajectory
-    - DISABLED
-    - - ATMCS
-    - DISABLED
-    - - ATPneumatics
-    - DISABLED
-    - - ATAOS
-    - DISABLED
-    - current
-    - - ATHexapod
-    - DISABLED
-    - ncsa
-    - - ATPtg
-    - DISABLED
+    - [ATDome, DISABLED]
+    - [ATDomeTrajectory, DISABLED]
+    - [ATMCS, DISABLED]
+    - [ATPneumatics, DISABLED]
+    - [ATAOS, DISABLED]
+    - [ATHexapod, DISABLED]
+    - [ATPtg, DISABLED]
     """
 )
 
@@ -58,10 +48,10 @@ registry["auxtel_standby_disabled"] = yaml.safe_dump(
 yaml_string = yaml.safe_load(
     """
     data:
-    - [ATArchiver, DISABLED]
+    - [ATOODS, DISABLED]
     - [ATCamera, DISABLED, Normal]
     - [ATHeaderService, DISABLED]
-    - [ATSpectrograph, DISABLED, current]
+    - [ATSpectrograph, DISABLED]
     """
 )
 
@@ -91,7 +81,7 @@ registry["auxtel_disabled_enabled"] = yaml.safe_dump(
 yaml_string = yaml.safe_load(
     """
     data:
-    - [ATArchiver, ENABLED]
+    - [ATOODS, ENABLED]
     - [ATCamera, ENABLED]
     - [ATHeaderService, ENABLED]
     - [ATSpectrograph, ENABLED]
