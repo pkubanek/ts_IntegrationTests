@@ -20,16 +20,23 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
+import argparse
 import asyncio
 
 from lsst.ts.IntegrationTests import AuxTelTrackTarget
 
-script_class = AuxTelTrackTarget()
+parser = argparse.ArgumentParser()
+parser.add_argument(
+    "-t", "--target", required=True, type=str, help="Specify the target to track."
+)
+args = parser.parse_args()
+
+script_class = AuxTelTrackTarget(target=args.target)
 
 num_scripts = len(script_class.scripts)
 print(
     f"\nAuxTel Track Target; running {num_scripts} scripts "
-    "for target '{script_class.configs[0]['target']}'"
+    f"for target configuration:\n{script_class.configs[0]}"
 )
 
 asyncio.run(script_class.run())

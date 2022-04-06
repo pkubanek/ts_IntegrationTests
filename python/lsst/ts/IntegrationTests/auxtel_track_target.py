@@ -20,7 +20,6 @@
 
 __all__ = ["AuxTelTrackTarget"]
 
-import argparse
 import yaml
 
 from lsst.ts.IntegrationTests import BaseScript
@@ -40,23 +39,8 @@ class AuxTelTrackTarget(BaseScript):
         ("auxtel/track_target.py", BaseScript.is_standard),
     ]
 
-    # Add the target argument
-    parser = argparse.ArgumentParser()
-    parser.add_argument(
-        "-t",
-        "--target",
-        type=str,
-        required=True,
-        help="""Specify the target to track.""",
-    )
-
-    def __init__(self):
+    def __init__(self, target):
         super().__init__()
-        self.parsed = self.parser.parse_args()
-        self.target = self.parsed.target
         self.target_config = yaml.safe_load(registry["track_target"])
-        self.target_config["target"] = self.target
-        self.configs = (self.target_config,)
-
-    def __getattr__(self, name):
-        return getattr(self.parsed, name)
+        self.target_config["target_name"] = target
+        self.configs = (yaml.safe_dump(self.target_config),)
