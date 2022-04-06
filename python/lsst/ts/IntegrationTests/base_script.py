@@ -78,6 +78,19 @@ class BaseScript:
         """
         self.queue_placement = queue_placement
 
+    @classmethod
+    def add_arguments(cls, **kwargs):
+        """Add additional command line arguments to the script constructor.
+
+        Parameters
+        ----------
+        **kwargs : `dict`, optional
+            Additional keyword arguments for your script's constructor.
+        Returns
+        -------
+        """
+        pass
+
     async def run(self):
         """Run the specified standard or external script."""
         async with salobj.Domain() as domain, salobj.Remote(
