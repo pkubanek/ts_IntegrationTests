@@ -54,11 +54,11 @@ class AuxTelTrackTargetTestCase(unittest.IsolatedAsyncioTestCase):
         sys.argv[1:] = ["--target", test_target]
         # Instantiate the AuxTelTrackTarget integration tests object and
         # execute the scripts.
-        script_class = AuxTelTrackTarget()
+        script_class = AuxTelTrackTarget(target=test_target)
         await script_class.run()
         # Get number of scripts
         num_scripts = len(script_class.scripts)
-        self.assertEqual(script_class.configs[0]["target"], test_target)
+        self.assertEqual(script_class.target_config["target_name"], test_target)
         print(
             f"AuxTel Track Target; running {num_scripts} scripts for target {test_target}"
         )
