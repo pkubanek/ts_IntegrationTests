@@ -32,8 +32,8 @@ yaml_string = yaml.safe_load(
     data:
     - [Scheduler:1, DISABLED, standstill.yaml]
     - [Scheduler:2, DISABLED, standstill.yaml]
-    - [OCPS:1, DISABLED, LATISS]
-    - [OCPS:2, DISABLED, LSSTComCam]
+    - [OCPS:1, DISABLED]
+    - [OCPS:2, DISABLED]
     """
 )
 
