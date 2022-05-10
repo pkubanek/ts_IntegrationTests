@@ -26,9 +26,7 @@ import asyncio
 from lsst.ts.IntegrationTests import AuxTelTrackTarget
 
 parser = argparse.ArgumentParser()
-parser.add_argument(
-    "-t", "--target", required=True, type=str, help="Specify the target to track."
-)
+parser.add_argument("target", type=str, help="Specify the target to track.")
 args = parser.parse_args()
 
 script_class = AuxTelTrackTarget(target=args.target)

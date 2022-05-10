@@ -51,7 +51,7 @@ class AuxTelTrackTargetTestCase(unittest.IsolatedAsyncioTestCase):
         # Mock the command-line argument that the aux_tel_track_target.py
         # script expects.
         test_target = "test"
-        sys.argv[1:] = ["--target", test_target]
+        sys.argv[1] = test_target
         # Instantiate the AuxTelTrackTarget integration tests object and
         # execute the scripts.
         script_class = AuxTelTrackTarget(target=test_target)
