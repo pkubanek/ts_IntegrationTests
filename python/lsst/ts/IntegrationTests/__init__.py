@@ -44,4 +44,5 @@ from .obssys2_disabled_enabled import *
 from .eas_standby_disabled import *
 from .eas_disabled_enabled import *
 from .enabled_offline import *
+from .run_camera_playlist import *
 from .script_queue_controller import *
