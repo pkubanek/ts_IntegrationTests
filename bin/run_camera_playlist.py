@@ -74,8 +74,6 @@ try:
     )
 except KeyError as ke:
     print(repr(ke))
-except Exception as e:
-    print(repr(e))
 else:
     num_scripts = len(script_class.scripts)
     print(

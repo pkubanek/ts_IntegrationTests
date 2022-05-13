@@ -53,8 +53,7 @@ class RunCameraPlaylist(BaseScript):
             raise KeyError(
                 f"The {self.camera_full} does not have a '{playlist_shortname}' playlist."
             )
-        else:
-            self.playlist_config = yaml.safe_load(registry["camera_playlist"])
-            self.playlist_config["component"] = self.camera_full
-            self.playlist_config["parameters"]["playlist"] = self.playlist
-            self.configs = (yaml.safe_dump(self.playlist_config),)
+        self.playlist_config = yaml.safe_load(registry["camera_playlist"])
+        self.playlist_config["component"] = self.camera_full
+        self.playlist_config["parameters"]["playlist"] = self.playlist
+        self.configs = (yaml.safe_dump(self.playlist_config),)
