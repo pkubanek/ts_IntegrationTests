@@ -31,8 +31,7 @@ class AuxTelStop(BaseScript):
     """
 
     index = 2
-    configs = ([], [])
-
+    configs = ([],)
     scripts = [
         ("auxtel/stop.py", BaseScript.is_standard),
     ]

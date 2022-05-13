@@ -24,7 +24,7 @@ import yaml
 import lsst.ts.IntegrationTests.configs.camera_playlist_configs as playlist_configs
 
 from lsst.ts.IntegrationTests import BaseScript
-from .configs.config_registry import registry
+from lsst.ts.IntegrationTests.configs.config_registry import registry
 
 
 class RunCameraPlaylist(BaseScript):
@@ -42,17 +42,19 @@ class RunCameraPlaylist(BaseScript):
 
     def __init__(self, camera, playlist_shortname):
         super().__init__()
-        self.camera = camera.upper() + "Camera"
-        if self.camera == "ATCamera":
-            self.playlist_dictionary = playlist_configs.atcamera_playlists
-        else:
-            self.playlist_dictionary = playlist_configs.cccamera_playlists
-        if playlist_shortname not in self.playlist_dictionary:
-            raise Exception(
-                f"The {self.camera} does not have a '{playlist_shortname}' playlist."
+        self.camera = camera
+        self.camera_full = camera.upper() + "Camera"
+        playlist_dictionary = getattr(
+            playlist_configs, self.camera + "camera_playlists"
+        )
+        try:
+            self.playlist = playlist_dictionary[playlist_shortname]
+        except KeyError:
+            raise KeyError(
+                f"The {self.camera_full} does not have a '{playlist_shortname}' playlist."
             )
-        self.playlist = self.playlist_dictionary[playlist_shortname]
-        self.playlist_config = yaml.safe_load(registry["camera_playlist"])
-        self.playlist_config["component"] = self.camera
-        self.playlist_config["parameters"]["playlist"] = self.playlist
-        self.configs = (yaml.safe_dump(self.playlist_config),)
+        else:
+            self.playlist_config = yaml.safe_load(registry["camera_playlist"])
+            self.playlist_config["component"] = self.camera_full
+            self.playlist_config["parameters"]["playlist"] = self.playlist
+            self.configs = (yaml.safe_dump(self.playlist_config),)

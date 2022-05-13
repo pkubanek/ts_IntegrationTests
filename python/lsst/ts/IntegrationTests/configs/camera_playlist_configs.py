@@ -23,6 +23,10 @@ import yaml
 from .config_registry import registry
 
 
+# Create the list Camera short-names.
+
+cameras = ["at", "cc"]
+
 # Create the Camera short-name to playlist dictionary.
 
 atcamera_playlists = {
@@ -40,6 +44,21 @@ cccamera_playlists = {
     "master_ptc": "bias_dark_ptc.playlist",
 }
 
+# Define the sorted list of unique playlist short-names.
+
+playlists = sorted(
+    list(set(list(cccamera_playlists.keys()) + list(atcamera_playlists.keys())))
+)
+
+# Create the sorted list of allowable Camera-PlaylistShortname options.
+
+playlist_options = []
+for item in list(cccamera_playlists.keys()):
+    playlist_options.append(("cc", item))
+for item in list(atcamera_playlists.keys()):
+    playlist_options.append(("at", item))
+playlist_options.sort()
+
 # Add the script configurations to the configuration registry.
 
 yaml_string = yaml.safe_load(
@@ -48,7 +67,7 @@ yaml_string = yaml.safe_load(
     cmd: "play"
     parameters:
         playlist: "replace_me"
-        repeat: "true"
+        repeat: True
     """
 )
 

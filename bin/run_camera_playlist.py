@@ -20,24 +20,19 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
+import os
 import argparse
 import asyncio
 
 from lsst.ts.IntegrationTests import RunCameraPlaylist
 from lsst.ts.IntegrationTests.configs.camera_playlist_configs import (
-    atcamera_playlists,
-    cccamera_playlists,
+    cameras,
+    playlists,
+    playlist_options,
 )
 
-cameras = ["at", "cc"]
-playlists = list(set(list(cccamera_playlists.keys()) + list(atcamera_playlists.keys())))
-playlists.sort()
-playlist_options = []
-for item in list(cccamera_playlists.keys()):
-    playlist_options.append(("cc", item))
-for item in list(atcamera_playlists.keys()):
-    playlist_options.append(("at", item))
-playlist_options.sort()
+
+# Define the script arguments.
 
 parser = argparse.ArgumentParser()
 parser.add_argument(
@@ -70,17 +65,21 @@ if not (args.info or args.camera):
 
 if args.info:
     print("The allowed options are: ")
-    print(*playlist_options, sep="\n")
+    print(*playlist_options, sep=os.linesep)
     exit()
 
-script_class = RunCameraPlaylist(
-    camera=args.camera, playlist_shortname=args.playlist_shortname
-)
-
-num_scripts = len(script_class.scripts)
-print(
-    f"\nExecuting the {args.camera.upper()}Camera "
-    f"{args.playlist_shortname.capitalize()} playlist."
-)
-
-asyncio.run(script_class.run())
+try:
+    script_class = RunCameraPlaylist(
+        camera=args.camera, playlist_shortname=args.playlist_shortname
+    )
+except KeyError as ke:
+    print(repr(ke))
+except Exception as e:
+    print(repr(e))
+else:
+    num_scripts = len(script_class.scripts)
+    print(
+        f"\nExecuting the {args.camera.upper()}Camera "
+        f"'{args.playlist_shortname}' playlist."
+    )
+    asyncio.run(script_class.run())

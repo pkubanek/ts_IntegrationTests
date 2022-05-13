@@ -43,10 +43,7 @@ class AuxTelStopTestCase(unittest.IsolatedAsyncioTestCase):
 
     async def test_auxtel_stop(self):
         """Execute the AuxTelStop integration test script,
-        which runs the ts_standardscripts/auxtel/stop.py script,
-        followed by the ts_standardscripts/auxtel/enable_atcs.py script.
-        Use the configuration stored in the stop_configs.py module;
-        note that only the enable_atcs.py script requires a configuration.
+        which runs the ts_standardscripts/auxtel/stop.py script.
 
         """
         # Instantiate the AuxTelStop integration tests object and

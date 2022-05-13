@@ -30,7 +30,7 @@ from lsst.ts.IntegrationTests import ScriptQueueController
 from lsst.ts.IntegrationTests import RunCameraPlaylist
 from lsst.ts.IntegrationTests.configs.camera_playlist_configs import (
     atcamera_playlists,
-    cccamera_playlists,
+    playlist_options,
 )
 
 
@@ -47,7 +47,7 @@ class RunCameraPlaylistTestCase(unittest.IsolatedAsyncioTestCase):
         # Start the controller and wait for it be ready.
         await self.controller.start_task
 
-    async def test_run_camera_playlist(self):
+    async def test_camera_playlist(self):
         """Execute the RunCameraPlaylist integration test script,
         which runs the ts_standardscripts/run_command.py script.
         Use the configuration stored in the camera_playlist_configs.py module.
@@ -76,7 +76,7 @@ class RunCameraPlaylistTestCase(unittest.IsolatedAsyncioTestCase):
         # Assert script was added to ScriptQueue.
         self.assertEqual(len(self.controller.queue_list), num_scripts)
 
-    async def test_run_camera_playlist_bad_inputs(self):
+    async def test_bad_inputs(self):
         """Attempt to execute the RunCameraPlaylist integration test script,
         but use a bad set of command-line arguments; i.e. there is no
         playlist for the given Camera.
@@ -87,10 +87,10 @@ class RunCameraPlaylistTestCase(unittest.IsolatedAsyncioTestCase):
         test_playlist = "test"
         # Instantiate the RunCameraPlaylist integration tests object and
         # execute the scripts.
-        with self.assertRaises(Exception):
+        with self.assertRaises(KeyError):
             RunCameraPlaylist(camera=test_camera, playlist_shortname=test_playlist)
 
-    async def test_run_camera_playlist_no_inputs(self):
+    async def test_no_inputs(self):
         """Attempt to execute the RunCameraPlaylist integration test script,
         but use not command-line arguments.  This should display the help/
         usage message.
@@ -102,12 +102,13 @@ class RunCameraPlaylistTestCase(unittest.IsolatedAsyncioTestCase):
         )
         result = child_process.communicate()[0]
         result = result.decode("utf-8")
+        print(result)
         if "usage" in result:
             assert True
         else:
             assert False
 
-    async def test_run_camera_playlist_info(self):
+    async def test_info(self):
         """Execute the RunCameraPlaylist integration test script,
         but use the --info flag to print out the allowed option pairs.
         """
@@ -118,17 +119,7 @@ class RunCameraPlaylistTestCase(unittest.IsolatedAsyncioTestCase):
         )
         result = child_process.communicate()[0]
         result = result.decode("utf-8")
-        # Define the expected output.
-        playlists = list(
-            set(list(cccamera_playlists.keys()) + list(atcamera_playlists.keys()))
-        )
-        playlists.sort()
-        playlist_options = []
-        for item in list(cccamera_playlists.keys()):
-            playlist_options.append(("cc", item))
-        for item in list(atcamera_playlists.keys()):
-            playlist_options.append(("at", item))
-        playlist_options.sort()
+        print(result)
         # Assert the actual output matches the expected.
         for item in playlist_options:
             if str(item) in result:
