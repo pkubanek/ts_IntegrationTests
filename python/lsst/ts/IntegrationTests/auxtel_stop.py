@@ -1,7 +1,6 @@
-#!/usr/bin/env python
-# This file is part of ts_IntegrationTests.
+# This file is part of ts_IntegrationTests
 #
-# Developed for the Rubin Observatory Telescope and Site System.
+# Developed for the LSST Telescope and Site Systems.
 # This product includes software developed by the LSST Project
 # (https://www.lsst.org).
 # See the COPYRIGHT file at the top-level directory of this distribution
@@ -18,23 +17,24 @@
 # GNU General Public License for more details.
 #
 # You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-import argparse
-import asyncio
+__all__ = ["AuxTelStop"]
 
-from lsst.ts.IntegrationTests import AuxTelTrackTarget
+from lsst.ts.IntegrationTests import BaseScript
 
-parser = argparse.ArgumentParser()
-parser.add_argument("target", type=str, help="Specify the target to track.")
-args = parser.parse_args()
 
-script_class = AuxTelTrackTarget(target=args.target)
+class AuxTelStop(BaseScript):
+    """Execute the given Standard or External script,
+    with the given Yaml configuration,
+    placed in the given ScriptQueue location.
 
-num_scripts = len(script_class.scripts)
-print(
-    f"\nAuxTel Track Target; running {num_scripts} scripts "
-    f"for target configuration:\n{script_class.configs[0]}"
-)
+    """
 
-asyncio.run(script_class.run())
+    index = 2
+    configs = ([],)
+    scripts = [
+        ("auxtel/stop.py", BaseScript.is_standard),
+    ]
+
+    def __init__(self):
+        super().__init__()

@@ -22,15 +22,14 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import unittest
-import sys
 
 from lsst.ts import salobj
 from lsst.ts.IntegrationTests import ScriptQueueController
-from lsst.ts.IntegrationTests import AuxTelTrackTarget
+from lsst.ts.IntegrationTests import AuxTelPrepareFlatField
 
 
-class AuxTelTrackTargetTestCase(unittest.IsolatedAsyncioTestCase):
-    """Test the AuxTel Track Target integration test script."""
+class AuxTelPrepareFlatFieldTestCase(unittest.IsolatedAsyncioTestCase):
+    """Test the AuxTel PrepareFlatField integration test script."""
 
     async def asyncSetUp(self):
         # Set the LSST_DDS_PARTITION_PREFIX ENV_VAR.
@@ -42,26 +41,20 @@ class AuxTelTrackTargetTestCase(unittest.IsolatedAsyncioTestCase):
         # Start the controller and wait for it be ready.
         await self.controller.start_task
 
-    async def test_auxtel_track_target(self):
-        """Execute the AuxTelTrackTarget integration test script,
-        which runs the ts_standardscripts/auxtel/track_target.py script.
-        Use the configuration stored in the track_target_configs.py module.
+    async def test_auxtel_prepare_flatfield(self):
+        """Execute the AuxTelPrepareFlatField integration test script,
+        which runs the ts_standardscripts/auxtel/prepare_for_flatfield.py
+        script.
+        This test requires no configuration.
 
         """
-        # Mock the command-line argument that the aux_tel_track_target.py
-        # script expects.
-        test_target = "test"
-        sys.argv[1] = test_target
-        # Instantiate the AuxTelTrackTarget integration tests object and
+        # Instantiate the AuxTelPrepareFlatField integration tests object and
         # execute the scripts.
-        script_class = AuxTelTrackTarget(target=test_target)
+        script_class = AuxTelPrepareFlatField()
         await script_class.run()
         # Get number of scripts
         num_scripts = len(script_class.scripts)
-        self.assertEqual(script_class.target_config["target_name"], test_target)
-        print(
-            f"AuxTel Track Target; running {num_scripts} scripts for target {test_target}"
-        )
+        print(f"AuxTel Prepare for FlatField; running {num_scripts} scripts")
         # Assert script was added to ScriptQueue.
         self.assertEqual(len(self.controller.queue_list), num_scripts)
 

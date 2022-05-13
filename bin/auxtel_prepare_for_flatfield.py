@@ -20,21 +20,13 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-import argparse
 import asyncio
 
-from lsst.ts.IntegrationTests import AuxTelTrackTarget
+from lsst.ts.IntegrationTests import AuxTelPrepareFlatField
 
-parser = argparse.ArgumentParser()
-parser.add_argument("target", type=str, help="Specify the target to track.")
-args = parser.parse_args()
-
-script_class = AuxTelTrackTarget(target=args.target)
+script_class = AuxTelPrepareFlatField()
 
 num_scripts = len(script_class.scripts)
-print(
-    f"\nAuxTel Track Target; running {num_scripts} scripts "
-    f"for target configuration:\n{script_class.configs[0]}"
-)
+print(f"\nAuxTel Prepare for FlatField; running {num_scripts} scripts")
 
 asyncio.run(script_class.run())
