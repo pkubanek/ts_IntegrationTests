@@ -31,11 +31,11 @@ class EasStandbyDisabled(BaseScript):
 
     """
 
-    index = 1
-    configs = (registry["eas_standby_disabled"],)
-    scripts = [
+    index: int = 1
+    configs: tuple = (registry["eas_standby_disabled"],)
+    scripts: list = [
         ("set_summary_state.py", BaseScript.is_standard),
     ]
 
-    def __init__(self):
+    def __init__(self) -> None:
         super().__init__()

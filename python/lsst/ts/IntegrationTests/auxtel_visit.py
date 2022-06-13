@@ -31,8 +31,8 @@ class AuxTelVisit(BaseScript):
 
     """
 
-    index = 2
-    configs = (
+    index: int = 2
+    configs: tuple = (
         registry["auxtel_visit_config1"],
         registry["auxtel_visit_config2"],
         registry["auxtel_visit_config3"],
@@ -40,7 +40,7 @@ class AuxTelVisit(BaseScript):
         registry["auxtel_visit_config5"],
         registry["auxtel_visit_config6"],
     )
-    scripts = [
+    scripts: list = [
         ("auxtel/take_image_latiss.py", BaseScript.is_standard),
         ("auxtel/take_image_latiss.py", BaseScript.is_standard),
         ("auxtel/take_image_latiss.py", BaseScript.is_standard),
@@ -49,5 +49,5 @@ class AuxTelVisit(BaseScript):
         ("auxtel/take_image_latiss.py", BaseScript.is_standard),
     ]
 
-    def __init__(self):
+    def __init__(self) -> None:
         super().__init__()

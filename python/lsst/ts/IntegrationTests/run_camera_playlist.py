@@ -34,13 +34,13 @@ class RunCameraPlaylist(BaseScript):
 
     """
 
-    index = 2
-    configs = ()
-    scripts = [
+    index: int = 2
+    configs: tuple = ()
+    scripts: list = [
         ("run_command.py", BaseScript.is_standard),
     ]
 
-    def __init__(self, camera, playlist_shortname):
+    def __init__(self, camera: str, playlist_shortname: str) -> None:
         super().__init__()
         self.camera = camera
         self.camera_full = camera.upper() + "Camera"

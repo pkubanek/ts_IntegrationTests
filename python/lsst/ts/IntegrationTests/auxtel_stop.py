@@ -30,11 +30,11 @@ class AuxTelStop(BaseScript):
 
     """
 
-    index = 2
-    configs = ([],)
-    scripts = [
+    index: int = 2
+    configs: tuple = ([],)
+    scripts: list = [
         ("auxtel/stop.py", BaseScript.is_standard),
     ]
 
-    def __init__(self):
+    def __init__(self) -> None:
         super().__init__()

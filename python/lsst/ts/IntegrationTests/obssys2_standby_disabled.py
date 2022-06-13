@@ -31,11 +31,11 @@ class ObsSys2StandbyDisabled(BaseScript):
 
     """
 
-    index = 1
-    configs = (registry["obssys2_standby_disabled"],)
-    scripts = [
+    index: int = 1
+    configs: tuple = (registry["obssys2_standby_disabled"],)
+    scripts: list = [
         ("set_summary_state.py", BaseScript.is_standard),
     ]
 
-    def __init__(self):
+    def __init__(self) -> None:
         super().__init__()

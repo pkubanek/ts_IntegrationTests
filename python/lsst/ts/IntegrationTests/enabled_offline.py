@@ -31,8 +31,8 @@ class EnabledOffline(BaseScript):
 
     """
 
-    index = 2
-    configs = (
+    index: int = 2
+    configs: tuple = (
         registry["sched_ocps_enabled_offline"],
         [],
         [],
@@ -41,7 +41,7 @@ class EnabledOffline(BaseScript):
         registry["eas_enabled_offline"],
         registry["watcher_sq_enabled_offline"],
     )
-    scripts = [
+    scripts: list = [
         ("set_summary_state.py", BaseScript.is_standard),
         ("auxtel/offline_atcs.py", BaseScript.is_standard),
         ("auxtel/offline_latiss.py", BaseScript.is_standard),
@@ -51,5 +51,5 @@ class EnabledOffline(BaseScript):
         ("set_summary_state.py", BaseScript.is_standard),
     ]
 
-    def __init__(self):
+    def __init__(self) -> None:
         super().__init__()

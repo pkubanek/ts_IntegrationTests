@@ -1,6 +1,6 @@
 """Sphinx configuration file for TSSW package"""
 
-from documenteer.conf.pipelinespkg import *
+from documenteer.conf.pipelines import *
 
 
 project = "ts-IntegrationTests"

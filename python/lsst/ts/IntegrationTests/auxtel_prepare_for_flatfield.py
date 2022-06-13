@@ -30,11 +30,11 @@ class AuxTelPrepareFlatField(BaseScript):
 
     """
 
-    index = 2
-    configs = ([],)
-    scripts = [
+    index: int = 2
+    configs: tuple = ([],)
+    scripts: list = [
         ("auxtel/prepare_for_flatfield.py", BaseScript.is_standard),
     ]
 
-    def __init__(self):
+    def __init__(self) -> None:
         super().__init__()

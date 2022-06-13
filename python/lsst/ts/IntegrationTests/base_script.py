@@ -56,13 +56,13 @@ class BaseScript:
     """
 
     # See Attributes for the definition.
-    index = 1
-    is_standard = True
-    is_external = False
-    configs = None
-    scripts = []
+    index: int = 1
+    is_standard: bool = True
+    is_external: bool = False
+    configs: tuple = ()
+    scripts: list = []
 
-    def __init__(self, queue_placement="LAST"):
+    def __init__(self, queue_placement: str = "LAST") -> None:
         """Initialize the given Standard or External
            script, with the given Yaml configuration, placed in the
            given ScriptQueue location.
@@ -79,7 +79,7 @@ class BaseScript:
         self.queue_placement = queue_placement
 
     @classmethod
-    def add_arguments(cls, **kwargs):
+    def add_arguments(cls, **kwargs: str) -> None:
         """Add additional command line arguments to the script constructor.
 
         Parameters
@@ -91,7 +91,7 @@ class BaseScript:
         """
         pass
 
-    async def run(self):
+    async def run(self) -> None:
         """Run the specified standard or external script."""
         async with salobj.Domain() as domain, salobj.Remote(
             domain=domain, name="ScriptQueue", index=self.index

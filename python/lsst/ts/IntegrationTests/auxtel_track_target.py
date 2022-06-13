@@ -33,13 +33,13 @@ class AuxTelTrackTarget(BaseScript):
 
     """
 
-    index = 2
-    configs = ()
-    scripts = [
+    index: int = 2
+    configs: tuple = ()
+    scripts: list = [
         ("auxtel/track_target.py", BaseScript.is_standard),
     ]
 
-    def __init__(self, target):
+    def __init__(self, target: str) -> None:
         super().__init__()
         self.target_config = yaml.safe_load(registry["track_target"])
         self.target_config["target_name"] = target

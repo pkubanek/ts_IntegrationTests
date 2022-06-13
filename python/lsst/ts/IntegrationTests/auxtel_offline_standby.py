@@ -31,11 +31,11 @@ class AuxTelOfflineStandby(BaseScript):
 
     """
 
-    index = 2
-    configs = (registry["auxtel_offline_standby"],)
-    scripts = [
+    index: int = 2
+    configs: tuple = (registry["auxtel_offline_standby"],)
+    scripts: list = [
         ("set_summary_state.py", BaseScript.is_standard),
     ]
 
-    def __init__(self):
+    def __init__(self) -> None:
         super().__init__()

@@ -31,15 +31,15 @@ class MainTelStandbyDisabled(BaseScript):
 
     """
 
-    index = 1
-    configs = (
+    index: int = 1
+    configs: tuple = (
         registry["maintel_standby_disabled"],
         registry["maintel_camera_standby_disabled"],
     )
-    scripts = [
+    scripts: list = [
         ("set_summary_state.py", BaseScript.is_standard),
         ("set_summary_state.py", BaseScript.is_standard),
     ]
 
-    def __init__(self):
+    def __init__(self) -> None:
         super().__init__()

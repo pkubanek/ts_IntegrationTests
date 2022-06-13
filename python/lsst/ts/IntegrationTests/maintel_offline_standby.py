@@ -31,11 +31,11 @@ class MainTelOfflineStandby(BaseScript):
 
     """
 
-    index = 1
-    configs = (registry["maintel_offline_standby"],)
-    scripts = [
+    index: int = 1
+    configs: tuple = (registry["maintel_offline_standby"],)
+    scripts: list = [
         ("set_summary_state.py", BaseScript.is_standard),
     ]
 
-    def __init__(self):
+    def __init__(self) -> None:
         super().__init__()
