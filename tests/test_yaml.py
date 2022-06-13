@@ -32,7 +32,7 @@ class YamlTestCase(unittest.TestCase):
 
     """
 
-    def test_yaml_formatted(self):
+    def test_yaml_formatted(self) -> None:
         """Use the IntegrationTests.yaml_test_string1() configuration to test
         a well-formatted Yaml string.
 
@@ -40,7 +40,7 @@ class YamlTestCase(unittest.TestCase):
         yaml_string = IntegrationTests.yaml_test_string1()
         IntegrationTests.assert_yaml_formatted("test", yaml_string)
 
-    def test_bad_yaml(self):
+    def test_bad_yaml(self) -> None:
         """Use the IntegrationTests.bad_yaml() configuration to test
         a non-Yaml-formatted string.
 
@@ -51,16 +51,16 @@ class YamlTestCase(unittest.TestCase):
         child_proccess = subprocess.Popen(
             args, stdin=subprocess.PIPE, stdout=subprocess.PIPE
         )
-        child_proccess.stdin.write(byte_string)
-        result = child_proccess.communicate()[0]
-        result = result.decode("utf-8")
-        child_proccess.stdin.close()
-        if any(exception in result for exception in ("warning", "error")):
+        child_proccess.stdin.write(byte_string)  # type: ignore
+        result = child_proccess.communicate()[0]  # type: bytes
+        result_str = result.decode("utf-8")  # type: str
+        child_proccess.stdin.close()  # type: ignore
+        if any(exception in result_str for exception in ("warning", "error")):
             assert True
         else:
             assert False
 
-    def test_script_configs(self):
+    def test_script_configs(self) -> None:
         """Test the IntegrationTests.configs are
         well-formatted Yaml.
 
