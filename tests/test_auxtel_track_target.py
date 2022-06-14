@@ -22,7 +22,6 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import unittest
-import sys
 
 from lsst.ts import salobj
 from lsst.ts.IntegrationTests import ScriptQueueController
@@ -51,7 +50,6 @@ class AuxTelTrackTargetTestCase(unittest.IsolatedAsyncioTestCase):
         # Mock the command-line argument that the aux_tel_track_target.py
         # script expects.
         test_target = "test"
-        sys.argv[1] = test_target
         # Instantiate the AuxTelTrackTarget integration tests object and
         # execute the scripts.
         script_class = AuxTelTrackTarget(target=test_target)
