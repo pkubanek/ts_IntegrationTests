@@ -17,7 +17,7 @@ pipeline{
                  withEnv(["HOME=${env.WORKSPACE}"]) {
                     sh """
                     source /home/saluser/.setup_dev.sh
-                    pip install -r tests/requirements.txt -e . 
+                    pip install -e . 
                     pytest -ra -o junit_family=xunit2 --junitxml=tests/results/results.xml
                     echo "====== Unit testing complete ======"
                     """ 
