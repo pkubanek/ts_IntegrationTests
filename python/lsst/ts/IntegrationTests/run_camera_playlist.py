@@ -18,7 +18,7 @@
 #
 # You should have received a copy of the GNU General Public License
 
-__all__ = ["RunCameraPlaylist"]
+__all__ = ["RunCameraPlaylist", "run_camera_playlist"]
 
 import yaml
 import os
@@ -67,7 +67,7 @@ class RunCameraPlaylist(BaseScript):
         self.configs = (yaml.safe_dump(self.playlist_config),)
 
 
-def run_camera_playlists() -> None:
+def run_camera_playlist() -> None:
     # Define the script arguments.
     parser = argparse.ArgumentParser()
     parser.add_argument(

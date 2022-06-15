@@ -22,7 +22,6 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import unittest
-import os
 import sys
 import subprocess
 
@@ -96,9 +95,8 @@ class RunCameraPlaylistTestCase(unittest.IsolatedAsyncioTestCase):
         but use not command-line arguments.  This should display the help/
         usage message.
         """
-        # Execute the bin/run_camera_playlist.py script.
-        home = os.path.dirname(__file__)
-        args = [f"{home}/../bin/run_camera_playlist.py"]
+        # Execute the run_camera_playlist.py script.
+        args = ["run_camera_playlist"]
         child_process = subprocess.Popen(
             args, stdin=subprocess.PIPE, stdout=subprocess.PIPE
         )
@@ -114,9 +112,8 @@ class RunCameraPlaylistTestCase(unittest.IsolatedAsyncioTestCase):
         """Execute the RunCameraPlaylist integration test script,
         but use the --info flag to print out the allowed option pairs.
         """
-        # Execute the bin/run_camera_playlist.py script and capture the output.
-        home = os.path.dirname(__file__)
-        args = [f"{home}/../bin/run_camera_playlist.py", "--info"]
+        # Execute the run_camera_playlist.py script and capture the output.
+        args = ["run_camera_playlist", "--info"]
         child_process = subprocess.Popen(
             args, stdin=subprocess.PIPE, stdout=subprocess.PIPE
         )
