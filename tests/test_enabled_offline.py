@@ -31,7 +31,7 @@ from lsst.ts.IntegrationTests import EnabledOffline
 class EnabledOfflineTestCase(unittest.IsolatedAsyncioTestCase):
     """Test the Enabled to Offline integration test script."""
 
-    async def asyncSetUp(self):
+    async def asyncSetUp(self) -> None:
         # Set the LSST_DDS_PARTITION_PREFIX ENV_VAR.
         salobj.set_random_lsst_dds_partition_prefix()
 
@@ -41,7 +41,7 @@ class EnabledOfflineTestCase(unittest.IsolatedAsyncioTestCase):
         # Start the controller and wait for it be ready.
         await self.controller.start_task
 
-    async def test_enabled_offline(self):
+    async def test_enabled_offline(self) -> None:
         """Execute the EnabledOffline integration test script,
         which runs the ts_standardscripts/set_summary_state.py,
         auxtel/offline_atcs.py, auxtel/offline_latiss.py,
@@ -60,6 +60,6 @@ class EnabledOfflineTestCase(unittest.IsolatedAsyncioTestCase):
         # Assert script was added to ScriptQueue.
         self.assertEqual(len(self.controller.queue_list), num_scripts)
 
-    async def asyncTearDown(self):
+    async def asyncTearDown(self) -> None:
         await self.controller.close()
         await self.controller.done_task

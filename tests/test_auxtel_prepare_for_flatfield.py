@@ -31,7 +31,7 @@ from lsst.ts.IntegrationTests import AuxTelPrepareFlatField
 class AuxTelPrepareFlatFieldTestCase(unittest.IsolatedAsyncioTestCase):
     """Test the AuxTel PrepareFlatField integration test script."""
 
-    async def asyncSetUp(self):
+    async def asyncSetUp(self) -> None:
         # Set the LSST_DDS_PARTITION_PREFIX ENV_VAR.
         salobj.set_random_lsst_dds_partition_prefix()
 
@@ -41,7 +41,7 @@ class AuxTelPrepareFlatFieldTestCase(unittest.IsolatedAsyncioTestCase):
         # Start the controller and wait for it be ready.
         await self.controller.start_task
 
-    async def test_auxtel_prepare_flatfield(self):
+    async def test_auxtel_prepare_flatfield(self) -> None:
         """Execute the AuxTelPrepareFlatField integration test script,
         which runs the ts_standardscripts/auxtel/prepare_for_flatfield.py
         script.
@@ -58,6 +58,6 @@ class AuxTelPrepareFlatFieldTestCase(unittest.IsolatedAsyncioTestCase):
         # Assert script was added to ScriptQueue.
         self.assertEqual(len(self.controller.queue_list), num_scripts)
 
-    async def asyncTearDown(self):
+    async def asyncTearDown(self) -> None:
         await self.controller.close()
         await self.controller.done_task

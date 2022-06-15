@@ -18,8 +18,9 @@
 #
 # You should have received a copy of the GNU General Public License
 
-__all__ = ["AuxTelStandbyDisabled"]
+__all__ = ["AuxTelStandbyDisabled", "run_auxtel_standby_disabled"]
 
+import asyncio
 from lsst.ts.IntegrationTests import BaseScript
 from .configs.config_registry import registry
 
@@ -31,15 +32,22 @@ class AuxTelStandbyDisabled(BaseScript):
 
     """
 
-    index = 2
-    configs = (
+    index: int = 2
+    configs: tuple = (
         registry["auxtel_standby_disabled"],
         registry["auxtel_camera_standby_disabled"],
     )
-    scripts = [
+    scripts: list = [
         ("set_summary_state.py", BaseScript.is_standard),
         ("set_summary_state.py", BaseScript.is_standard),
     ]
 
-    def __init__(self):
+    def __init__(self) -> None:
         super().__init__()
+
+
+def run_auxtel_standby_disabled() -> None:
+    script_class = AuxTelStandbyDisabled()
+    num_scripts = len(script_class.scripts)
+    print(f"\nAuxTel Standby to Disabled; running {num_scripts} scripts")
+    asyncio.run(script_class.run())

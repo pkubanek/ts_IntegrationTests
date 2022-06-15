@@ -31,7 +31,7 @@ from lsst.ts.IntegrationTests import AuxTelStop
 class AuxTelStopTestCase(unittest.IsolatedAsyncioTestCase):
     """Test the AuxTel Stop integration test script."""
 
-    async def asyncSetUp(self):
+    async def asyncSetUp(self) -> None:
         # Set the LSST_DDS_PARTITION_PREFIX ENV_VAR.
         salobj.set_random_lsst_dds_partition_prefix()
 
@@ -41,7 +41,7 @@ class AuxTelStopTestCase(unittest.IsolatedAsyncioTestCase):
         # Start the controller and wait for it be ready.
         await self.controller.start_task
 
-    async def test_auxtel_stop(self):
+    async def test_auxtel_stop(self) -> None:
         """Execute the AuxTelStop integration test script,
         which runs the ts_standardscripts/auxtel/stop.py script.
 
@@ -56,6 +56,6 @@ class AuxTelStopTestCase(unittest.IsolatedAsyncioTestCase):
         # Assert script was added to ScriptQueue.
         self.assertEqual(len(self.controller.queue_list), num_scripts)
 
-    async def asyncTearDown(self):
+    async def asyncTearDown(self) -> None:
         await self.controller.close()
         await self.controller.done_task

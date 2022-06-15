@@ -18,9 +18,11 @@
 #
 # You should have received a copy of the GNU General Public License
 
-__all__ = ["AuxTelTrackTarget"]
+__all__ = ["AuxTelTrackTarget", "run_auxtel_track_target"]
 
 import yaml
+import asyncio
+import argparse
 
 from lsst.ts.IntegrationTests import BaseScript
 from .configs.config_registry import registry
@@ -33,14 +35,27 @@ class AuxTelTrackTarget(BaseScript):
 
     """
 
-    index = 2
-    configs = ()
-    scripts = [
+    index: int = 2
+    configs: tuple = ()
+    scripts: list = [
         ("auxtel/track_target.py", BaseScript.is_standard),
     ]
 
-    def __init__(self, target):
+    def __init__(self, target: str) -> None:
         super().__init__()
         self.target_config = yaml.safe_load(registry["track_target"])
         self.target_config["target_name"] = target
         self.configs = (yaml.safe_dump(self.target_config),)
+
+
+def run_auxtel_track_target() -> None:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("target", type=str, help="Specify the target to track.")
+    args = parser.parse_args()
+    script_class = AuxTelTrackTarget(target=args.target)
+    num_scripts = len(script_class.scripts)
+    print(
+        f"\nAuxTel Track Target; running {num_scripts} scripts "
+        f"for target configuration:\n{script_class.configs[0]}"
+    )
+    asyncio.run(script_class.run())

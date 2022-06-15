@@ -18,8 +18,9 @@
 #
 # You should have received a copy of the GNU General Public License
 
-__all__ = ["AuxTelStop"]
+__all__ = ["AuxTelStop", "run_auxtel_stop"]
 
+import asyncio
 from lsst.ts.IntegrationTests import BaseScript
 
 
@@ -30,11 +31,18 @@ class AuxTelStop(BaseScript):
 
     """
 
-    index = 2
-    configs = ([],)
-    scripts = [
+    index: int = 2
+    configs: tuple = ([],)
+    scripts: list = [
         ("auxtel/stop.py", BaseScript.is_standard),
     ]
 
-    def __init__(self):
+    def __init__(self) -> None:
         super().__init__()
+
+
+def run_auxtel_stop() -> None:
+    script_class = AuxTelStop()
+    num_scripts = len(script_class.scripts)
+    print(f"\nAuxTel Stop; running {num_scripts} scripts")
+    asyncio.run(script_class.run())

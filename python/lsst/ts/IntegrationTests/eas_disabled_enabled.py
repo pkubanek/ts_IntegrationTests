@@ -18,8 +18,9 @@
 #
 # You should have received a copy of the GNU General Public License
 
-__all__ = ["EasDisabledEnabled"]
+__all__ = ["EasDisabledEnabled", "run_eas_disabled_enabled"]
 
+import asyncio
 from lsst.ts.IntegrationTests import BaseScript
 from .configs.config_registry import registry
 
@@ -31,11 +32,18 @@ class EasDisabledEnabled(BaseScript):
 
     """
 
-    index = 1
-    configs = (registry["eas_disabled_enabled"],)
-    scripts = [
+    index: int = 1
+    configs: tuple = (registry["eas_disabled_enabled"],)
+    scripts: list = [
         ("set_summary_state.py", BaseScript.is_standard),
     ]
 
-    def __init__(self):
+    def __init__(self) -> None:
         super().__init__()
+
+
+def run_eas_disabled_enabled() -> None:
+    script_class = EasDisabledEnabled()
+    num_scripts = len(script_class.scripts)
+    print(f"\nEAS Disabled to Enabled; running {num_scripts} scripts")
+    asyncio.run(script_class.run())

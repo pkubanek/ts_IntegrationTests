@@ -18,8 +18,9 @@
 #
 # You should have received a copy of the GNU General Public License
 
-__all__ = ["ObsSys2StandbyDisabled"]
+__all__ = ["ObsSys2StandbyDisabled", "run_obssys2_standby_disabled"]
 
+import asyncio
 from lsst.ts.IntegrationTests import BaseScript
 from .configs.config_registry import registry
 
@@ -31,11 +32,18 @@ class ObsSys2StandbyDisabled(BaseScript):
 
     """
 
-    index = 1
-    configs = (registry["obssys2_standby_disabled"],)
-    scripts = [
+    index: int = 1
+    configs: tuple = (registry["obssys2_standby_disabled"],)
+    scripts: list = [
         ("set_summary_state.py", BaseScript.is_standard),
     ]
 
-    def __init__(self):
+    def __init__(self) -> None:
         super().__init__()
+
+
+def run_obssys2_standby_disabled() -> None:
+    script_class = ObsSys2StandbyDisabled()
+    num_scripts = len(script_class.scripts)
+    print(f"\nObsSys2 Standby to Disabled; running {num_scripts} scripts")
+    asyncio.run(script_class.run())

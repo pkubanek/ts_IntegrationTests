@@ -22,7 +22,6 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import unittest
-import sys
 
 from lsst.ts import salobj
 from lsst.ts.IntegrationTests import ScriptQueueController
@@ -32,7 +31,7 @@ from lsst.ts.IntegrationTests import AuxTelTrackTarget
 class AuxTelTrackTargetTestCase(unittest.IsolatedAsyncioTestCase):
     """Test the AuxTel Track Target integration test script."""
 
-    async def asyncSetUp(self):
+    async def asyncSetUp(self) -> None:
         # Set the LSST_DDS_PARTITION_PREFIX ENV_VAR.
         salobj.set_random_lsst_dds_partition_prefix()
 
@@ -42,7 +41,7 @@ class AuxTelTrackTargetTestCase(unittest.IsolatedAsyncioTestCase):
         # Start the controller and wait for it be ready.
         await self.controller.start_task
 
-    async def test_auxtel_track_target(self):
+    async def test_auxtel_track_target(self) -> None:
         """Execute the AuxTelTrackTarget integration test script,
         which runs the ts_standardscripts/auxtel/track_target.py script.
         Use the configuration stored in the track_target_configs.py module.
@@ -51,7 +50,6 @@ class AuxTelTrackTargetTestCase(unittest.IsolatedAsyncioTestCase):
         # Mock the command-line argument that the aux_tel_track_target.py
         # script expects.
         test_target = "test"
-        sys.argv[1] = test_target
         # Instantiate the AuxTelTrackTarget integration tests object and
         # execute the scripts.
         script_class = AuxTelTrackTarget(target=test_target)
@@ -65,6 +63,6 @@ class AuxTelTrackTargetTestCase(unittest.IsolatedAsyncioTestCase):
         # Assert script was added to ScriptQueue.
         self.assertEqual(len(self.controller.queue_list), num_scripts)
 
-    async def asyncTearDown(self):
+    async def asyncTearDown(self) -> None:
         await self.controller.close()
         await self.controller.done_task

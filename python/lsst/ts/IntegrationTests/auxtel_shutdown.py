@@ -18,8 +18,9 @@
 #
 # You should have received a copy of the GNU General Public License
 
-__all__ = ["AuxTelShutdown"]
+__all__ = ["AuxTelShutdown", "run_auxtel_shutdown"]
 
+import asyncio
 from lsst.ts.IntegrationTests import BaseScript
 
 
@@ -30,13 +31,19 @@ class AuxTelShutdown(BaseScript):
 
     """
 
-    index = 2
-    configs = ([], [])
-
-    scripts = [
+    index: int = 2
+    configs: tuple = ([], [])
+    scripts: list = [
         ("auxtel/shutdown.py", BaseScript.is_standard),
         ("auxtel/enable_atcs.py", BaseScript.is_standard),
     ]
 
-    def __init__(self):
+    def __init__(self) -> None:
         super().__init__()
+
+
+def run_auxtel_shutdown() -> None:
+    script_class = AuxTelShutdown()
+    num_scripts = len(script_class.scripts)
+    print(f"\nAuxTel Shutdown; running {num_scripts} scripts")
+    asyncio.run(script_class.run())

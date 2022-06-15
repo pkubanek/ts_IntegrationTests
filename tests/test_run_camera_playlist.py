@@ -37,7 +37,7 @@ from lsst.ts.IntegrationTests.configs.camera_playlist_configs import (
 class RunCameraPlaylistTestCase(unittest.IsolatedAsyncioTestCase):
     """Test the Run Camera Playlist integration test script."""
 
-    async def asyncSetUp(self):
+    async def asyncSetUp(self) -> None:
         # Set the LSST_DDS_PARTITION_PREFIX ENV_VAR.
         salobj.set_random_lsst_dds_partition_prefix()
 
@@ -47,7 +47,7 @@ class RunCameraPlaylistTestCase(unittest.IsolatedAsyncioTestCase):
         # Start the controller and wait for it be ready.
         await self.controller.start_task
 
-    async def test_camera_playlist(self):
+    async def test_camera_playlist(self) -> None:
         """Execute the RunCameraPlaylist integration test script,
         which runs the ts_standardscripts/run_command.py script.
         Use the configuration stored in the camera_playlist_configs.py module.
@@ -76,7 +76,7 @@ class RunCameraPlaylistTestCase(unittest.IsolatedAsyncioTestCase):
         # Assert script was added to ScriptQueue.
         self.assertEqual(len(self.controller.queue_list), num_scripts)
 
-    async def test_bad_inputs(self):
+    async def test_bad_inputs(self) -> None:
         """Attempt to execute the RunCameraPlaylist integration test script,
         but use a bad set of command-line arguments; i.e. there is no
         playlist for the given Camera.
@@ -90,43 +90,43 @@ class RunCameraPlaylistTestCase(unittest.IsolatedAsyncioTestCase):
         with self.assertRaises(KeyError):
             RunCameraPlaylist(camera=test_camera, playlist_shortname=test_playlist)
 
-    async def test_no_inputs(self):
+    async def test_no_inputs(self) -> None:
         """Attempt to execute the RunCameraPlaylist integration test script,
         but use not command-line arguments.  This should display the help/
         usage message.
         """
-        # Execute the bin/run_camera_playlist.py script.
-        args = ["run_camera_playlist.py"]
+        # Execute the run_camera_playlist.py script.
+        args = ["run_camera_playlist"]
         child_process = subprocess.Popen(
             args, stdin=subprocess.PIPE, stdout=subprocess.PIPE
         )
-        result = child_process.communicate()[0]
-        result = result.decode("utf-8")
-        print(result)
-        if "usage" in result:
+        result = child_process.communicate()[0]  # type: bytes
+        result_str = result.decode("utf-8")  # type: str
+        print(result_str)
+        if "usage" in result_str:
             assert True
         else:
             assert False
 
-    async def test_info(self):
+    async def test_info(self) -> None:
         """Execute the RunCameraPlaylist integration test script,
         but use the --info flag to print out the allowed option pairs.
         """
-        # Execute the bin/run_camera_playlist.py script and capture the output.
-        args = ["run_camera_playlist.py", "--info"]
+        # Execute the run_camera_playlist.py script and capture the output.
+        args = ["run_camera_playlist", "--info"]
         child_process = subprocess.Popen(
             args, stdin=subprocess.PIPE, stdout=subprocess.PIPE
         )
-        result = child_process.communicate()[0]
-        result = result.decode("utf-8")
-        print(result)
+        result = child_process.communicate()[0]  # type: bytes
+        result_str = result.decode("utf-8")  # type: str
+        print(result_str)
         # Assert the actual output matches the expected.
         for item in playlist_options:
-            if str(item) in result:
+            if str(item) in result_str:
                 assert True
             else:
                 assert False
 
-    async def asyncTearDown(self):
+    async def asyncTearDown(self) -> None:
         await self.controller.close()
         await self.controller.done_task

@@ -31,7 +31,7 @@ from lsst.ts.IntegrationTests import AuxTelShutdown
 class AuxTelShutdownTestCase(unittest.IsolatedAsyncioTestCase):
     """Test the AuxTel Shutdown integration test script."""
 
-    async def asyncSetUp(self):
+    async def asyncSetUp(self) -> None:
         # Set the LSST_DDS_PARTITION_PREFIX ENV_VAR.
         salobj.set_random_lsst_dds_partition_prefix()
 
@@ -41,7 +41,7 @@ class AuxTelShutdownTestCase(unittest.IsolatedAsyncioTestCase):
         # Start the controller and wait for it be ready.
         await self.controller.start_task
 
-    async def test_auxtel_shutdown(self):
+    async def test_auxtel_shutdown(self) -> None:
         """Execute the AuxTelShutdown integration test script,
         which runs the ts_standardscripts/auxtel/shutdown.py script,
         followed by the ts_standardscripts/auxtel/enable_atcs.py script.
@@ -59,6 +59,6 @@ class AuxTelShutdownTestCase(unittest.IsolatedAsyncioTestCase):
         # Assert script was added to ScriptQueue.
         self.assertEqual(len(self.controller.queue_list), num_scripts)
 
-    async def asyncTearDown(self):
+    async def asyncTearDown(self) -> None:
         await self.controller.close()
         await self.controller.done_task

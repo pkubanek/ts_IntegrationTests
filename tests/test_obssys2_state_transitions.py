@@ -32,7 +32,7 @@ from lsst.ts.IntegrationTests import ObsSys2DisabledEnabled
 class ObsSys2StateTransitionTestCase(unittest.IsolatedAsyncioTestCase):
     """Test the ObsSys2 Standby to Disabled integration test script."""
 
-    async def asyncSetUp(self):
+    async def asyncSetUp(self) -> None:
         # Set the LSST_DDS_PARTITION_PREFIX ENV_VAR.
         salobj.set_random_lsst_dds_partition_prefix()
 
@@ -42,7 +42,7 @@ class ObsSys2StateTransitionTestCase(unittest.IsolatedAsyncioTestCase):
         # Start the controller and wait for it be ready.
         await self.controller.start_task
 
-    async def test_obssys2_standby_disabled(self):
+    async def test_obssys2_standby_disabled(self) -> None:
         """Execute the ObsSys2StandbyDisabled integration test script,
         which runs the ts_standardscripts/set_summary_state.py script.
         Use the configuration stored in the obssys2_state_transition_configs.py
@@ -59,7 +59,7 @@ class ObsSys2StateTransitionTestCase(unittest.IsolatedAsyncioTestCase):
         # Assert script was added to ScriptQueue.
         self.assertEqual(len(self.controller.queue_list), num_scripts)
 
-    async def test_obssys2_disabled_enabled(self):
+    async def test_obssys2_disabled_enabled(self) -> None:
         """Execute the ObsSys2DisabledEnabled integration test script,
         which runs the ts_standardscripts/set_summary_state.py script.
         Use the configuration stored in the obssys2_state_transition_configs.py
@@ -76,6 +76,6 @@ class ObsSys2StateTransitionTestCase(unittest.IsolatedAsyncioTestCase):
         # Assert script was added to ScriptQueue.
         self.assertEqual(len(self.controller.queue_list), num_scripts)
 
-    async def asyncTearDown(self):
+    async def asyncTearDown(self) -> None:
         await self.controller.close()
         await self.controller.done_task
