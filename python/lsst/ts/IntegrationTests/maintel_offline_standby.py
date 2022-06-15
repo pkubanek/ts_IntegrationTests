@@ -18,8 +18,9 @@
 #
 # You should have received a copy of the GNU General Public License
 
-__all__ = ["MainTelOfflineStandby"]
+__all__ = ["MainTelOfflineStandby", "run_maintel_offline_standby"]
 
+import asyncio
 from lsst.ts.IntegrationTests import BaseScript
 from .configs.config_registry import registry
 
@@ -39,3 +40,10 @@ class MainTelOfflineStandby(BaseScript):
 
     def __init__(self) -> None:
         super().__init__()
+
+
+def run_maintel_offline_standby():
+    script_class = MainTelOfflineStandby()
+    num_scripts = len(script_class.scripts)
+    print(f"\nMainTel Offline to Standby; running {num_scripts} scripts")
+    asyncio.run(script_class.run())

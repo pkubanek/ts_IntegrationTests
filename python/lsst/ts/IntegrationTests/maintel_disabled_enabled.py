@@ -18,8 +18,9 @@
 #
 # You should have received a copy of the GNU General Public License
 
-__all__ = ["MainTelDisabledEnabled"]
+__all__ = ["MainTelDisabledEnabled", "run_maintel_disabled_enabled"]
 
+import asyncio
 from lsst.ts.IntegrationTests import BaseScript
 from .configs.config_registry import registry
 
@@ -43,3 +44,10 @@ class MainTelDisabledEnabled(BaseScript):
 
     def __init__(self) -> None:
         super().__init__()
+
+
+def run_maintel_disabled_enabled():
+    script_class = MainTelDisabledEnabled()
+    num_scripts = len(script_class.scripts)
+    print(f"\nMainTel Disabled to Enabled; running {num_scripts} scripts")
+    asyncio.run(script_class.run())

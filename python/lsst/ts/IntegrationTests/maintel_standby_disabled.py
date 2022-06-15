@@ -18,8 +18,9 @@
 #
 # You should have received a copy of the GNU General Public License
 
-__all__ = ["MainTelStandbyDisabled"]
+__all__ = ["MainTelStandbyDisabled", "run_maintel_standby_disabled"]
 
+import asyncio
 from lsst.ts.IntegrationTests import BaseScript
 from .configs.config_registry import registry
 
@@ -43,3 +44,10 @@ class MainTelStandbyDisabled(BaseScript):
 
     def __init__(self) -> None:
         super().__init__()
+
+
+def run_maintel_standby_disabled():
+    script_class = MainTelStandbyDisabled()
+    num_scripts = len(script_class.scripts)
+    print(f"\nMainTel Standby to Disabled; running {num_scripts} scripts")
+    asyncio.run(script_class.run())

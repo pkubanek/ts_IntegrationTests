@@ -18,8 +18,9 @@
 #
 # You should have received a copy of the GNU General Public License
 
-__all__ = ["AuxTelPrepareFlatField"]
+__all__ = ["AuxTelPrepareFlatField", "run_auxtel_prepare_for_flatfield"]
 
+import asyncio
 from lsst.ts.IntegrationTests import BaseScript
 
 
@@ -38,3 +39,10 @@ class AuxTelPrepareFlatField(BaseScript):
 
     def __init__(self) -> None:
         super().__init__()
+
+
+def run_auxtel_prepare_for_flatfield():
+    script_class = AuxTelPrepareFlatField()
+    num_scripts = len(script_class.scripts)
+    print(f"\nAuxTel Prepare for FlatField; running {num_scripts} scripts")
+    asyncio.run(script_class.run())

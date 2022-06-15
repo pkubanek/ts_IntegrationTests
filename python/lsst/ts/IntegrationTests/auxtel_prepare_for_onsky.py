@@ -18,8 +18,9 @@
 #
 # You should have received a copy of the GNU General Public License
 
-__all__ = ["AuxTelPrepareOnSky"]
+__all__ = ["AuxTelPrepareOnSky", "run_auxtel_prepare_for_onsky"]
 
+import asyncio
 from lsst.ts.IntegrationTests import BaseScript
 
 
@@ -38,3 +39,10 @@ class AuxTelPrepareOnSky(BaseScript):
 
     def __init__(self) -> None:
         super().__init__()
+
+
+def run_auxtel_prepare_for_onsky():
+    script_class = AuxTelPrepareOnSky()
+    num_scripts = len(script_class.scripts)
+    print(f"\nAuxTel Prepare for OnSky; running {num_scripts} scripts")
+    asyncio.run(script_class.run())

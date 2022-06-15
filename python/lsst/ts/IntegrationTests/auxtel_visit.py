@@ -18,8 +18,9 @@
 #
 # You should have received a copy of the GNU General Public License
 
-__all__ = ["AuxTelVisit"]
+__all__ = ["AuxTelVisit", "run_auxtel_visit"]
 
+import asyncio
 from lsst.ts.IntegrationTests import BaseScript
 from .configs.config_registry import registry
 
@@ -51,3 +52,10 @@ class AuxTelVisit(BaseScript):
 
     def __init__(self) -> None:
         super().__init__()
+
+
+def run_auxtel_visit():
+    script_class = AuxTelVisit()
+    num_scripts = len(script_class.scripts)
+    print(f"\nAuxTel Visit; running {num_scripts} scripts")
+    asyncio.run(script_class.run())

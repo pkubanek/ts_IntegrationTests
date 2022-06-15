@@ -18,8 +18,9 @@
 #
 # You should have received a copy of the GNU General Public License
 
-__all__ = ["EnabledOffline"]
+__all__ = ["EnabledOffline", "run_enabled_offline"]
 
+import asyncio
 from lsst.ts.IntegrationTests import BaseScript
 from .configs.config_registry import registry
 
@@ -53,3 +54,10 @@ class EnabledOffline(BaseScript):
 
     def __init__(self) -> None:
         super().__init__()
+
+
+def run_enabled_offline():
+    script_class = EnabledOffline()
+    num_scripts = len(script_class.scripts)
+    print(f"\nEnabled to Offline; running {num_scripts} scripts")
+    asyncio.run(script_class.run())

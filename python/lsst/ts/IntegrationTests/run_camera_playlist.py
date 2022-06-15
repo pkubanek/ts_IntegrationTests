@@ -21,8 +21,11 @@
 __all__ = ["RunCameraPlaylist"]
 
 import yaml
-import lsst.ts.IntegrationTests.configs.camera_playlist_configs as playlist_configs
+import os
+import argparse
+import asyncio
 
+import lsst.ts.IntegrationTests.configs.camera_playlist_configs as playlist_configs
 from lsst.ts.IntegrationTests import BaseScript
 from lsst.ts.IntegrationTests.configs.config_registry import registry
 
@@ -57,3 +60,61 @@ class RunCameraPlaylist(BaseScript):
         self.playlist_config["component"] = self.camera_full
         self.playlist_config["parameters"]["playlist"] = self.playlist
         self.configs = (yaml.safe_dump(self.playlist_config),)
+
+
+def run_camera_playlists():
+    # Define the script arguments.
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "camera",
+        metavar="camera",
+        nargs="?",
+        type=str.lower,
+        choices=cameras,
+        help="Specify which Camera to command (case insensitive).",
+    )
+    parser.add_argument(
+        "playlist_shortname",
+        metavar="playlist_shortname",
+        nargs="?",
+        type=str.lower,
+        choices=playlists,
+        help="Specify the playlist short name.",
+    )
+    parser.add_argument(
+        "-i",
+        "--info",
+        action="store_true",
+        help="Print the allowed options.",
+    )
+    args = parser.parse_args()
+    # Print the help if the camera is not defined,
+    # or info is not passed.
+    if not (args.info or args.camera):
+        parser.print_help()
+        exit()
+    # Print the playlist options when the info flag is passed.
+    if args.info:
+        print("The allowed options are: ")
+        print(*playlist_options, sep=os.linesep)
+        exit()
+    main(args)
+
+
+def main(opts):
+    # Ensure the invocation is correct.
+    # If not, raise KeyError.
+    # If it is correct, execute the camera playlist.
+    try:
+        script_class = RunCameraPlaylist(
+            camera=opts.camera, playlist_shortname=opts.playlist_shortname
+        )
+    except KeyError as ke:
+        print(repr(ke))
+    else:
+        num_scripts = len(script_class.scripts)
+        print(
+            f"\nExecuting the {opts.camera.upper()}Camera "
+            f"'{opts.playlist_shortname}' playlist."
+        )
+        asyncio.run(script_class.run())
