@@ -46,7 +46,7 @@ class AuxTelDisabledEnabled(BaseScript):
         super().__init__()
 
 
-def run_auxtel_disabled_enabled():
+def run_auxtel_disabled_enabled() -> None:
     script_class = AuxTelDisabledEnabled()
     num_scripts = len(script_class.scripts)
     print(f"\nAuxTel Disabled to Enabled; running {num_scripts} scripts")

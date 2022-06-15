@@ -41,7 +41,7 @@ class AuxTelPrepareOnSky(BaseScript):
         super().__init__()
 
 
-def run_auxtel_prepare_for_onsky():
+def run_auxtel_prepare_for_onsky() -> None:
     script_class = AuxTelPrepareOnSky()
     num_scripts = len(script_class.scripts)
     print(f"\nAuxTel Prepare for OnSky; running {num_scripts} scripts")

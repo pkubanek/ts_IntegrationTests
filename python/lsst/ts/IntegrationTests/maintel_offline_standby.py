@@ -42,7 +42,7 @@ class MainTelOfflineStandby(BaseScript):
         super().__init__()
 
 
-def run_maintel_offline_standby():
+def run_maintel_offline_standby() -> None:
     script_class = MainTelOfflineStandby()
     num_scripts = len(script_class.scripts)
     print(f"\nMainTel Offline to Standby; running {num_scripts} scripts")

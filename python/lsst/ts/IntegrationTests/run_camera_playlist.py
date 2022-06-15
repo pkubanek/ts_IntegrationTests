@@ -28,6 +28,11 @@ import asyncio
 import lsst.ts.IntegrationTests.configs.camera_playlist_configs as playlist_configs
 from lsst.ts.IntegrationTests import BaseScript
 from lsst.ts.IntegrationTests.configs.config_registry import registry
+from lsst.ts.IntegrationTests.configs.camera_playlist_configs import (
+    cameras,
+    playlists,
+    playlist_options,
+)
 
 
 class RunCameraPlaylist(BaseScript):
@@ -62,7 +67,7 @@ class RunCameraPlaylist(BaseScript):
         self.configs = (yaml.safe_dump(self.playlist_config),)
 
 
-def run_camera_playlists():
+def run_camera_playlists() -> None:
     # Define the script arguments.
     parser = argparse.ArgumentParser()
     parser.add_argument(
@@ -101,7 +106,7 @@ def run_camera_playlists():
     main(args)
 
 
-def main(opts):
+def main(opts: argparse.Namespace) -> None:
     # Ensure the invocation is correct.
     # If not, raise KeyError.
     # If it is correct, execute the camera playlist.
@@ -112,7 +117,6 @@ def main(opts):
     except KeyError as ke:
         print(repr(ke))
     else:
-        num_scripts = len(script_class.scripts)
         print(
             f"\nExecuting the {opts.camera.upper()}Camera "
             f"'{opts.playlist_shortname}' playlist."

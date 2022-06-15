@@ -42,7 +42,7 @@ class EasStandbyDisabled(BaseScript):
         super().__init__()
 
 
-def run_eas_standby_disabled():
+def run_eas_standby_disabled() -> None:
     script_class = EasStandbyDisabled()
     num_scripts = len(script_class.scripts)
     print(f"\nEAS Standby to Disabled; running {num_scripts} scripts")

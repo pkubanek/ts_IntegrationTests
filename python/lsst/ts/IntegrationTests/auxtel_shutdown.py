@@ -42,7 +42,7 @@ class AuxTelShutdown(BaseScript):
         super().__init__()
 
 
-def run_auxtel_shutdown():
+def run_auxtel_shutdown() -> None:
     script_class = AuxTelShutdown()
     num_scripts = len(script_class.scripts)
     print(f"\nAuxTel Shutdown; running {num_scripts} scripts")

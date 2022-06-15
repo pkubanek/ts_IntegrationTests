@@ -20,6 +20,7 @@
 
 __all__ = ["EasDisabledEnabled", "run_eas_disabled_enabled"]
 
+import asyncio
 from lsst.ts.IntegrationTests import BaseScript
 from .configs.config_registry import registry
 
@@ -41,7 +42,7 @@ class EasDisabledEnabled(BaseScript):
         super().__init__()
 
 
-def run_eas_disabled_enabled():
+def run_eas_disabled_enabled() -> None:
     script_class = EasDisabledEnabled()
     num_scripts = len(script_class.scripts)
     print(f"\nEAS Disabled to Enabled; running {num_scripts} scripts")

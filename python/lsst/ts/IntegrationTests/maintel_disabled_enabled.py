@@ -46,7 +46,7 @@ class MainTelDisabledEnabled(BaseScript):
         super().__init__()
 
 
-def run_maintel_disabled_enabled():
+def run_maintel_disabled_enabled() -> None:
     script_class = MainTelDisabledEnabled()
     num_scripts = len(script_class.scripts)
     print(f"\nMainTel Disabled to Enabled; running {num_scripts} scripts")

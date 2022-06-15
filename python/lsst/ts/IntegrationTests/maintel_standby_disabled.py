@@ -46,7 +46,7 @@ class MainTelStandbyDisabled(BaseScript):
         super().__init__()
 
 
-def run_maintel_standby_disabled():
+def run_maintel_standby_disabled() -> None:
     script_class = MainTelStandbyDisabled()
     num_scripts = len(script_class.scripts)
     print(f"\nMainTel Standby to Disabled; running {num_scripts} scripts")

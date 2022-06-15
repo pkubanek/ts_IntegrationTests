@@ -41,7 +41,7 @@ class AuxTelStop(BaseScript):
         super().__init__()
 
 
-def run_auxtel_stop():
+def run_auxtel_stop() -> None:
     script_class = AuxTelStop()
     num_scripts = len(script_class.scripts)
     print(f"\nAuxTel Stop; running {num_scripts} scripts")

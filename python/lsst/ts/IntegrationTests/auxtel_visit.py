@@ -54,7 +54,7 @@ class AuxTelVisit(BaseScript):
         super().__init__()
 
 
-def run_auxtel_visit():
+def run_auxtel_visit() -> None:
     script_class = AuxTelVisit()
     num_scripts = len(script_class.scripts)
     print(f"\nAuxTel Visit; running {num_scripts} scripts")

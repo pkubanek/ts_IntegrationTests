@@ -41,7 +41,7 @@ class AuxTelPrepareFlatField(BaseScript):
         super().__init__()
 
 
-def run_auxtel_prepare_for_flatfield():
+def run_auxtel_prepare_for_flatfield() -> None:
     script_class = AuxTelPrepareFlatField()
     num_scripts = len(script_class.scripts)
     print(f"\nAuxTel Prepare for FlatField; running {num_scripts} scripts")

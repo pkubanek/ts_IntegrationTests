@@ -46,7 +46,7 @@ class AuxTelStandbyDisabled(BaseScript):
         super().__init__()
 
 
-def run_auxtel_standby_disabled():
+def run_auxtel_standby_disabled() -> None:
     script_class = AuxTelStandbyDisabled()
     num_scripts = len(script_class.scripts)
     print(f"\nAuxTel Standby to Disabled; running {num_scripts} scripts")

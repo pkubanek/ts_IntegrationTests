@@ -48,7 +48,7 @@ class AuxTelTrackTarget(BaseScript):
         self.configs = (yaml.safe_dump(self.target_config),)
 
 
-def run_auxtel_track_target():
+def run_auxtel_track_target() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("target", type=str, help="Specify the target to track.")
     args = parser.parse_args()

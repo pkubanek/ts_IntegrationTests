@@ -42,7 +42,7 @@ class ObsSys2DisabledEnabled(BaseScript):
         super().__init__()
 
 
-def run_obssys2_disabled_enabled():
+def run_obssys2_disabled_enabled() -> None:
     script_class = ObsSys2DisabledEnabled()
     num_scripts = len(script_class.scripts)
     print(f"\nObsSys2 Disabled to Enabled; running {num_scripts} scripts")

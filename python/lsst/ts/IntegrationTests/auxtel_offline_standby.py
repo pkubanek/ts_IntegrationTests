@@ -18,7 +18,7 @@
 #
 # You should have received a copy of the GNU General Public License
 
-__all__ = ["AuxTelOfflineStandby", "run_auxtel_disabled_enabled"]
+__all__ = ["AuxTelOfflineStandby", "run_auxtel_offline_standby"]
 
 import asyncio
 from lsst.ts.IntegrationTests import BaseScript
@@ -42,8 +42,8 @@ class AuxTelOfflineStandby(BaseScript):
         super().__init__()
 
 
-def run_auxtel_disabled_enabled():
-    script_class = AuxTelDisabledEnabled()
+def run_auxtel_offline_standby() -> None:
+    script_class = AuxTelOfflineStandby()
     num_scripts = len(script_class.scripts)
-    print(f"\nAuxTel Disabled to Enabled; running {num_scripts} scripts")
+    print(f"\nAuxTel Offline to Standby; running {num_scripts} scripts")
     asyncio.run(script_class.run())

@@ -42,7 +42,7 @@ class ObsSys2StandbyDisabled(BaseScript):
         super().__init__()
 
 
-def run_obssys2_standby_disabled():
+def run_obssys2_standby_disabled() -> None:
     script_class = ObsSys2StandbyDisabled()
     num_scripts = len(script_class.scripts)
     print(f"\nObsSys2 Standby to Disabled; running {num_scripts} scripts")
