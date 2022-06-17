@@ -75,10 +75,11 @@ registry["watcher_sq_enabled_offline"] = yaml.safe_dump(
 yaml_string = yaml.safe_load(
     """
     data:
-    - [MTAirCompressor, OFFLINE]
+    - [MTAirCompressor:1, OFFLINE]
+    - [MTAirCompressor:2, OFFLINE]
     """
 )
 
-registry["mt_air_enabled_offline"] = yaml.safe_dump(
+registry["mtaircomp_enabled_offline"] = yaml.safe_dump(
     yaml_string, explicit_start=True, canonical=True
 )

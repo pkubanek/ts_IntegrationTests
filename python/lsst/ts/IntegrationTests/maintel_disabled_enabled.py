@@ -35,7 +35,7 @@ class MainTelDisabledEnabled(BaseScript):
     index: int = 1
     configs: tuple = (
         registry["maintel_disabled_enabled"],
-        registry["mt_air_disabled_enabled"],
+        registry["mtaircomp_disabled_enabled"],
         registry["maintel_camera_disabled_enabled"],
     )
     scripts: list = [
