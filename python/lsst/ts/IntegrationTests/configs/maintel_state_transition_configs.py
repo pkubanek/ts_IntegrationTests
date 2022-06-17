@@ -107,3 +107,26 @@ yaml_string = yaml.safe_load(
 registry["maintel_camera_disabled_enabled"] = yaml.safe_dump(
     yaml_string, explicit_start=True, canonical=True
 )
+
+# MT AirCompressor configs (separate for now)
+yaml_string = yaml.safe_load(
+    """
+    data:
+    - [MTAirCompressor, DISABLED]
+    """
+)
+
+registry["mt_air_standby_disabled"] = yaml.safe_dump(
+    yaml_string, explicit_start=True, canonical=True
+)
+
+yaml_string = yaml.safe_load(
+    """
+    data:
+    - [MTAirCompressor, ENABLED]
+    """
+)
+
+registry["mt_air_disabled_enabled"] = yaml.safe_dump(
+    yaml_string, explicit_start=True, canonical=True
+)

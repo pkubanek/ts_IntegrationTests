@@ -41,6 +41,7 @@ class EnabledOffline(BaseScript):
         [],
         registry["eas_enabled_offline"],
         registry["watcher_sq_enabled_offline"],
+        registry["mt_air_enabled_offline"],
     )
     scripts: list = [
         ("set_summary_state.py", BaseScript.is_standard),
@@ -48,6 +49,7 @@ class EnabledOffline(BaseScript):
         ("auxtel/offline_latiss.py", BaseScript.is_standard),
         ("maintel/offline_mtcs.py", BaseScript.is_standard),
         ("maintel/offline_comcam.py", BaseScript.is_standard),
+        ("set_summary_state.py", BaseScript.is_standard),
         ("set_summary_state.py", BaseScript.is_standard),
         ("set_summary_state.py", BaseScript.is_standard),
     ]
