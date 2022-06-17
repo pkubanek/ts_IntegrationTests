@@ -112,18 +112,6 @@ registry["maintel_camera_disabled_enabled"] = yaml.safe_dump(
 yaml_string = yaml.safe_load(
     """
     data:
-    - [MTAirCompressor:1, DISABLED]
-    - [MTAirCompressor:2, DISABLED]
-    """
-)
-
-registry["mtaircomp_standby_disabled"] = yaml.safe_dump(
-    yaml_string, explicit_start=True, canonical=True
-)
-
-yaml_string = yaml.safe_load(
-    """
-    data:
     - [MTAirCompressor:1, ENABLED]
     - [MTAirCompressor:2, ENABLED]
     """

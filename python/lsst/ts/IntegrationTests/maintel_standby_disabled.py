@@ -35,11 +35,9 @@ class MainTelStandbyDisabled(BaseScript):
     index: int = 1
     configs: tuple = (
         registry["maintel_standby_disabled"],
-        registry["mtaircomp_standby_disabled"],
         registry["maintel_camera_standby_disabled"],
     )
     scripts: list = [
-        ("set_summary_state.py", BaseScript.is_standard),
         ("set_summary_state.py", BaseScript.is_standard),
         ("set_summary_state.py", BaseScript.is_standard),
     ]
