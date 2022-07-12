@@ -28,8 +28,8 @@ from .config_registry import registry
 # ATMCS Housekeeping configs
 yaml_string = yaml.safe_load(
     """
-    component: ATMCS
-    cmd: setInstrumentPort
+    component: "ATMCS"
+    cmd: "setInstrumentPort"
     parameters:
         port: 7
     """
@@ -44,10 +44,10 @@ registry["atmcs_housekeeping"] = yaml.safe_dump(
 # ATSpectrograph Housekeeping configs
 yaml_string = yaml.safe_load(
     """
-    component: ATSpectrograph
-    cmd: changeDisperser
+    component: "ATSpectrograph"
+    cmd: "changeDisperser"
     parameters:
-        name: empty_1
+        name: "empty_1"
     """
 )
 

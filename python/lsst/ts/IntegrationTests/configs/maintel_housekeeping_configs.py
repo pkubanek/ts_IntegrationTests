@@ -28,10 +28,10 @@ from .config_registry import registry
 # CCCamera Housekeeping configs
 yaml_string = yaml.safe_load(
     """
-    component: CCCamera
-    cmd: setFilter
+    component: "CCCamera"
+    cmd: "setFilter"
     parameters:
-        name: r_03
+        name: "r_03"
         timeout: 45
     """
 )
@@ -45,8 +45,8 @@ registry["cccamera_housekeeping"] = yaml.safe_dump(
 # MTMount Housekeeping configs
 yaml_string = yaml.safe_load(
     """
-    component: MTMount
-    cmd: homeBothAxes
+    component: "MTMount"
+    cmd: "homeBothAxes"
     """
 )
 
