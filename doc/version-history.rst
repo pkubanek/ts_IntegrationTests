@@ -10,6 +10,11 @@ Version History
 .. No new work should be required in order to complete this section.
 .. Below is an example of a version history format.
 
+v0.3.0
+------
+* Added the AuxTel and MainTel housekeeping tasks. These set the system to the desired state after the initial set of integration tests are complete.
+* Added the Authorize CSC.
+
 v0.2.1
 ------
 * Fixed the order of scripts in enabled_offline.py so the ScriptQueue is shutoff last.
