@@ -33,7 +33,7 @@ class MainTelHousekeeping(BaseScript):
 
     """
 
-    index: int = 2
+    index: int = 1
     configs: tuple = (
         registry["cccamera_housekeeping"],
         registry["mtmount_housekeeping"],
