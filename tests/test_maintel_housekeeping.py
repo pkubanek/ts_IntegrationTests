@@ -36,7 +36,7 @@ class MainTelHousekeepingTestCase(unittest.IsolatedAsyncioTestCase):
         salobj.set_random_lsst_dds_partition_prefix()
 
         # Create the ScriptQueue Controller.
-        self.controller = ScriptQueueController(index=2)
+        self.controller = ScriptQueueController(index=1)
 
         # Start the controller and wait for it be ready.
         await self.controller.start_task
