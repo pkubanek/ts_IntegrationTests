@@ -27,6 +27,7 @@ except ImportError:
 from .base_script import *
 from .testutils import *
 from .yaml_test_strings import *
+from .auxtel_housekeeping import *
 from .auxtel_prepare_for_flatfield import *
 from .auxtel_prepare_for_onsky import *
 from .auxtel_visit import *
@@ -36,6 +37,7 @@ from .auxtel_track_target import *
 from .auxtel_offline_standby import *
 from .auxtel_standby_disabled import *
 from .auxtel_disabled_enabled import *
+from .maintel_housekeeping import *
 from .maintel_offline_standby import *
 from .maintel_standby_disabled import *
 from .maintel_disabled_enabled import *

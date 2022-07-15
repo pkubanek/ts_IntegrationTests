@@ -57,10 +57,11 @@ registry["eas_enabled_offline"] = yaml.safe_dump(
     yaml_string, explicit_start=True, canonical=True
 )
 
-# watcher_sq_enabled_offline
+# authorize_watcher_sq_enabled_offline
 yaml_string = yaml.safe_load(
     """
     data:
+    - [Authorize, OFFLINE]
     - [Watcher, OFFLINE]
     - [ScriptQueue:1, OFFLINE]
     - [ScriptQueue:2, OFFLINE]
