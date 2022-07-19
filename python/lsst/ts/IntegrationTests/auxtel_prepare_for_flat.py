@@ -18,13 +18,13 @@
 #
 # You should have received a copy of the GNU General Public License
 
-__all__ = ["AuxTelPrepareFlatField", "run_auxtel_prepare_for_flatfield"]
+__all__ = ["AuxTelPrepareFlat", "run_auxtel_prepare_for_flat"]
 
 import asyncio
 from lsst.ts.IntegrationTests import BaseScript
 
 
-class AuxTelPrepareFlatField(BaseScript):
+class AuxTelPrepareFlat(BaseScript):
     """Execute the given Standard or External script,
     with the given Yaml configuration,
     placed in the given ScriptQueue location.
@@ -34,15 +34,15 @@ class AuxTelPrepareFlatField(BaseScript):
     index: int = 2
     configs: tuple = ([],)
     scripts: list = [
-        ("auxtel/prepare_for_flatfield.py", BaseScript.is_standard),
+        ("auxtel/prepare_for_flat.py", BaseScript.is_standard),
     ]
 
     def __init__(self) -> None:
         super().__init__()
 
 
-def run_auxtel_prepare_for_flatfield() -> None:
-    script_class = AuxTelPrepareFlatField()
+def run_auxtel_prepare_for_flat() -> None:
+    script_class = AuxTelPrepareFlat()
     num_scripts = len(script_class.scripts)
-    print(f"\nAuxTel Prepare for FlatField; running {num_scripts} scripts")
+    print(f"\nAuxTel Prepare for Flat; running {num_scripts} scripts")
     asyncio.run(script_class.run())
