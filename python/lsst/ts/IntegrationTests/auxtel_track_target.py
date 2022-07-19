@@ -33,6 +33,12 @@ class AuxTelTrackTarget(BaseScript):
     with the given Yaml configuration,
     placed in the given ScriptQueue location.
 
+    Parameters
+    ----------
+    target : `str`
+        The target to track.
+    track_for : `int`
+        Specifies for how long to track the target.
     """
 
     index: int = 2
@@ -41,18 +47,26 @@ class AuxTelTrackTarget(BaseScript):
         ("auxtel/track_target.py", BaseScript.is_standard),
     ]
 
-    def __init__(self, target: str) -> None:
+    def __init__(self, target: str, track_for: int = 0) -> None:
         super().__init__()
         self.target_config = yaml.safe_load(registry["track_target"])
         self.target_config["target_name"] = target
+        self.target_config["track_for"] = track_for
         self.configs = (yaml.safe_dump(self.target_config),)
 
 
 def run_auxtel_track_target() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("target", type=str, help="Specify the target to track.")
+    parser.add_argument(
+        "--track-for",
+        type=int,
+        default=0,
+        help="Specify for how long to track the target"
+        " (Default is 0, meaning finish script as soon as in position.",
+    )
     args = parser.parse_args()
-    script_class = AuxTelTrackTarget(target=args.target)
+    script_class = AuxTelTrackTarget(target=args.target, track_for=args.track_for)
     num_scripts = len(script_class.scripts)
     print(
         f"\nAuxTel Track Target; running {num_scripts} scripts "
