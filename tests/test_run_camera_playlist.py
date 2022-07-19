@@ -65,13 +65,17 @@ class RunCameraPlaylistTestCase(unittest.IsolatedAsyncioTestCase):
         await script_class.run()
         # Get number of scripts
         num_scripts = len(script_class.scripts)
+        # Assert the correct playlist.
         self.assertEqual(
             script_class.playlist_config["parameters"]["playlist"],
             atcamera_playlists[test_playlist],
         )
+        # Assert playlist repeat is set to True.
+        self.assertEqual(script_class.playlist_config["parameters"]["repeat"], True)
         print(
             f"Running the {script_class.camera} "
             f"{script_class.playlist_config['parameters']['playlist']}."
+            f" Playist repeat is set to {script_class.playlist_config['parameters']['repeat']}."
         )
         # Assert script was added to ScriptQueue.
         self.assertEqual(len(self.controller.queue_list), num_scripts)
@@ -90,9 +94,26 @@ class RunCameraPlaylistTestCase(unittest.IsolatedAsyncioTestCase):
         with self.assertRaises(KeyError):
             RunCameraPlaylist(camera=test_camera, playlist_shortname=test_playlist)
 
+    async def test_no_repeat(self) -> None:
+        """Execute the RunCameraPlaylist integration test script,
+        but set playlist repeat config to False.
+        """
+        # Mock the command-line arguments that the run_camera_playlist.py
+        # script expects.
+        test_camera = "at"
+        test_playlist = "test"
+        test_no_repeat = False
+        # Instantiate the RunCameraPlaylist integration tests object and
+        # execute the scripts.
+        script_class = RunCameraPlaylist(
+            camera=test_camera, playlist_shortname=test_playlist, repeat=test_no_repeat
+        )
+        # Assert playlist repeat is set to False.
+        self.assertEqual(script_class.playlist_config["parameters"]["repeat"], False)
+
     async def test_no_inputs(self) -> None:
         """Attempt to execute the RunCameraPlaylist integration test script,
-        but use not command-line arguments.  This should display the help/
+        but not use command-line arguments.  This should display the help/
         usage message.
         """
         # Execute the run_camera_playlist.py script.
