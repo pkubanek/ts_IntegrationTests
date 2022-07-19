@@ -18,7 +18,7 @@
 #
 # You should have received a copy of the GNU General Public License
 
-__all__ = ["RunCameraPlaylist", "run_camera_playlist"]
+__all__ = ["LoadCameraPlaylist", "load_camera_playlist"]
 
 import yaml
 import os
@@ -35,7 +35,7 @@ from lsst.ts.IntegrationTests.configs.camera_playlist_configs import (
 )
 
 
-class RunCameraPlaylist(BaseScript):
+class LoadCameraPlaylist(BaseScript):
     """Execute the run_command script for the given Playlist,
     for the given Camera, with the given Yaml configuration,
     placed in the given ScriptQueue location.
@@ -70,7 +70,7 @@ class RunCameraPlaylist(BaseScript):
         self.configs = (yaml.safe_dump(self.playlist_config),)
 
 
-def run_camera_playlist() -> None:
+def load_camera_playlist() -> None:
     # Define the script arguments.
     parser = argparse.ArgumentParser()
     parser.add_argument(
@@ -123,7 +123,7 @@ def main(opts: argparse.Namespace) -> None:
     # If not, raise KeyError.
     # If it is correct, execute the camera playlist.
     try:
-        script_class = RunCameraPlaylist(
+        script_class = LoadCameraPlaylist(
             camera=opts.camera,
             playlist_shortname=opts.playlist_shortname,
             repeat=repeat,
@@ -134,6 +134,6 @@ def main(opts: argparse.Namespace) -> None:
         print(
             f"\nExecuting the {opts.camera.upper()}Camera "
             f"'{opts.playlist_shortname}' playlist."
-            f" Playist repeat is {repeat}."
+            f" Playlist repeat is {repeat}."
         )
         asyncio.run(script_class.run())
