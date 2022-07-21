@@ -28,7 +28,7 @@ from .base_script import *
 from .testutils import *
 from .yaml_test_strings import *
 from .auxtel_housekeeping import *
-from .auxtel_prepare_for_flatfield import *
+from .auxtel_prepare_for_flat import *
 from .auxtel_prepare_for_onsky import *
 from .auxtel_visit import *
 from .auxtel_shutdown import *
@@ -46,5 +46,5 @@ from .obssys2_disabled_enabled import *
 from .eas_standby_disabled import *
 from .eas_disabled_enabled import *
 from .enabled_offline import *
-from .run_camera_playlist import *
+from .load_camera_playlist import *
 from .script_queue_controller import *

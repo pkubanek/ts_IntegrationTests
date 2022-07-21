@@ -24,7 +24,7 @@ where = [ "python" ]
 auxtel_disabled_enabled = "lsst.ts.IntegrationTests.auxtel_disabled_enabled:run_auxtel_disabled_enabled"
 auxtel_housekeeping = "lsst.ts.IntegrationTests.auxtel_housekeeping:run_auxtel_housekeeping"
 auxtel_offline_standby = "lsst.ts.IntegrationTests.auxtel_offline_standby:run_auxtel_offline_standby"
-auxtel_prepare_for_flatfield = "lsst.ts.IntegrationTests.auxtel_prepare_for_flatfield:run_auxtel_prepare_for_flatfield"
+auxtel_prepare_for_flat = "lsst.ts.IntegrationTests.auxtel_prepare_for_flat:run_auxtel_prepare_for_flat"
 auxtel_prepare_for_onsky = "lsst.ts.IntegrationTests.auxtel_prepare_for_onsky:run_auxtel_prepare_for_onsky"
 auxtel_shutdown = "lsst.ts.IntegrationTests.auxtel_shutdown:run_auxtel_shutdown"
 auxtel_standby_disabled = "lsst.ts.IntegrationTests.auxtel_standby_disabled:run_auxtel_standby_disabled"
@@ -40,7 +40,7 @@ maintel_offline_standby = "lsst.ts.IntegrationTests.maintel_offline_standby:run_
 maintel_standby_disabled = "lsst.ts.IntegrationTests.maintel_standby_disabled:run_maintel_standby_disabled"
 obssys2_disabled_enabled = "lsst.ts.IntegrationTests.obssys2_disabled_enabled:run_obssys2_disabled_enabled"
 obssys2_standby_disabled = "lsst.ts.IntegrationTests.obssys2_standby_disabled:run_obssys2_standby_disabled"
-run_camera_playlist = "lsst.ts.IntegrationTests.run_camera_playlist:run_camera_playlist"
+load_camera_playlist = "lsst.ts.IntegrationTests.load_camera_playlist:load_camera_playlist"
  
 [tool.setuptools_scm]
 write_to = "python/lsst/ts/IntegrationTests/version.py"

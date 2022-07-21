@@ -28,6 +28,7 @@ from .config_registry import registry
 registry["track_target"] = yaml.safe_dump(
     {
         "target_name": "replace_me",
+        "track_for": 0,
         "rot_value": 80.0,
         "rot_type": "PhysicalSky",
     },
