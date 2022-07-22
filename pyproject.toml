@@ -23,6 +23,7 @@ where = [ "python" ]
 [project.scripts]
 auxtel_disabled_enabled = "lsst.ts.IntegrationTests.auxtel_disabled_enabled:run_auxtel_disabled_enabled"
 auxtel_housekeeping = "lsst.ts.IntegrationTests.auxtel_housekeeping:run_auxtel_housekeeping"
+auxtel_image_taking = "lsst.ts.IntegrationTests.image_taking_verification:run_auxtel_image_taking"
 auxtel_offline_standby = "lsst.ts.IntegrationTests.auxtel_offline_standby:run_auxtel_offline_standby"
 auxtel_prepare_for_flat = "lsst.ts.IntegrationTests.auxtel_prepare_for_flat:run_auxtel_prepare_for_flat"
 auxtel_prepare_for_onsky = "lsst.ts.IntegrationTests.auxtel_prepare_for_onsky:run_auxtel_prepare_for_onsky"
@@ -31,6 +32,7 @@ auxtel_standby_disabled = "lsst.ts.IntegrationTests.auxtel_standby_disabled:run_
 auxtel_stop = "lsst.ts.IntegrationTests.auxtel_stop:run_auxtel_stop"
 auxtel_track_target = "lsst.ts.IntegrationTests.auxtel_track_target:run_auxtel_track_target"
 auxtel_visit = "lsst.ts.IntegrationTests.auxtel_visit:run_auxtel_visit"
+comcam_image_taking = "lsst.ts.IntegrationTests.image_taking_verification:run_comcam_image_taking"
 eas_disabled_enabled = "lsst.ts.IntegrationTests.eas_disabled_enabled:run_eas_disabled_enabled"
 eas_standby_disabled = "lsst.ts.IntegrationTests.eas_standby_disabled:run_eas_standby_disabled"
 enabled_offline = "lsst.ts.IntegrationTests.enabled_offline:run_enabled_offline"

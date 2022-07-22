@@ -37,6 +37,7 @@ from .auxtel_track_target import *
 from .auxtel_offline_standby import *
 from .auxtel_standby_disabled import *
 from .auxtel_disabled_enabled import *
+from .image_taking_verification import *
 from .maintel_housekeeping import *
 from .maintel_offline_standby import *
 from .maintel_standby_disabled import *
