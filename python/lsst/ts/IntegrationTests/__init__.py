@@ -28,7 +28,9 @@ from .base_script import *
 from .testutils import *
 from .yaml_test_strings import *
 from .auxtel_housekeeping import *
+from .auxtel_latiss_acquire_and_take_sequence import *
 from .auxtel_latiss_calibrations import *
+from .auxtel_latiss_cwfs_align import *
 from .auxtel_prepare_for_flat import *
 from .auxtel_prepare_for_onsky import *
 from .auxtel_visit import *

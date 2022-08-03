@@ -13,7 +13,9 @@ build:
     - auxtel_disabled_enabled = lsst.ts.IntegrationTests.auxtel_disabled_enabled:run_auxtel_disabled_enabled
     - auxtel_housekeeping = lsst.ts.IntegrationTests.auxtel_housekeeping:run_auxtel_housekeeping
     - auxtel_image_taking = lsst.ts.IntegrationTests.image_taking_verification:run_auxtel_image_taking
+    - auxtel_latiss_acquire_and_take_sequence = lsst.ts.IntegrationTests.auxtel_latiss_acquire_and_take_sequence:run_auxtel_latiss_acquire_and_take_sequence
     - auxtel_latiss_calibrations = lsst.ts.IntegrationTests.auxtel_latiss_calibrations:run_auxtel_latiss_calibrations
+    - auxtel_latiss_cwfs_align = lsst.ts.IntegrationTests.auxtel_latiss_cwfs_align:run_auxtel_latiss_cwfs_align
     - auxtel_offline_standby = lsst.ts.IntegrationTests.auxtel_offline_standby:run_auxtel_offline_standby
     - auxtel_prepare_for_flat = lsst.ts.IntegrationTests.auxtel_prepare_for_flat:run_auxtel_prepare_for_flat
     - auxtel_prepare_for_onsky = lsst.ts.IntegrationTests.auxtel_prepare_for_onsky:run_auxtel_prepare_for_onsky
@@ -58,6 +60,7 @@ requirements:
   run:
     - python
     - yamllint
+    - parameterized
 
 about:
   home: https://github.com/lsst-ts/ts_IntegrationTests
