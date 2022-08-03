@@ -28,6 +28,7 @@ from .base_script import *
 from .testutils import *
 from .yaml_test_strings import *
 from .auxtel_housekeeping import *
+from .auxtel_latiss_calibrations import *
 from .auxtel_prepare_for_flat import *
 from .auxtel_prepare_for_onsky import *
 from .auxtel_visit import *
@@ -37,6 +38,7 @@ from .auxtel_track_target import *
 from .auxtel_offline_standby import *
 from .auxtel_standby_disabled import *
 from .auxtel_disabled_enabled import *
+from .comcam_calibrations import *
 from .image_taking_verification import *
 from .maintel_housekeeping import *
 from .maintel_offline_standby import *
