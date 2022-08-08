@@ -9,7 +9,6 @@ license = { text = "GPL" }
 classifiers = [ "Programming Language :: Python :: 3" ]
 urls = { documentation = "https://jira.lsstcorp.org/secure/Dashboard.jspa", repository = "https://github.com/lsst-ts/ts_IntegrationTests" }
 dynamic = [ "version" ]
-dependencies = [ "yamllint", "parameterized" ]
  
 [tools.setuptools]
 package-data = {"" = "*.csv"}
@@ -74,4 +73,7 @@ exclude = "version.py"
 [project.optional-dependencies]
 dev = [
   "documenteer[pipelines]",
+]
+test = [
+  "yamllint", "parameterized", "pytest-flake8", "pytest-black", "pytest-mypy"
 ]

@@ -43,6 +43,8 @@ test:
     - ts-dds
     - ts-salobj
     - ts-idl
+    - yamllint
+    - parameterized
   source_files:
     - python
     - tests
@@ -59,8 +61,6 @@ requirements:
     - setuptools
   run:
     - python
-    - yamllint
-    - parameterized
 
 about:
   home: https://github.com/lsst-ts/ts_IntegrationTests
