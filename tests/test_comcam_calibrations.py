@@ -62,7 +62,7 @@ class ComCamCalibrationsTestCase(unittest.IsolatedAsyncioTestCase):
         )
         self.assertEqual(
             script_class.calib_configs["calib_collection"],
-            f"LSSTComCam/calib/u/mareuter/daily.{date.today().strftime('%Y%m%d')}.{calib_type}",
+            f"LSSTComCam/calib/u/integrationtester/daily.{date.today().strftime('%Y%m%d')}.{calib_type}",
         )
         # Get number of scripts
         num_scripts = len(script_class.scripts)

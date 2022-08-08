@@ -62,7 +62,7 @@ class AuxTelLatissCalibrationsTestCase(unittest.IsolatedAsyncioTestCase):
         )
         self.assertEqual(
             script_class.calib_configs["calib_collection"],
-            f"LATISS/calib/u/mareuter/daily.{date.today().strftime('%Y%m%d')}.{calib_type}",
+            f"LATISS/calib/u/integrationtester/daily.{date.today().strftime('%Y%m%d')}.{calib_type}",
         )
         # Get number of scripts
         num_scripts = len(script_class.scripts)
@@ -92,7 +92,7 @@ class AuxTelLatissCalibrationsTestCase(unittest.IsolatedAsyncioTestCase):
         )
         self.assertEqual(
             script_class.calib_configs["calib_collection"],
-            f"LATISS/calib/u/mareuter/daily.{date.today().strftime('%Y%m%d')}.{calib_type}",
+            f"LATISS/calib/u/integrationtester/daily.{date.today().strftime('%Y%m%d')}.{calib_type}",
         )
         # Get number of scripts
         num_scripts = len(script_class.scripts)
