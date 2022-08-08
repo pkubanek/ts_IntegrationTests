@@ -30,8 +30,7 @@ from .config_registry import registry
 # auxtel_latiss_cwfs_align
 registry["auxtel_cwfs_align"] = yaml.safe_dump(
     {
-        "track_target": "",
-        "target_name": "HD164461",
+        "track_target": {"target_name": "HD164461"},
         "filter": "SDSSg",
         "grating": "empty_1",
         "exposure_time": 5,
