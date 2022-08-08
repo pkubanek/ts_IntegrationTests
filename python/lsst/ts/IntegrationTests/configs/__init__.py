@@ -24,6 +24,7 @@ from .take_image_latiss_configs import *
 from .track_target_configs import *
 from .auxtel_housekeeping_configs import *
 from .image_taking_configs import *
+from .auxtel_night_operations_configs import *
 from .auxtel_state_transition_configs import *
 from .maintel_housekeeping_configs import *
 from .maintel_state_transition_configs import *
