@@ -71,7 +71,7 @@ ignore_missing_imports = "True"
 exclude = "version.py"
  
 [project.optional-dependencies]
-dev = [
+doc = [
   "documenteer[pipelines]",
 ]
 test = [

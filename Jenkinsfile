@@ -29,7 +29,7 @@ pipeline{
                 withEnv(["HOME=/home/saluser"]) {
                     sh """
                     source $HOME/.setup_dev.sh
-                    pip install -r doc/requirements.txt
+                    pip install .[doc]
                     package-docs build
                     ltd upload --product ts-integrationtests --git-ref ${GIT_BRANCH} --dir doc/_build/html
                     """
