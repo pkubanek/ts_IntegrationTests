@@ -31,7 +31,7 @@ from .config_registry import registry
 registry["auxtel_cwfs_align"] = yaml.safe_dump(
     {
         "track_target": {"target_name": "HD164461"},
-        "filter": "SDSSg",
+        "filter": "SDSSr",
         "grating": "empty_1",
         "exposure_time": 5,
         "reason": "IntegrationTesting",
@@ -64,7 +64,7 @@ registry["auxtel_acquire_and_take_sequence_pointing"] = yaml.safe_dump(
 registry["auxtel_acquire_and_take_sequence_verify"] = yaml.safe_dump(
     {
         "object_name": "HD164461",
-        "acq_filter": "SDSSg",
+        "acq_filter": "SDSSr",
         "acq_grating": "empty_1",
         "acq_exposure_time": 0.4,
         "target_pointing_tolerance": 6,
@@ -84,10 +84,10 @@ registry["auxtel_acquire_and_take_sequence_verify"] = yaml.safe_dump(
 registry["auxtel_acquire_and_take_sequence_nominal"] = yaml.safe_dump(
     {
         "object_name": "HD164461",
-        "acq_filter": "SDSSg",
+        "acq_filter": "SDSSr",
         "acq_grating": "empty_1",
         "grating_sequence": ["ronchi90lpmm", "ronchi90lpmm", "empty_1"],
-        "filter_sequence": ["empty_1", "SDSSg", "SDSSg"],
+        "filter_sequence": ["empty_1", "SDSSr", "SDSSr"],
         "exposure_time_sequence": [4.0, 4.0, 1.0],
         "target_pointing_tolerance": 5,
         "target_pointing_verification": False,
@@ -105,7 +105,7 @@ registry["auxtel_acquire_and_take_sequence_test"] = yaml.safe_dump(
     {
         "object_name": "HD164461",
         "grating_sequence": ["ronchi90lpmm", "ronchi90lpmm", "ronchi90lpmm"],
-        "filter_sequence": ["FELH0600", "SDSSg", "SDSSg"],
+        "filter_sequence": ["FELH0600", "SDSSr", "SDSSr"],
         "exposure_time_sequence": [5.0, 5.0, 5.0],
         "do_acquire": False,
         "do_take_sequence": True,
